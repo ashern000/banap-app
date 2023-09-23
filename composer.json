@@ -1,0 +1,16 @@
+{
+    "name": "asher/banap-app",
+    "description": "This is the aplication of integration project of this semester",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Asher\\BanapApp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Asher, Lucas Oliveira, Gilmar Soares, Victor"
+        }
+    ],
+    "require": {}
+}
