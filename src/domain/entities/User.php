@@ -1,13 +1,56 @@
 <?php
 
-class User {
-    private String $name;
-    private String $email;
-    private String $password;
-    private String $city;
-    private String $propiety;
-    private String $fields;
-    private String $analyzes;
+declare(strict_types=1);
 
-    
+namespace src\domain\entities;
+
+use Exception;
+use src\domain\valueObjects\Email;
+use src\domain\valueObjects\Password;
+
+final class User
+{
+
+    private string $name;
+    private Email $email;
+    private Password $password;
+
+
+    public function getEmail(): Email
+    {
+        return $this->email;
+    }
+
+    public function setEmail(Email $email): User
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+
+    public function setName(string $name): User
+    {
+        if (strlen($name) === 0) {
+            return new Exception("O nome não pode ser vazio!");
+        }
+        $this->name = $name;
+        return $this;
+    }
+
+    public function getPassword(): Password
+    {
+        return $this->password;
+    }
+
+    public function setPassword(Password $password): User
+    {
+        $this->password = $password;
+        return $this;
+    }
 }

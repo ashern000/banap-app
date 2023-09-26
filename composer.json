@@ -4,7 +4,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Asher\\BanapApp\\": "src/"
+            "src\\": "src/"
         }
     },
     "authors": [
