@@ -14,6 +14,7 @@ final class User
     private string $name;
     private Email $email;
     private Password $password;
+    private string $photoPerfil;
 
 
     public function getEmail(): Email
@@ -39,6 +40,9 @@ final class User
         if (strlen($name) === 0) {
             return new Exception("O nome não pode ser vazio!");
         }
+        if (strlen($name) < 3) {
+            return new Exception("O nome tem que ter mais que três letras!");
+        }
         $this->name = $name;
         return $this;
     }
@@ -52,5 +56,16 @@ final class User
     {
         $this->password = $password;
         return $this;
+    }
+
+    public function setPhotoPerfil(string $photoPerfil): User
+    {
+        $this->photoPerfil = $photoPerfil;
+        return $this;
+    }
+
+    public function getPhotoPerfil(): string
+    {
+        return $this->photoPerfil;
     }
 }
