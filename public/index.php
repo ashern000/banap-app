@@ -2,16 +2,14 @@
 
 require __DIR__ . "/../vendor/autoload.php";
 
-use src\domain\entities\User;
-use src\domain\valueObjects\Email;
-use src\domain\valueObjects\Password;
+use src\aplication\useCases\userLogin\InputBoundary;
+use src\aplication\useCases\userLogin\UserLogin;
+use src\infra\adapters\SessionSaveAdapter;
+use src\infra\repositories\MySQL\MySQLRepo;
 
-try{
-$user = new User();
-$user->setName("asdds")->setEmail(new Email("asherndebortoli@gmail.com"))->setPassword(new Password("1244233423243243"));
-echo $user->getName(). "<br>";
-echo $user->getEmail() . "<br>";
-echo $user->getPassword();
-} catch(Exception $e){
-    echo $e;
-}
+$pdo = new PDO("mysql:host=localhost;dbname=test","root","");
+$userRepo = new MySQLRepo($pdo);
+$sessionSaver = new SessionSaveAdapter();
+$userUseCase = new UserLogin($userRepo,$sessionSaver);
+$input = new InputBoundary("asherndebortoli@gmail.com","12345678", "asher");
+$userUseCase->handle($input);

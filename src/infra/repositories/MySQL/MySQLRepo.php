@@ -1,13 +1,13 @@
 <?php
 
-namespace src\infra\repositories;
+namespace src\infra\repositories\MySQL;
 
-use PDO;
+use src\domain\repositories\LoadUserRepository;
 use src\domain\valueObjects\Email;
 use src\domain\entities\User;
-use src\domain\repositories\LoadUserRepository;
+use PDO;
 
-final class MySQLRepo implements LoadUserRepository{
+class MySQLRepo implements LoadUserRepository{
     private PDO $pdo;
 
     public function __construct(PDO $pdo){
@@ -19,10 +19,9 @@ final class MySQLRepo implements LoadUserRepository{
         $query = "SELECT * FROM users where email = :email";
         $result =$this->pdo->prepare($query);
         $result->execute([":email"=>(string)$email]);
-        $resultFetch = $result->fetch();
+        $resultFetch = $result->fetch(PDO::FETCH_ASSOC);
         $user = new User();
-
-        $user->setEmail(new Email($resultFetch['email']));
+        $user->setEmail(new Email($resultFetch['email']))->setName($resultFetch['nome'])->setPhotoPerfil($resultFetch['photoPerfil']);
         return $user;
     }
 }
