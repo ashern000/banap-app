@@ -8,9 +8,12 @@ final class InputBoundary{
     private string $email;
     private string $password;
 
-    public function __construct(string $email, string $password){
+    private string $name;
+
+    public function __construct(string $email, string $password, string $name){
         $this->email = $email;
         $this->password = $password;
+        $this->name = $name;
     }
 
     public function getEmail(): string{
@@ -20,6 +23,8 @@ final class InputBoundary{
     public function getPassword():string{
         return $this->password;
     }
-}
 
-?>
+    public function getName(){
+        return $this->name;
+    }
+}
