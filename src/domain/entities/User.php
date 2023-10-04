@@ -15,6 +15,18 @@ final class User
     private Email $email;
     private Password $password;
     private string $photoPerfil;
+    private bool $error = false;
+
+    public function setError(bool $error): User
+    {
+        $this->error = $error;
+        return $this;
+    }
+
+    public function getError(): bool
+    {
+        return $this->error;
+    }
 
 
     public function getEmail(): Email

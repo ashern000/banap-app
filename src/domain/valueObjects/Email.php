@@ -1,6 +1,8 @@
 <?php
 
 namespace src\domain\valueObjects;
+
+use DomainException;
 use Exception;
 
 class Email
@@ -10,10 +12,10 @@ class Email
     public function __construct(string $email)
     {
         if (strlen($email) === 0) {
-            return new Exception("O email não pode ser vazio");
+            throw new DomainException('Email is not valid');
         }
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            return new Exception("Email inválido");
+            throw new DomainException('Email is not valid');
         }
         $this->email = $email;
     }

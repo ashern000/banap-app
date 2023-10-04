@@ -12,5 +12,7 @@
             "name": "Asher, Lucas Oliveira, Gilmar Soares, Victor"
         }
     ],
-    "require": {}
+    "require": {
+        "slim/slim": "^4.12"
+    }
 }
