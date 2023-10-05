@@ -7,14 +7,14 @@ namespace src\aplication\useCases\userLogin;
 final class OutputBoundary
 {
     private string $name;
-    private string $photoPerfil;
+    private string $profilePic;
     private string $email;
 
 
     public function __construct(array $values)
     {
         $this->name = $values['name'] ?? 'Error';
-        $this->photoPerfil = $values['photoPerfil'] ?? 'Error';
+        $this->profilePic = $values['profilePic'] ?? 'Error';
         $this->email = $values['email'] ?? 'Error';
     }
 
@@ -24,9 +24,9 @@ final class OutputBoundary
         return $this->name;
     }
 
-    public function getPhotoPerfil(): string
+    public function getProfilePic(): string
     {
-        return $this->photoPerfil;
+        return $this->profilePic;
     }
 
     public function getEmail(): string

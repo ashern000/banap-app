@@ -14,20 +14,7 @@ final class User
     private string $name;
     private Email $email;
     private Password $password;
-    private string $photoPerfil;
-    private bool $error = false;
-
-    public function setError(bool $error): User
-    {
-        $this->error = $error;
-        return $this;
-    }
-
-    public function getError(): bool
-    {
-        return $this->error;
-    }
-
+    private string $profilePic;
 
     public function getEmail(): Email
     {
@@ -70,14 +57,14 @@ final class User
         return $this;
     }
 
-    public function setPhotoPerfil(string $photoPerfil): User
+    public function setProfilePic(string $profilePic): User
     {
-        $this->photoPerfil = $photoPerfil;
+        $this->profilePic = $profilePic;
         return $this;
     }
 
-    public function getPhotoPerfil(): string
+    public function getProfilePic(): string
     {
-        return $this->photoPerfil;
+        return $this->profilePic;
     }
 }

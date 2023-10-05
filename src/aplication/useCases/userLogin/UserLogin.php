@@ -31,7 +31,7 @@ final class UserLogin
         return new OutputBoundary([
             "email" => (string)$emailRepository->getEmail(),
             "name" => (string)$emailRepository->getName(),
-            "photoPerfil" => (string)$emailRepository->getPhotoPerfil()
+            "profilePic" => (string)$emailRepository->getProfilePic()
         ]);
     }
 }

@@ -27,7 +27,7 @@ class MySQLRepo implements LoadUserRepository
         if ($result->rowCount() == 0) {
             throw new Exception("Usuário não encontrado!");
         }
-        $user->setEmail(new Email($resultFetch['email']))->setName($resultFetch['nome'])->setPhotoPerfil($resultFetch['photoPerfil']);
+        $user->setEmail(new Email($resultFetch['email']))->setName($resultFetch['nome'])->setProfilePic($resultFetch['profilePic']);
         return $user;
     }
 }
