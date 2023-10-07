@@ -15,17 +15,11 @@ use Slim\Factory\AppFactory;
 
 session_start(['cookie_lifetime' => 1200, 'cookie_secure' => true, 'cookie_httponly' => true]);
 
-
 $app = AppFactory::create();
+$app->addErrorMiddleware(true,true,true);
 
-$app->get('/', function (ServerRequestInterface $request, ResponseInterface $response, array $args) {
-    $response->getBody()->write("Hello, name");
-    $json = $request->getBody();
-    $tet= json_decode($json);
-    var_dump($tet);
+require __DIR__."/../src/Infra/Http/Routes/Router.php";
 
-    return $response;
-});
 
 $app->run();
 /* 
