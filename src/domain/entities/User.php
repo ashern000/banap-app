@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace src\domain\entities;
+namespace src\Domain\Entities;
 
 use Exception;
 use src\domain\valueObjects\Email;
