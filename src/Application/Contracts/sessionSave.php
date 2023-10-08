@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace src\aplication\contracts;
+namespace src\Application\Contracts;
 
 interface SessionSave
 {

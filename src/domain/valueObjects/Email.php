@@ -1,9 +1,8 @@
 <?php
 
-namespace src\domain\valueObjects;
+namespace src\Domain\valueObjects;
 
 use DomainException;
-use Exception;
 
 class Email
 {

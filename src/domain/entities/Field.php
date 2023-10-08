@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace src\Domain\Entities;
 
 use DateTime;
+use DomainException;
 
 final class Field
 {
@@ -107,6 +108,9 @@ final class Field
      */
     public function setWhenRegistered(DateTime $whenRegistered): Field
     {
+        if($whenRegistered < new DateTime()){
+            throw new DomainException("A data do campo não pode ser menor do que a data atual");
+        }
         $this->whenRegistered = $whenRegistered;
 
         return $this;

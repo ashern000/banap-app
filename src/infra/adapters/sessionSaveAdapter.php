@@ -1,8 +1,8 @@
 <?php
 
-namespace src\infra\adapters;
+namespace src\Infra\Adapters;
 
-use src\aplication\contracts\SessionSave;
+use src\Application\Contracts\SessionSave;
 
 final class SessionSaveAdapter implements SessionSave
 {

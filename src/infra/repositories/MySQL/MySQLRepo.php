@@ -3,10 +3,11 @@
 namespace src\infra\repositories\MySQL;
 
 use Exception;
-use src\domain\repositories\LoadUserRepository;
-use src\domain\valueObjects\Email;
-use src\domain\entities\User;
+use src\Domain\Repositories\LoadUserRepository;
+use src\Domain\valueObjects\Email;
+use src\Domain\Entities\User;
 use PDO;
+use src\Domain\valueObjects\Password;
 
 class MySQLRepo implements LoadUserRepository
 {
@@ -27,7 +28,7 @@ class MySQLRepo implements LoadUserRepository
         if ($result->rowCount() == 0) {
             throw new Exception("Usuário não encontrado!");
         }
-        $user->setEmail(new Email($resultFetch['email']))->setName($resultFetch['nome'])->setProfilePic($resultFetch['profilePic']);
+        $user->setEmail(new Email($resultFetch['email']))->setName($resultFetch['nome'])->setProfilePic($resultFetch['profilePic'])->setPassword(new Password($resultFetch['password']));
         return $user;
     }
 }

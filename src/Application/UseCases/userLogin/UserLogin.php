@@ -2,30 +2,33 @@
 
 declare(strict_types=1);
 
-namespace src\aplication\useCases\userLogin;
+namespace src\Application\UseCases\UserLogin;
 
-
-use src\aplication\useCases\userLogin\OutputBoundary;
-use src\aplication\contracts\SessionSave;
-use src\aplication\useCases\userLogin\InputBoundary;
-use src\domain\repositories\LoadUserRepository;
-use src\domain\valueObjects\Email;
+use src\Application\Contracts\PasswordValidator;
+use src\Application\UseCases\UserLogin\OutputBoundary;
+use src\Application\Contracts\SessionSave;
+use src\Application\useCases\userLogin\InputBoundary;
+use src\Domain\Repositories\LoadUserRepository;
+use src\Domain\valueObjects\Email;
 
 final class UserLogin
 {
     private $userRepository;
     private $session;
+    private $validator;
 
-    public function __construct(LoadUserRepository $userRepository, SessionSave $session)
+    public function __construct(LoadUserRepository $userRepository, SessionSave $session, PasswordValidator $validator)
     {
         $this->userRepository = $userRepository;
         $this->session = $session;
+        $this->validator = $validator;
     }
 
     public function handle(InputBoundary $input): OutputBoundary
     {
         $email = new Email($input->getEmail());
         $emailRepository = $this->userRepository->loadByEmail($email);
+        $this->validator->validatorPassword($input->getPassword(),$emailRepository->getPassword());
         $this->session->saveSession($input->getName(), $input->getEmail());
 
         return new OutputBoundary([
