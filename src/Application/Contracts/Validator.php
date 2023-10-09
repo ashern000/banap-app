@@ -6,6 +6,6 @@ namespace src\Application\Contracts;
 
 use src\Domain\valueObjects\Password;
 
-interface PasswordValidator{
+interface Validator{
     public function validatorPassword(string $password,Password $passwordDatabase):bool;
 }

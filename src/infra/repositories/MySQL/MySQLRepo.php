@@ -3,13 +3,14 @@
 namespace src\infra\repositories\MySQL;
 
 use Exception;
-use src\Domain\Repositories\LoadUserRepository;
+use src\Domain\Repositories\LoadUserRepositories\LoadUserRepository;
 use src\Domain\valueObjects\Email;
 use src\Domain\Entities\User;
 use PDO;
+use src\Domain\Repositories\LoadUserRepositories\CreateUserRepository;
 use src\Domain\valueObjects\Password;
 
-class MySQLRepo implements LoadUserRepository
+class MySQLRepo implements LoadUserRepository, CreateUserRepository
 {
     private PDO $pdo;
 
@@ -28,6 +29,17 @@ class MySQLRepo implements LoadUserRepository
         if ($result->rowCount() == 0) {
             throw new Exception("Usuário não encontrado!");
         }
+        $user->setEmail(new Email($resultFetch['email']))->setName($resultFetch['nome'])->setProfilePic($resultFetch['profilePic'])->setPassword(new Password($resultFetch['password']));
+        return $user;
+    }
+
+    public function create(User $user): User
+    {
+        $query = "INSERT INTO users(name, email, password,profilePic) VALUES(:name, :email, :password, :profilePic);";
+        $result = $this->pdo->prepare($query);
+        $result->execute([":email" => $user->getEmail(), ":name" => $user->getName(), ":password" => $user->getPassword(), ":profilePic" => $user->getProfilePic()]);
+        $resultFetch = $result->fetch(PDO::FETCH_ASSOC);
+        $user = new User();
         $user->setEmail(new Email($resultFetch['email']))->setName($resultFetch['nome'])->setProfilePic($resultFetch['profilePic'])->setPassword(new Password($resultFetch['password']));
         return $user;
     }

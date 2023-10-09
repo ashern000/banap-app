@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace src\Application\UseCases\UserLogin;
 
-use src\Application\Contracts\PasswordValidator;
+use src\Application\Contracts\Validator;
 use src\Application\UseCases\UserLogin\OutputBoundary;
 use src\Application\Contracts\SessionSave;
 use src\Application\useCases\userLogin\InputBoundary;
-use src\Domain\Repositories\LoadUserRepository;
+use src\Domain\Repositories\LoadUserRepositories\LoadUserRepository;
 use src\Domain\valueObjects\Email;
 
 final class UserLogin
@@ -17,7 +17,7 @@ final class UserLogin
     private $session;
     private $validator;
 
-    public function __construct(LoadUserRepository $userRepository, SessionSave $session, PasswordValidator $validator)
+    public function __construct(LoadUserRepository $userRepository, SessionSave $session, Validator $validator)
     {
         $this->userRepository = $userRepository;
         $this->session = $session;

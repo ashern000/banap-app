@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
+namespace src\Application\UseCases\UserCreate;
 
 use src\Application\Contracts\Bcrypt;
 use src\Application\UseCases\UserCreate\InputBoundary;
 use src\Application\UseCases\UserCreate\OutputBoundary;
 use src\Domain\Entities\User;
-use src\Domain\Repositories\CreateUserRepository;
+use src\Domain\Repositories\LoadUserRepositories\CreateUserRepository;
 use src\Domain\valueObjects\Email;
 use src\Domain\valueObjects\Password;
 
