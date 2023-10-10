@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace src\Domain\Entities;
 
 use Exception;
-use src\domain\valueObjects\Email;
-use src\domain\valueObjects\Password;
+use src\Domain\valueObjects\Email;
+use src\Domain\valueObjects\Password;
 
 final class User
 {

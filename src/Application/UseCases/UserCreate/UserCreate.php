@@ -21,7 +21,7 @@ final class UserCreate
     public function __construct(CreateUserRepository $repository, Bcrypt $bcrypt)
     {
         $this->repository = $repository;
-        $this->bcrypt= $bcrypt;
+        $this->bcrypt = $bcrypt;
     }
 
     public function handle(InputBoundary $input): OutputBoundary
@@ -31,8 +31,13 @@ final class UserCreate
         $password = new Password($passwordEncrypted);
         $user = new User();
         $user->setName($input->getName())->setProfilePic($input->getProfilePic())->setPassword($password)->setEmail($email);
-        $this->repository->create($user);
+        $userRepository = $this->repository->create($user);
 
-        return new OutputBoundary([]);
+        return new OutputBoundary([
+            "email" => $userRepository->getEmail(),
+            "name" => $userRepository->getName(),
+            "password" => $userRepository->getPassword(),
+            "profilePic" => $userRepository->getProfilePic()
+        ]);
     }
 }

@@ -6,15 +6,14 @@ require __DIR__ . "/../vendor/autoload.php";
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use src\Infra\Repositories\MySQL\MySQLRepo;
+
 use Slim\Factory\AppFactory;
 use src\Application\UseCases\UserCreate\InputBoundary as UserCreateInputBoundary;
 use src\Application\UseCases\UserLogin\InputBoundary;
 use src\Application\UseCases\UserCreate\UserCreate;
 use src\Application\UseCases\UserLogin\UserLogin;
-use src\Infra\Adapters\bcryptHashAdapter;
-use src\Infra\Adapters\SessionSaveAdapter;
-use src\Infra\Adapters\ValidatorAdapter;
+use src\Infraestructure\Adapters\bcryptHashAdapter;
+use src\Infraestructure\repositories\MySQL\MySQLRepo;
 
 session_start(['cookie_lifetime' => 1200, 'cookie_secure' => true, 'cookie_httponly' => true]);
 

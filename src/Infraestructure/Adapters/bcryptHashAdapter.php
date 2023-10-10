@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace src\Infra\Adapters;
+namespace src\Infraestructure\Adapters;
 
 use src\Application\Contracts\Bcrypt;
 

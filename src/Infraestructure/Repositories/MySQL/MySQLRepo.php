@@ -1,6 +1,6 @@
 <?php
 
-namespace src\infra\repositories\MySQL;
+namespace src\Infraestructure\repositories\MySQL;
 
 use Exception;
 use src\Domain\Repositories\LoadUserRepositories\LoadUserRepository;
