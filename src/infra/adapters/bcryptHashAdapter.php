@@ -6,7 +6,7 @@ namespace src\Infra\Adapters;
 
 use src\Application\Contracts\Bcrypt;
 
-final class BcryptHashAdapter implements Bcrypt
+final class bcryptHashAdapter implements Bcrypt
 {
     public function encrypt(string $password): string
     {

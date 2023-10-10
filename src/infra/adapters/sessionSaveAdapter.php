@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace src\Infra\Adapters;
 
 use src\Application\Contracts\SessionSave;

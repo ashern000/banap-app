@@ -25,22 +25,21 @@ class MySQLRepo implements LoadUserRepository, CreateUserRepository
         $result = $this->pdo->prepare($query);
         $result->execute([":email" => (string)$email]);
         $resultFetch = $result->fetch(PDO::FETCH_ASSOC);
-        $user = new User();
+        $userOutput = new User();
         if ($result->rowCount() == 0) {
             throw new Exception("Usuário não encontrado!");
         }
-        $user->setEmail(new Email($resultFetch['email']))->setName($resultFetch['nome'])->setProfilePic($resultFetch['profilePic'])->setPassword(new Password($resultFetch['password']));
-        return $user;
+        $userOutput->setEmail(new Email($resultFetch['email']))->setName($resultFetch['nome'])->setProfilePic($resultFetch['profilePic'])->setPassword(new Password($resultFetch['password']));
+        return $userOutput;
     }
 
     public function create(User $user): User
     {
-        $query = "INSERT INTO users(name, email, password,profilePic) VALUES(:name, :email, :password, :profilePic);";
+        $query = "INSERT INTO users(nameUser, emailUser, passwordUser,profilePic)VALUES(:nameUser,:emailUser,:passwordUser,:profilePic);";
         $result = $this->pdo->prepare($query);
-        $result->execute([":email" => $user->getEmail(), ":name" => $user->getName(), ":password" => $user->getPassword(), ":profilePic" => $user->getProfilePic()]);
-        $resultFetch = $result->fetch(PDO::FETCH_ASSOC);
-        $user = new User();
-        $user->setEmail(new Email($resultFetch['email']))->setName($resultFetch['nome'])->setProfilePic($resultFetch['profilePic'])->setPassword(new Password($resultFetch['password']));
-        return $user;
+        $result->execute([":emailUser" =>$user->getEmail(), ":nameUser"=>$user->getName(), ":passwordUser"=>$user->getPassword(), ":profilePic"=>$user->getProfilePic()]);
+        $userOutput = new User();
+        $userOutput->setEmail(new Email($user->getEmail()))->setName($user->getName())->setProfilePic($user->getProfilePic())->setPassword(new Password($user->getPassword()));
+        return $userOutput;
     }
 }
