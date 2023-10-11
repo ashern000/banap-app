@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace src\Domain\Repositories\LoadUserRepositories;
+namespace src\Domain\Repositories\UserRepositories;
 
 use src\Domain\Entities\User;
 

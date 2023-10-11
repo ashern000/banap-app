@@ -37,7 +37,7 @@ class MySQLRepo implements LoadUserRepository, CreateUserRepository
     {
         $query = "INSERT INTO users(nameUser, emailUser, passwordUser,profilePic)VALUES(:nameUser,:emailUser,:passwordUser,:profilePic);";
         $result = $this->pdo->prepare($query);
-        $result->execute([":emailUser" =>$user->getEmail(), ":nameUser"=>$user->getName(), ":passwordUser"=>$user->getPassword(), ":profilePic"=>$user->getProfilePic()]);
+        $result->execute([":emailUser" => $user->getEmail(), ":nameUser" => $user->getName(), ":passwordUser" => $user->getPassword(), ":profilePic" => $user->getProfilePic()]);
         $userOutput = new User();
         $userOutput->setEmail(new Email($user->getEmail()))->setName($user->getName())->setProfilePic($user->getProfilePic())->setPassword(new Password($user->getPassword()));
         return $userOutput;

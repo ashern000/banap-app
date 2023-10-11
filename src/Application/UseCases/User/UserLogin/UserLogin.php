@@ -8,7 +8,7 @@ use src\Application\Contracts\Validator;
 use src\Application\UseCases\UserLogin\OutputBoundary;
 use src\Application\Contracts\SessionSave;
 use src\Application\useCases\userLogin\InputBoundary;
-use src\Domain\Repositories\LoadUserRepositories\LoadUserRepository;
+use src\Domain\Repositories\UserRepositories\LoadUserRepository;
 use src\Domain\valueObjects\Email;
 
 final class UserLogin
