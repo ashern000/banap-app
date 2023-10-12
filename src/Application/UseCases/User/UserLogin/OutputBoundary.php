@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace src\Application\UseCases\UserLogin;
+namespace src\Application\UseCases\User\UserLogin;
 
 final class OutputBoundary
 {

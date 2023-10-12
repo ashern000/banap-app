@@ -13,11 +13,11 @@ use src\Domain\valueObjects\Password;
 
 final class UserEdit
 {
-    private EditUserRepository $repository;
+    private $repository;
     private SessionValidator $session;
     private Bcrypt $bcrypt;
 
-    public function __construct(SessionValidator $session, EditUserRepository $repository, Bcrypt $bcrypt)
+    public function __construct(EditUserRepository $repository, SessionValidator $session, Bcrypt $bcrypt)
     {
         $this->repository = $repository;
         $this->session = $session;

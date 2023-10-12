@@ -2,14 +2,16 @@
 
 declare(strict_types=1);
 
-namespace src\Application\UseCases\UserLogin;
+namespace src\Application\UseCases\User\UserLogin;
 
 use src\Application\Contracts\Validator;
-use src\Application\UseCases\UserLogin\OutputBoundary;
+
 use src\Application\Contracts\SessionSave;
-use src\Application\useCases\userLogin\InputBoundary;
+
 use src\Domain\Repositories\UserRepositories\LoadUserRepository;
 use src\Domain\valueObjects\Email;
+use src\Application\UseCases\User\UserLogin\InputBoundary;
+use src\Application\UseCases\User\UserLogin\OutputBoundary;
 
 final class UserLogin
 {
@@ -28,8 +30,10 @@ final class UserLogin
     {
         $email = new Email($input->getEmail());
         $emailRepository = $this->userRepository->loadByEmail($email);
-        $this->validator->validatorPassword($input->getPassword(),$emailRepository->getPassword());
-        $this->session->saveSession($input->getName(), $input->getEmail());
+
+        if($this->validator->validatorPassword($input->getPassword(),$emailRepository->getPassword())){
+            $this->session->saveSession($input->getName(), $input->getEmail());
+        };
 
         return new OutputBoundary([
             "email" => (string)$emailRepository->getEmail(),

@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace src\Application\UseCases\UserCreate;
+namespace src\Application\UseCases\User\UserCreate;
+
 
 use src\Application\Contracts\Bcrypt;
-use src\Application\UseCases\UserCreate\InputBoundary;
-use src\Application\UseCases\UserCreate\OutputBoundary;
+use src\Application\UseCases\User\UserCreate\InputBoundary;
+use src\Application\UseCases\User\UserCreate\OutputBoundary;
 use src\Domain\Entities\User;
-use src\Domain\Repositories\LoadUserRepositories\CreateUserRepository;
+use src\Domain\Repositories\UserRepositories\CreateUserRepository;
 use src\Domain\valueObjects\Email;
 use src\Domain\valueObjects\Password;
 
@@ -30,14 +31,14 @@ final class UserCreate
         $passwordEncrypted = $this->bcrypt->encrypt($input->getPassword());
         $password = new Password($passwordEncrypted);
         $user = new User();
-        $user->setName($input->getName())->setProfilePic($input->getProfilePic())->setPassword($password)->setEmail($email);
+        $user->setName($input->getName())->setProfilePic($input->getProfilePic())->setPassword(new Password($passwordEncrypted))->setEmail($email);
         $userRepository = $this->repository->create($user);
 
         return new OutputBoundary([
-            "email" => $userRepository->getEmail(),
-            "name" => $userRepository->getName(),
-            "password" => $userRepository->getPassword(),
-            "profilePic" => $userRepository->getProfilePic()
+            "email" => (string)$user->getEmail(),
+            "name" => $user->getName(),
+            "password" => (string)$user->getPassword(),
+            "profilePic" => (string)$user->getProfilePic()
         ]);
     }
 }

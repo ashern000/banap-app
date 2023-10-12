@@ -4,7 +4,7 @@ namespace src\Domain\valueObjects;
 
 use Exception;
 
-class Password
+final class Password
 {
     private string $password;
 

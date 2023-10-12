@@ -3,11 +3,12 @@
 namespace src\Infraestructure\repositories\MySQL;
 
 use Exception;
-use src\Domain\Repositories\LoadUserRepositories\LoadUserRepository;
+
 use src\Domain\valueObjects\Email;
 use src\Domain\Entities\User;
 use PDO;
-use src\Domain\Repositories\LoadUserRepositories\CreateUserRepository;
+use src\Domain\Repositories\UserRepositories\CreateUserRepository;
+use src\Domain\Repositories\UserRepositories\LoadUserRepository;
 use src\Domain\valueObjects\Password;
 
 class MySQLRepo implements LoadUserRepository, CreateUserRepository
@@ -21,7 +22,7 @@ class MySQLRepo implements LoadUserRepository, CreateUserRepository
 
     public function loadByEmail(Email $email): User
     {
-        $query = "SELECT * FROM users where email = :email";
+        $query = "SELECT * FROM users where emailUser = :email";
         $result = $this->pdo->prepare($query);
         $result->execute([":email" => (string)$email]);
         $resultFetch = $result->fetch(PDO::FETCH_ASSOC);
@@ -29,7 +30,7 @@ class MySQLRepo implements LoadUserRepository, CreateUserRepository
         if ($result->rowCount() == 0) {
             throw new Exception("Usuário não encontrado!");
         }
-        $userOutput->setEmail(new Email($resultFetch['email']))->setName($resultFetch['nome'])->setProfilePic($resultFetch['profilePic'])->setPassword(new Password($resultFetch['password']));
+        $userOutput->setEmail(new Email($resultFetch['emailUser']))->setName($resultFetch['nameUser'])->setProfilePic($resultFetch['profilePic'])->setPassword(new Password($resultFetch['passwordUser']));
         return $userOutput;
     }
 
