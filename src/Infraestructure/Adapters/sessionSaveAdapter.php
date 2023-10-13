@@ -16,7 +16,7 @@ final class SessionSaveAdapter implements SessionSave, SessionValidator, Session
         return $_SESSION['session_user'] = $id;
     }
 
-    public function sessionValidate(string $email, int $id): bool
+    public function sessionValidate(int $id): bool
     {
         if($_SESSION['session_user']!=$id){
             throw new Exception("O usuário não está logado");

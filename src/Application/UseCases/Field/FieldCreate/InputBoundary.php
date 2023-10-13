@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace src\Application\UseCases\Field\FieldCreate;
 
-use DateTime;
 
+use DateTime;
 final class InputBoundary {
     private string $name;
     private int $idUser;
@@ -19,22 +19,29 @@ final class InputBoundary {
     private float $pointOne, $pointTwo, $pointThree, $pointFour;
     private array $analysis;
 
+    public function __construct(int $idUser, string $name, string $description, float $space, DateTime $whenRegistered, string $culture, int $plantsPerField, float $centralPointField, DateTime $lastDayFertilized, float $pointOne, float $pointTwo, float $pointThree, float $pointFour, array $analysis) {
+        $this->idUser = $idUser;
+        $this->name = $name;
+        $this->description = $description;
+        $this->space = $space;
+        $this->whenRegistered = $whenRegistered;
+        $this->culture = $culture;
+        $this->plantsPerField = $plantsPerField;
+        $this->centralPointField = $centralPointField;
+        $this->lastDayFertilized = $lastDayFertilized;
+        $this->pointOne = $pointOne;
+        $this->pointTwo = $pointTwo;
+        $this->pointThree = $pointThree;
+        $this->pointFour = $pointFour;
+        $this->analysis[] = $analysis;
+    }
+
     /**
      * Get the value of name
      */
     public function getName(): string
     {
         return $this->name;
-    }
-
-    /**
-     * Set the value of name
-     */
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     /**
@@ -120,8 +127,8 @@ final class InputBoundary {
     /**
      * Get the value of pointOne
      */
-    public function getPointOne(): float
+    public function getPointTwo(): float
     {
-        return $this->pointOne;
+        return $this->pointTwo;
     }
 }
