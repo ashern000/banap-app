@@ -9,11 +9,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Factory\AppFactory;
-use src\Application\UseCases\User\UserCreate\InputBoundary as UserCreateInputBoundary;
-use src\Application\UseCases\User\UserCreate\UserCreate;
-use src\Application\UseCases\User\UserLogin\InputBoundary;
-use src\Application\UseCases\User\UserLogin\UserLogin;
-
+use src\Application\UseCases\User\UserEdit\InputBoundary;
+use src\Application\UseCases\User\UserEdit\UserEdit;
 use src\Infraestructure\Adapters\bcryptHashAdapter;
 use src\Infraestructure\Adapters\SessionSaveAdapter;
 use src\Infraestructure\Adapters\ValidatorAdapter;
@@ -33,8 +30,9 @@ try {
   $userRepo = new MySQLRepo($pdo);
   $session = new SessionSaveAdapter();
   $bcrypt = new bcryptHashAdapter();
-  $useCase = new UserEdit($userRepo,$session,$bcrypt);
-  
+  $useCase = new UserEdit($userRepo, $session, $bcrypt);
+  $input = new InputBoundary('1', "Asher", "12345678", "asherndebortoli@gmail.com", "alksdjlkasdjlkjsadlkdasj");
+  $useCase->handle($input);
 } catch (Exception $e) {
   echo "<h1>DEU ERROR</h1>" . $e->getMessage();
 }

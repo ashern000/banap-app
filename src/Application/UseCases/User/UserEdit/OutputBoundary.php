@@ -6,16 +6,16 @@ namespace src\Application\UseCases\User\UserEdit;
 
 final class OutputBoundary
 {
+    private int $id;
     private string $name;
     private string $email;
-    private string $password;
     private string $profilePic;
 
     public function __construct(array $values)
     {
         $this->name = $values['name'] ?? '';
         $this->email = $values['email'] ?? '';
-        $this->password = $values['password'] ?? '';
+        $this->id = $values['id'] ?? '';
         $this->profilePic = $values['profilePic'] ?? '';
     }
 
@@ -40,16 +40,6 @@ final class OutputBoundary
     }
 
     /**
-     * Get the value of password
-     *
-     * @return string
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    /**
      * Get the value of profilePic
      *
      * @return string
@@ -57,5 +47,13 @@ final class OutputBoundary
     public function getProfilePic(): string
     {
         return $this->profilePic;
+    }
+
+    /**
+     * Get the value of id
+     */
+    public function getId(): int
+    {
+        return $this->id;
     }
 }

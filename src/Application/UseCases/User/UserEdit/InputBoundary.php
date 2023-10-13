@@ -6,15 +6,16 @@ namespace src\Application\UseCases\User\UserEdit;
 
 final class InputBoundary
 {
-
+    private int $id;
     private string $name;
     private string $password;
     private string $email;
     private string $profilePic;
 
-    public function __construct(string $name, string $password, string $email, string $profilePic)
+    public function __construct(int $id, string $name, string $password, string $email, string $profilePic)
     {
         $this->name = $name;
+        $this->id = $id;
         $this->password = $password;
         $this->email = $email;
         $this->profilePic = $profilePic;
@@ -58,5 +59,13 @@ final class InputBoundary
     public function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * Get the value of id
+     */
+    public function getId(): int
+    {
+        return $this->id;
     }
 }

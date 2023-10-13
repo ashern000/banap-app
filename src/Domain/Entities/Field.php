@@ -21,8 +21,6 @@ final class Field
     private float $pointOne, $pointTwo, $pointThree, $pointFour;
     private array $analysis;
 
-
-
     /**
      * Get the value of name
      */
@@ -108,7 +106,7 @@ final class Field
      */
     public function setWhenRegistered(DateTime $whenRegistered): Field
     {
-        if($whenRegistered < new DateTime()){
+        if ($whenRegistered < new DateTime()) {
             throw new DomainException("A data do campo não pode ser menor do que a data atual");
         }
         $this->whenRegistered = $whenRegistered;
@@ -220,6 +218,60 @@ final class Field
     public function setAnalysis(Analysis $analysis): Field
     {
         $this->analysis[] = $analysis;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of pointTwo
+     */
+    public function getPointTwo(): float
+    {
+        return $this->pointTwo;
+    }
+
+    /**
+     * Set the value of pointTwo
+     */
+    public function setPointTwo(float $pointTwo): self
+    {
+        $this->pointTwo = $pointTwo;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of pointThree
+     */
+    public function getPointThree(): float
+    {
+        return $this->pointThree;
+    }
+
+    /**
+     * Set the value of pointThree
+     */
+    public function setPointThree(float $pointThree): self
+    {
+        $this->pointThree = $pointThree;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of pointFour
+     */
+    public function getPointFour(): float
+    {
+        return $this->pointFour;
+    }
+
+    /**
+     * Set the value of pointFour
+     */
+    public function setPointFour(float $pointFour): self
+    {
+        $this->pointFour = $pointFour;
 
         return $this;
     }

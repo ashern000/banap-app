@@ -27,3 +27,18 @@
     } catch (Exception $e) {
         echo "<h1>DEU ERROR</h1>" . $e->getMessage();
     }
+
+## User Edit Code
+
+    try {
+        $pdo = new PDO("mysql:host=localhost;dbname=test", "root", "");
+        $userRepo = new MySQLRepo($pdo);
+        $session = new SessionSaveAdapter();
+        $bcrypt = new bcryptHashAdapter();
+        $useCase = new UserEdit($userRepo,$session,$bcrypt);
+        $input = new InputBoundary('1',"Asher", "12345678", "asherndebortoli@gmail.com", "alksdjlkasdjlkjsadlkdasj");
+        $useCase->handle($input);
+    
+    } catch (Exception $e) {
+        echo "<h1>DEU ERROR</h1>" . $e->getMessage();
+    }

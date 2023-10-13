@@ -10,7 +10,7 @@ use src\Domain\valueObjects\Password;
 
 final class User
 {
-
+    private int $id;
     private string $name;
     private Email $email;
     private Password $password;
@@ -66,5 +66,23 @@ final class User
     public function getProfilePic(): string
     {
         return $this->profilePic;
+    }
+
+    /**
+     * Get the value of id
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     */
+    public function setId(int $id): User
+    {
+        $this->id = $id;
+
+        return $this;
     }
 }

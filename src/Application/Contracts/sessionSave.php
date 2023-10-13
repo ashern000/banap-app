@@ -6,5 +6,5 @@ namespace src\Application\Contracts;
 
 interface SessionSave
 {
-    public function saveSession(string $name, string $email);
+    public function saveSession(int $id);
 }

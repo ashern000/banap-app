@@ -32,7 +32,7 @@ final class UserLogin
         $emailRepository = $this->userRepository->loadByEmail($email);
 
         if($this->validator->validatorPassword($input->getPassword(),$emailRepository->getPassword())){
-            $this->session->saveSession($input->getName(), $input->getEmail());
+            $this->session->saveSession($emailRepository->getId());
         };
 
         return new OutputBoundary([

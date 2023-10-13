@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace src\Application\UseCases\User\UserEdit;
+
 use src\Application\Contracts\Bcrypt;
 use src\Application\Contracts\SessionValidator;
 use src\Application\UseCases\User\UserEdit\InputBoundary;
@@ -26,14 +28,17 @@ final class UserEdit
 
     public function handle(InputBoundary $input): OutputBoundary
     {
-        $this->session->sessionValidate($input->getName(), $input->getEmail());
+        $this->session->sessionValidate($input->getEmail(), $input->getId());
+
         $user = new User();
         $email = new Email($input->getEmail());
         $password = $this->bcrypt->encrypt($input->getPassword());
         $passwordHashed = new Password($password);
+
         $user->setName($input->getName())->setEmail($email)->setPassword($passwordHashed)->setProfilePic($input->getProfilePic());
+
         $userRepository = $this->repository->editUser($user);
 
-        return new OutputBoundary([]);
+        return new OutputBoundary(['name' => $userRepository->getName(), 'email' => (string)$userRepository->getEmail(), 'id' => $userRepository->getId(), 'profilePic' => $userRepository->getProfilePic()]);
     }
 }
