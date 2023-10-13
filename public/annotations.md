@@ -14,7 +14,6 @@
         echo "<h1>DEU ERROR</h1>" . $e->getMessage();
     }
 
-
 ## User Create Code
 
     try {
