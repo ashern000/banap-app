@@ -6,7 +6,10 @@ namespace src\Application\UseCases\Field\FieldCreate;
 
 
 use DateTime;
-final class InputBoundary {
+use src\Domain\Entities\Analysis;
+
+final class InputBoundary
+{
     private string $name;
     private int $idUser;
     private string $description;
@@ -17,9 +20,10 @@ final class InputBoundary {
     private float $centralPointField;
     private DateTime $lastDayFertilized;
     private float $pointOne, $pointTwo, $pointThree, $pointFour;
-    private array $analysis;
+    private Analysis $analysis;
 
-    public function __construct(int $idUser, string $name, string $description, float $space, DateTime $whenRegistered, string $culture, int $plantsPerField, float $centralPointField, DateTime $lastDayFertilized, float $pointOne, float $pointTwo, float $pointThree, float $pointFour, array $analysis) {
+    public function __construct(int $idUser, string $name, string $description, float $space, DateTime $whenRegistered, string $culture, int $plantsPerField, float $centralPointField, DateTime $lastDayFertilized, float $pointOne, float $pointTwo, float $pointThree, float $pointFour, Analysis $analysis)
+    {
         $this->idUser = $idUser;
         $this->name = $name;
         $this->description = $description;
@@ -33,7 +37,7 @@ final class InputBoundary {
         $this->pointTwo = $pointTwo;
         $this->pointThree = $pointThree;
         $this->pointFour = $pointFour;
-        $this->analysis[] = $analysis;
+        $this->analysis = $analysis;
     }
 
     /**
@@ -111,7 +115,7 @@ final class InputBoundary {
     /**
      * Get the value of analysis
      */
-    public function getAnalysis(): array
+    public function getAnalysis(): Analysis
     {
         return $this->analysis;
     }
@@ -130,5 +134,15 @@ final class InputBoundary {
     public function getPointTwo(): float
     {
         return $this->pointTwo;
+    }
+
+    public function getPointThree(): float
+    {
+        return $this->pointThree;
+    }
+
+    public function getPointFour(): float
+    {
+        return $this->pointFour;
     }
 }
