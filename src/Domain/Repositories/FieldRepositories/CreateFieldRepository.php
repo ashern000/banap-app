@@ -8,5 +8,5 @@ use src\Domain\Entities\Field;
 
 interface CreateFieldRepository
 {
-    public function save(Field $field): Field;
+    public function create(Field $field): Field;
 }

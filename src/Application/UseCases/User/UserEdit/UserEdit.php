@@ -28,7 +28,7 @@ final class UserEdit
 
     public function handle(InputBoundary $input): OutputBoundary
     {
-        $this->session->sessionValidate($input->getEmail(), $input->getId());
+        $this->session->sessionValidate($input->getId());
 
         $user = new User();
         $email = new Email($input->getEmail());

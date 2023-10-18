@@ -28,7 +28,7 @@ final class FieldCreate
         $field = new Field();
         $centralPoint = ($input->getPointOne() + $input->getPointTwo() + $input->getPointThree() + $input->getPointFour()) / 4;
         $field->setName($input->getName())->setIdUser($input->getIdUser())->setCulture($input->getCulture())->setWhenRegistered($input->getWhenRegistered())->setDescription($input->getDescription())->setPointOne($input->getPointOne())->setPointTwo($input->getPointTwo())->setPointThree($input->getPointThree())->setPointFour($input->getPointFour())->setAnalysis($input->getAnalysis())->setCentralPointField($centralPoint);
-        $this->repository->save($field);
+        $this->repository->create($field);
         return new OutputBoundary([]);
     }
 }

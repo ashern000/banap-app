@@ -12,7 +12,7 @@ use src\Domain\Repositories\UserRepositories\EditUserRepository;
 use src\Domain\Repositories\UserRepositories\LoadUserRepository;
 use src\Domain\valueObjects\Password;
 
-class MySQLRepo implements LoadUserRepository, CreateUserRepository, EditUserRepository
+final class MySQLRepo implements LoadUserRepository, CreateUserRepository, EditUserRepository
 {
     private PDO $pdo;
 
