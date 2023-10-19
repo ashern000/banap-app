@@ -49,7 +49,7 @@ final class MySQLRepo implements LoadUserRepository, CreateUserRepository, EditU
     {
         $query = "UPDATE users SET nameUser = :nameUser, emailUser = :emailUser, passwordUser = :passwordUser, profilePic = :profilePic where id = :id ";
         $result = $this->pdo->prepare($query);
-        $result->execute([":emailUser" => $user->getEmail(), ":nameUser" => $user->getName(), ":passwordUser" => $user->getPassword(), ":profilePic" => $user->getProfilePic(), ":id"=>$user->getId()]);
+        $result->execute([":emailUser" => $user->getEmail(), ":nameUser" => $user->getName(), ":passwordUser" => $user->getPassword(), ":profilePic" => $user->getProfilePic(), ":id" => $user->getId()]);
         $userOutput = new User();
         $userOutput->setEmail(new Email($user->getEmail()))->setName($user->getName())->setProfilePic($user->getProfilePic())->setPassword(new Password($user->getPassword()))->setId($user->getId());
         return $userOutput;

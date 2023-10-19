@@ -1,5 +1,7 @@
 <?php
 
+use src\Domain\Entities\Analysis;
+
 require __DIR__ . "/../vendor/autoload.php";
 
 
@@ -9,6 +11,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Factory\AppFactory;
+use src\Application\UseCases\Field\FieldCreate\FieldCreate;
+use src\Application\UseCases\Field\FieldCreate\InputBoundary as FieldCreateInputBoundary;
 use src\Application\UseCases\User\UserCreate\InputBoundary as UserCreateInputBoundary;
 use src\Application\UseCases\User\UserCreate\UserCreate;
 use src\Application\UseCases\User\UserEdit\UserEdit;
@@ -17,6 +21,7 @@ use src\Application\UseCases\User\UserLogin\UserLogin;
 use src\Infraestructure\Adapters\bcryptHashAdapter;
 use src\Infraestructure\Adapters\SessionSaveAdapter;
 use src\Infraestructure\Adapters\ValidatorAdapter;
+use src\Infraestructure\Repositories\MySQL\FieldRepository;
 use src\Infraestructure\repositories\MySQL\MySQLRepo;
 
 /* $app = AppFactory::create();
@@ -56,5 +61,11 @@ try {
 
 try {
   $pdo = new PDO("mysql:host=localhost;dbname=test", "root", "");
-  $fieldRepo = new 
-} catch (Exception $e) {}
+  $fieldRepo = new FieldRepository($pdo);
+  $session = new SessionSaveAdapter();
+  $fieldUseCase = new FieldCreate($fieldRepo, $session);
+  $input = new FieldCreateInputBoundary(1, "", "", 0, new DateTime(), "Banana", 2, 3.1, new DateTime(), 8.6, 6.5, 5.4, 5.3, new Analysis());
+  $fieldUseCase->handle($input);
+} catch (Exception $e) {
+  echo "<h1>DEU ERROR</h1>" . $e->getMessage();
+}

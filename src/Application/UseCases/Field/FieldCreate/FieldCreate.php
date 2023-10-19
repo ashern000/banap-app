@@ -1,14 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace src\Application\UseCases\Field\FieldCreate;
 
-use Domain\Repositories\FieldRepositories\CreateFieldRepository;
+use src\Domain\Repositories\FieldRepositories\CreateFieldRepository;
 use src\Application\Contracts\SessionValidator;
 use src\Application\UseCases\Field\FieldCreate\InputBoundary;
 use src\Application\UseCases\Field\FieldCreate\OutputBoundary;
 use src\Domain\Entities\Field;
 
-declare(strict_types=1);
 
 final class FieldCreate
 {
