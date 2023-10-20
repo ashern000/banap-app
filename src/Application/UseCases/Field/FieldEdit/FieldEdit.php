@@ -21,7 +21,7 @@ final class FieldEdit
 
     public function handle($input)
     {
-        $this->repository->sessionValidate($input->getIdUser());
+        $this->session->sessionValidate($input->getIdUser());
         $field = new Field();
 
         $centralPoint = ($input->getPointOne() + $input->getPointTwo() + $input->getPointThree() + $input->getPointFour()) / 4;
