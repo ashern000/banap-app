@@ -49,7 +49,6 @@ try {
   $userRepo = new MySQLRepo($pdo);
   $bcrypt = new bcryptHashAdapter();
   $session = new SessionSaveAdapter();
-  echo $_SESSION["session_user"];
   $validator = new ValidatorAdapter();
   $userCase = new UserLogin($userRepo, $session, $validator);
   $input = new InputBoundary("asherndebortoli@novells.com", '12345678', "Asher");
@@ -64,7 +63,7 @@ try {
   $fieldRepo = new FieldRepository($pdo);
   $session = new SessionSaveAdapter();
   $fieldUseCase = new FieldCreate($fieldRepo, $session);
-  $input = new FieldCreateInputBoundary(1, "", "", 0,new DateTime(), "Banana", 2, 3.1, new DateTime('now'), 8.6, 6.5, 5.4, 5.3, 0);
+  $input = new FieldCreateInputBoundary(1,"Talhao banana", "Um talhao para bananas" , 0.0,"2023-03-12", "Banana", 2, 3.1,'2023-23-02', 8.6, 6.5, 5.4, 5.3, 0);
   $fieldUseCase->handle($input);
 } catch (Exception $e) {
   echo "<h1>DEU ERROR</h1>" . $e->getMessage();

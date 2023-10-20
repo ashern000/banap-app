@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace src\Application\UseCases\Field\FieldCreate;
 
 
-use DateTime;
+
 use src\Domain\Entities\Analysis;
 
 final class InputBoundary
@@ -14,15 +14,15 @@ final class InputBoundary
     private int $idUser;
     private string $description;
     private float $space;
-    private DateTime $whenRegistered;
+    private string $whenRegistered;
     private string $culture;
     private int $plantsPerField;
     private float $centralPointField;
-    private DateTime $lastDayFertilized;
+    private string $lastDayFertilized;
     private float $pointOne, $pointTwo, $pointThree, $pointFour;
     private int $analysis;
 
-    public function __construct(int $idUser, string $name, string $description, float $space, DateTime $whenRegistered, string $culture, int $plantsPerField, float $centralPointField, DateTime $lastDayFertilized, float $pointOne, float $pointTwo, float $pointThree, float $pointFour, int $analysis)
+    public function __construct(int $idUser, string $name, string $description, float $space, string $whenRegistered, string $culture, int $plantsPerField, float $centralPointField, string $lastDayFertilized, float $pointOne, float $pointTwo, float $pointThree, float $pointFour, int $analysis)
     {
         $this->idUser = $idUser;
         $this->name = $name;
@@ -75,7 +75,7 @@ final class InputBoundary
     /**
      * Get the value of whenRegistered
      */
-    public function getWhenRegistered(): DateTime
+    public function getWhenRegistered(): string
     {
         return $this->whenRegistered;
     }
@@ -107,7 +107,7 @@ final class InputBoundary
     /**
      * Get the value of lastDayFertilized
      */
-    public function getLastDayFertilized(): DateTime
+    public function getLastDayFertilized(): string
     {
         return $this->lastDayFertilized;
     }

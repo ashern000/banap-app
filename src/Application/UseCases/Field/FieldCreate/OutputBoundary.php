@@ -12,12 +12,11 @@ final class OutputBoundary
     private int $idUser;
     private string $description;
     private float $space;
-    private DateTime $whenRegistered;
+    private string $whenRegistered;
     private string $culture;
     private int $plantsPerField;
     private float $centralPointField;
-    private DateTime $lastDayFertilized;
-
+    private string $lastDayFertilized;
     private float $pointOne, $pointTwo, $pointThree, $pointFour;
     private array $analysis;
 
@@ -74,7 +73,7 @@ final class OutputBoundary
     /**
      * Get the value of whenRegistered
      */
-    public function getWhenRegistered(): DateTime
+    public function getWhenRegistered(): string
     {
         return $this->whenRegistered;
     }
@@ -106,7 +105,7 @@ final class OutputBoundary
     /**
      * Get the value of lastDayFertilized
      */
-    public function getLastDayFertilized(): DateTime
+    public function getLastDayFertilized(): string
     {
         return $this->lastDayFertilized;
     }

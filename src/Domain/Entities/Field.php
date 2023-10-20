@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace src\Domain\Entities;
 
-use DateTime;
+
 use DomainException;
 
 final class Field
@@ -13,13 +13,13 @@ final class Field
     private int $idUser;
     private string $description;
     private float $space;
-    private DateTime $whenRegistered;
+    private string $whenRegistered;
     private string $culture;
     private int $plantsPerField;
     private float $centralPointField;
-    private DateTime $lastDayFertilized;
+    private string $lastDayFertilized;
     private float $pointOne, $pointTwo, $pointThree, $pointFour;
-    private array $analysis;
+    private int $analysis;
 
     /**
      * Get the value of name
@@ -96,17 +96,17 @@ final class Field
     /**
      * Get the value of whenRegistered
      */
-    public function getWhenRegistered(): DateTime
+    public function getWhenRegistered(): string
     {
-        return $this->whenRegistered;
+        return (string)$this->whenRegistered;
     }
 
     /**
      * Set the value of whenRegistered
      */
-    public function setWhenRegistered(DateTime $whenRegistered): Field
+    public function setWhenRegistered(string $whenRegistered): Field
     {
-        /*  if ($whenRegistered < new DateTime('now')) {
+        /*  if ($whenRegistered < new string('now')) {
             throw new DomainException("A data do campo não pode ser menor do que a data atual");
         } */
         $this->whenRegistered = $whenRegistered;
@@ -171,7 +171,7 @@ final class Field
     /**
      * Get the value of lastDayFertilized
      */
-    public function getLastDayFertilized(): DateTime
+    public function getLastDayFertilized(): string
     {
         return $this->lastDayFertilized;
     }
@@ -179,7 +179,7 @@ final class Field
     /**
      * Set the value of lastDayFertilized
      */
-    public function setLastDayFertilized(DateTime $lastDayFertilized): Field
+    public function setLastDayFertilized(string $lastDayFertilized): Field
     {
         $this->lastDayFertilized = $lastDayFertilized;
 
@@ -208,7 +208,7 @@ final class Field
     /**
      * Get the value of analysis
      */
-    public function getAnalysis(): array
+    public function getAnalysis(): int
     {
         return $this->analysis;
     }
@@ -218,7 +218,7 @@ final class Field
      */
     public function setAnalysis(int $analysis): Field
     {
-        $this->analysis[] = $analysis;
+        $this->analysis = $analysis;
 
         return $this;
     }
