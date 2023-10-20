@@ -106,9 +106,9 @@ final class Field
      */
     public function setWhenRegistered(DateTime $whenRegistered): Field
     {
-        if ($whenRegistered < new DateTime()) {
+        /*  if ($whenRegistered < new DateTime('now')) {
             throw new DomainException("A data do campo não pode ser menor do que a data atual");
-        }
+        } */
         $this->whenRegistered = $whenRegistered;
 
         return $this;
@@ -199,9 +199,6 @@ final class Field
      */
     public function setPointOne(float $pointOne): Field
     {
-        if ($pointOne === $this->pointTwo || $pointOne === $this->pointThree || $pointOne === $this->pointFour) {
-            throw new DomainException("Os pontos geográficos não podem ser iguais!");
-        }
 
         $this->pointOne = $pointOne;
 
@@ -219,7 +216,7 @@ final class Field
     /**
      * Set the value of analysis
      */
-    public function setAnalysis(Analysis $analysis): Field
+    public function setAnalysis(int $analysis): Field
     {
         $this->analysis[] = $analysis;
 
@@ -237,9 +234,9 @@ final class Field
     /**
      * Set the value of pointTwo
      */
-    public function setPointTwo(float $pointTwo): self
+    public function setPointTwo(float $pointTwo): Field
     {
-        if ($pointTwo === $this->pointOne || $pointTwo === $this->pointThree || $pointTwo === $this->pointFour) {
+        if ($pointTwo == $this->getPointOne()) {
             throw new DomainException("Os pontos geográficos não podem ser iguais!");
         }
 
@@ -259,9 +256,9 @@ final class Field
     /**
      * Set the value of pointThree
      */
-    public function setPointThree(float $pointThree): self
+    public function setPointThree(float $pointThree): Field
     {
-        if ($pointThree === $this->pointOne || $pointThree === $this->pointTwo || $pointThree === $this->pointFour) {
+        if ($pointThree === $this->getPointOne() || $pointThree === $this->getPointTwo()) {
             throw new DomainException("Os pontos geográficos não podem ser iguais!");
         }
 
@@ -283,7 +280,7 @@ final class Field
      */
     public function setPointFour(float $pointFour): self
     {
-        if ($pointFour === $this->pointOne || $pointFour === $this->pointTwo || $pointFour === $this->pointThree) {
+        if ($pointFour === $this->getPointOne() || $pointFour === $this->getPointTwo() || $pointFour === $this->getPointThree()) {
             throw new DomainException("Os pontos geográficos não podem ser iguais!");
         }
 

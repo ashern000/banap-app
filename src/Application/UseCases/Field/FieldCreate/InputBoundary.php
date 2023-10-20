@@ -20,9 +20,9 @@ final class InputBoundary
     private float $centralPointField;
     private DateTime $lastDayFertilized;
     private float $pointOne, $pointTwo, $pointThree, $pointFour;
-    private Analysis $analysis;
+    private int $analysis;
 
-    public function __construct(int $idUser, string $name, string $description, float $space, DateTime $whenRegistered, string $culture, int $plantsPerField, float $centralPointField, DateTime $lastDayFertilized, float $pointOne, float $pointTwo, float $pointThree, float $pointFour, Analysis $analysis)
+    public function __construct(int $idUser, string $name, string $description, float $space, DateTime $whenRegistered, string $culture, int $plantsPerField, float $centralPointField, DateTime $lastDayFertilized, float $pointOne, float $pointTwo, float $pointThree, float $pointFour, int $analysis)
     {
         $this->idUser = $idUser;
         $this->name = $name;
@@ -115,7 +115,7 @@ final class InputBoundary
     /**
      * Get the value of analysis
      */
-    public function getAnalysis(): Analysis
+    public function getAnalysis(): int
     {
         return $this->analysis;
     }

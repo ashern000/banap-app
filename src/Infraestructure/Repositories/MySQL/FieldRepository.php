@@ -19,8 +19,13 @@ final class FieldRepository implements CreateFieldRepository
 
     public function create(Field $field): Field
     {
-        $query = "INSERT INTO ";
+        $query = "INSERT INTO Fields_Banap(nameField,idUser,descriptionField,spaceField,whenRegistered,culture,plantsForField,centerPointField,lastDayFertilized,pointOne, pointTwo,pointThree,pointFour,analisys) VALUES (:nameField, :descriptionField, :spaceField, :whenRegistered, :culture, :plantsForField, :centerPointField, :lastDayFertilized, :pointOne, :pointTwo, :pointThree, :pointFour, :analisys);";
         $prepered = $this->pdo->prepare($query);
+        $prepered->bindParam(":nameField", $field->getName(), PDO::PARAM_STR);
+        $prepered->bindParam(":descriptionField", $field->getDescription(), PDO::PARAM_STR);
+        $prepered->bindParam(":spaceField", $field->getSpace(), PDO::PARAM_STR);
+        $prepered->bindParam(":whenRegistered", $field->getWhenRegistered(), PDO::PARAM_STR);
+        
         $prepered->execute();
 
         $field = new Field();

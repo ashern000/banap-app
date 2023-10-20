@@ -64,7 +64,7 @@ try {
   $fieldRepo = new FieldRepository($pdo);
   $session = new SessionSaveAdapter();
   $fieldUseCase = new FieldCreate($fieldRepo, $session);
-  $input = new FieldCreateInputBoundary(1, "", "", 0, new DateTime(), "Banana", 2, 3.1, new DateTime(), 8.6, 6.5, 5.4, 5.3, new Analysis());
+  $input = new FieldCreateInputBoundary(1, "", "", 0,new DateTime(), "Banana", 2, 3.1, new DateTime('now'), 8.6, 6.5, 5.4, 5.3, 0);
   $fieldUseCase->handle($input);
 } catch (Exception $e) {
   echo "<h1>DEU ERROR</h1>" . $e->getMessage();
