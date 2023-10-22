@@ -25,7 +25,8 @@
     $userCase->handle($input);
     } catch (Exception $e) {
     echo "<h1>DEU ERROR</h1>" . $e->getMessage();
-  }
+
+}
 
 ## User Edit Code
 
@@ -37,12 +38,23 @@
         $useCase = new UserEdit($userRepo,$session,$bcrypt);
         $input = new InputBoundary('1',"Asher", "12345678", "asherndebortoli@gmail.com", "alksdjlkasdjlkjsadlkdasj");
         $useCase->handle($input);
-    
+
     } catch (Exception $e) {
         echo "<h1>DEU ERROR</h1>" . $e->getMessage();
     }
 
+## Field Create Code
 
+    try {
+    $pdo = new PDO("mysql:host=localhost;dbname=test", "root", "");
+      $fieldRepo = new FieldRepository($pdo);
+    $session = new SessionSaveAdapter();
+      $fieldUseCase = new FieldCreate($fieldRepo, $session);
+      $input = new FieldCreateInputBoundary(1,"Talhao banana", "Um talhao para bananas" , 0.0,"2023-03-12", "Banana", 2, 3.1,'2023-23-02', 8.6, 6.5, 5.4, 5.3, 0);
+      $fieldUseCase->handle($input);
+    } catch (Exception $e) {
+    echo "<h1>DEU ERROR</h1>" . $e->getMessage();
+    }
 
 # Querys of database for app
 
@@ -60,7 +72,7 @@
 
     create table Fields_Banap(
       id int not null auto_increment primary key,
-        nameField varchar(200) not null,
+        nameField varchar(200) not null UNIQUE,
         idUser int not null,
         descriptionField text not null,
         spaceField float not null,
@@ -74,5 +86,6 @@
         pointThree float not null,
         pointFour float not null,
         analisys int not null,
+        activate int not null,
         constraint fk_UserId foreign key (idUser) references users(id)
     );

@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace src\infra\Http\Controllers;
+namespace src\Infraestructure\Http\Controllers;
 
-use src\aplication\useCases\userLogin\UserLogin;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use src\Application\UseCases\User\UserLogin\InputBoundary;
+use src\Application\UseCases\User\UserLogin\UserLogin;
 
 final class UserLoginController
 {
@@ -15,15 +16,17 @@ final class UserLoginController
     private Request $request;
     private Response $response;
 
-    public function __construct(Request $request)
+    public function __construct(Request $request, Response $response, UserLogin $userLogin)
     {
         $this->request = $request;
-        $this->response
+        $this->response= $response;
+        $this->userLogin = $userLogin;
     }
 
-    public function handle(UserLogin $userLogin)
+    public function handle()
     {
-        $this->userLogin->handle();
+        $input = new InputBoundary();
+        $this->userLogin->handle($input);
         $this->request->getBody();
         }
 }

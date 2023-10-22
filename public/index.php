@@ -63,8 +63,16 @@ try {
   $fieldRepo = new FieldRepository($pdo);
   $session = new SessionSaveAdapter();
   $fieldUseCase = new FieldCreate($fieldRepo, $session);
-  $input = new FieldCreateInputBoundary(1,"Talhao banana", "Um talhao para bananas" , 0.0,"2023-03-12", "Banana", 2, 3.1,'2023-23-02', 8.6, 6.5, 5.4, 5.3, 0);
+  $input = new FieldCreateInputBoundary(1, "Talhao Bananinhas 2", "Um talhao para bananas", 0.0, "2023-03-12", "Banana", 2, 3.1, '2023-23-02', 8.6, 6.5, 5.4, 5.3, 0);
   $fieldUseCase->handle($input);
 } catch (Exception $e) {
   echo "<h1>DEU ERROR</h1>" . $e->getMessage();
+}
+
+
+try {
+  $pdo = new PDO("mysql:host=localhost;dbname=test", "root", "");
+  $fieldRepo = new FieldRepository($pdo);
+} catch(Exception $e){
+    
 }
