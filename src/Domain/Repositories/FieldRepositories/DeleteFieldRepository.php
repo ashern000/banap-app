@@ -8,5 +8,5 @@ use src\Domain\Entities\Field;
 
 interface DeleteFieldRepository
 {
-    public function delete(Field $field): Field;
+    public function delete(Field $field, int $id): Field;
 }

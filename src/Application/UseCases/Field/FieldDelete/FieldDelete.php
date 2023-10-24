@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace src\Application\UseCases\Field\FieldDelete;
 
 use src\Application\Contracts\SessionValidator;
+use src\Domain\Entities\Field;
 use src\Infraestructure\Repositories\MySQL\FieldRepository;
 use src\Application\UseCases\Field\FieldDelete\InputBoundary;
 use src\Application\UseCases\Field\FieldDelete\OutputBoundary;
@@ -20,7 +21,9 @@ final class FieldDelete {
     }
 
     public function handle(InputBoundary $input):OutputBoundary{
-
+        $field = new Field();
+        $field->setIdUser($input->getIdUser());
+        $this->repository->delete($field, $input->getIdUser());
         return new OutputBoundary([]);
     }
 }

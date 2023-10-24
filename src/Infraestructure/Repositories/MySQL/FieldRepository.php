@@ -49,13 +49,13 @@ final class FieldRepository implements CreateFieldRepository, EditFieldRepositor
 
     public function edit(Field $field): Field
     {
-        $query = "UPDATE Fields_Banap column=:nameField, column=:idUser, column=:descriptionField, column=:spaceField, column=:whenRegistered, column=:culture, column=:plantsPerField, column=:centerPointField, column=:lastDayFertilized, column=:pointOne, column=:pointTwo, column=:pointThree, column=:pointFour, column=:analisys WHERE id = :idField";
+        $query = "UPDATE Fields_Banap set nameField=:nameField, idUser=:idUser, descriptionField=:descriptionField, spaceField=:spaceField, whenRegistered=:whenRegistered, culture=:culture, plantsForField=:plantsForField, centerPointField=:centerPointField, lastDayFertilized=:lastDayFertilized, pointOne=:pointOne, pointTwo=:pointTwo, pointThree=:pointThree, pointFour=:pointFour, analisys=:analisys WHERE id = :idField";
         $queryForId = "SELECT F.id FROM Fields_Banap F INNER JOIN users U ON F.id = U.id WHERE F.`nameField`= :nameField";
         $preperedId = $this->pdo->prepare($queryForId);
         $preperedId->bindValue(":nameField", $field->getName(), PDO::PARAM_STR);
 
         $preperedId->execute();
-        $id = $preperedId->fetchAll();
+        $id = $preperedId->fetch();
 
         $prepered = $this->pdo->prepare($query);
 
@@ -79,9 +79,13 @@ final class FieldRepository implements CreateFieldRepository, EditFieldRepositor
         return $field;
     }
 
-    public function delete(Field $field): Field
+    public function delete(Field $field, int $id): Field
     {
-        
+        $query = "DELETE  FROM Fields_Banap WHERE id=:idField";
+        echo $id;
+        $prepered = $this->pdo->prepare($query);
+        $prepered->bindValue(":idField", $id);
+        $prepered->execute();
         return $field;
     }
 }

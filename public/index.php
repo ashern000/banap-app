@@ -1,5 +1,6 @@
 <?php
 
+use src\Application\UseCases\Field\FieldDelete\FieldDelete;
 use src\Domain\Entities\Analysis;
 
 require __DIR__ . "/../vendor/autoload.php";
@@ -13,6 +14,9 @@ use Psr\Http\Message\ServerRequestInterface;
 use Slim\Factory\AppFactory;
 use src\Application\UseCases\Field\FieldCreate\FieldCreate;
 use src\Application\UseCases\Field\FieldCreate\InputBoundary as FieldCreateInputBoundary;
+use src\Application\UseCases\Field\FieldDelete\InputBoundary as FieldDeleteInputBoundary;
+use src\Application\UseCases\Field\FieldEdit\FieldEdit;
+use src\Application\UseCases\Field\FieldEdit\InputBoundary as FieldEditInputBoundary;
 use src\Application\UseCases\User\UserCreate\InputBoundary as UserCreateInputBoundary;
 use src\Application\UseCases\User\UserCreate\UserCreate;
 use src\Application\UseCases\User\UserEdit\UserEdit;
@@ -57,7 +61,7 @@ try {
   echo "<h1>DEU ERROR</h1>" . $e->getMessage();
 }
 
-
+/* 
 try {
   $pdo = new PDO("mysql:host=localhost;dbname=test", "root", "");
   $fieldRepo = new FieldRepository($pdo);
@@ -73,6 +77,21 @@ try {
 try {
   $pdo = new PDO("mysql:host=localhost;dbname=test", "root", "");
   $fieldRepo = new FieldRepository($pdo);
+  $session = new SessionSaveAdapter();
+  $fieldUseCase = new FieldEdit($fieldRepo, $session);
+  $input = new FieldEditInputBoundary(1,"Bananinhas Talhoines",300.3,121.21,1222.2,12213.13,322.123,3,"2023-03-20", "bananinhas", "Talhao Bananinhas 2", "2021-02-10");
+  $fieldUseCase->handle($input);
 } catch(Exception $e){
-    
+  echo "<h1>DEU ERROR</h1>" . $e->getMessage();
+} */
+
+try{
+  $pdo = new PDO("mysql:host=localhost;dbname=test", "root", "");
+  $fieldRepo = new FieldRepository($pdo);
+  $session = new SessionSaveAdapter();
+  $fieldUseCase = new FieldDelete($fieldRepo, $session);
+  $input = new FieldDeleteInputBoundary(4,1);
+  $fieldUseCase->handle($input);
+}catch(Exception $e){
+  echo "<h1>DEU ERROR</h1>". $e->getMessage();
 }
