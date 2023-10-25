@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace src\Infraestructure\Repositories\MySQL;
 
-use Domain\Repositories\FieldRepositories\ShowByIdUserRepository;
+use src\Domain\Repositories\FieldRepositories\ShowByIdUserRepository;
 use Exception;
 use src\Domain\Repositories\FieldRepositories\CreateFieldRepository;
 use PDO;
@@ -89,11 +89,11 @@ final class FieldRepository implements CreateFieldRepository, EditFieldRepositor
         return $field;
     }
 
-    public function showById(int $id): Field
+    public function showById(int $idUser): Field
     {
         $query = "SELECT * FROM Fields_Banap WHERE id = :idField";
         $prepered = $this->pdo->prepare($query);
-        $prepered->bindValue(":idField", $id);
+        $prepered->bindValue(":idField", $idUser);
         $prepered->execute();
         $field = $prepered->fetch();
         return new Field();
