@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\Repositories\FieldRepositories;
+namespace src\Domain\Repositories\FieldRepositories;
 
 use src\Domain\Entities\Field;
 
