@@ -85,13 +85,13 @@ try {
   echo "<h1>DEU ERROR</h1>" . $e->getMessage();
 } */
 
-try{
+try {
   $pdo = new PDO("mysql:host=localhost;dbname=test", "root", "");
   $fieldRepo = new FieldRepository($pdo);
   $session = new SessionSaveAdapter();
   $fieldUseCase = new FieldDelete($fieldRepo, $session);
-  $input = new FieldDeleteInputBoundary(4,1);
+  $input = new FieldDeleteInputBoundary(5, 1);
   $fieldUseCase->handle($input);
-}catch(Exception $e){
-  echo "<h1>DEU ERROR</h1>". $e->getMessage();
+} catch (Exception $e) {
+  echo "<h1>DEU ERROR</h1>" . $e->getMessage();
 }

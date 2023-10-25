@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace src\Infraestructure\Repositories\MySQL;
 
+use Domain\Repositories\FieldRepositories\ShowByIdUserRepository;
 use Exception;
 use src\Domain\Repositories\FieldRepositories\CreateFieldRepository;
 use PDO;
@@ -11,7 +12,7 @@ use src\Domain\Entities\Field;
 use src\Domain\Repositories\FieldRepositories\DeleteFieldRepository;
 use src\Domain\Repositories\FieldRepositories\EditFieldRepository;
 
-final class FieldRepository implements CreateFieldRepository, EditFieldRepository, DeleteFieldRepository
+final class FieldRepository implements CreateFieldRepository, EditFieldRepository, DeleteFieldRepository, ShowByIdUserRepository
 {
     private PDO $pdo;
 
@@ -24,7 +25,7 @@ final class FieldRepository implements CreateFieldRepository, EditFieldRepositor
     {
         $query = "INSERT INTO Fields_Banap(nameField,idUser,descriptionField,spaceField,whenRegistered,culture,plantsForField,centerPointField,lastDayFertilized,pointOne, pointTwo,pointThree,pointFour,analisys) 
         VALUES (:nameField,:idUser ,:descriptionField, :spaceField, :whenRegistered, :culture, :plantsForField, :centerPointField, :lastDayFertilized, :pointOne, :pointTwo, :pointThree, :pointFour, :analisys);";
-        
+
         $prepered = $this->pdo->prepare($query);
 
         $prepered->bindValue(":nameField", $field->getName(), PDO::PARAM_STR);
@@ -82,10 +83,19 @@ final class FieldRepository implements CreateFieldRepository, EditFieldRepositor
     public function delete(Field $field, int $id): Field
     {
         $query = "DELETE  FROM Fields_Banap WHERE id=:idField";
-        echo $id;
         $prepered = $this->pdo->prepare($query);
         $prepered->bindValue(":idField", $id);
         $prepered->execute();
         return $field;
+    }
+
+    public function showById(int $id): Field
+    {
+        $query = "SELECT * FROM Fields_Banap WHERE id = :idField";
+        $prepered = $this->pdo->prepare($query);
+        $prepered->bindValue(":idField", $id);
+        $prepered->execute();
+        $field = $prepered->fetch();
+        return new Field();
     }
 }

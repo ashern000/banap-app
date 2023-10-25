@@ -9,7 +9,7 @@ final class InputBoundary
     private int $idUser;
     private int $id;
 
-    public function __construct(int $idUser, int $id)
+    public function __construct(int $id, int $idUser)
     {
         $this->id = $id;
         $this->idUser = $idUser;

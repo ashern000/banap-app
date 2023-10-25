@@ -23,7 +23,7 @@ final class FieldDelete {
     public function handle(InputBoundary $input):OutputBoundary{
         $field = new Field();
         $field->setIdUser($input->getIdUser());
-        $this->repository->delete($field, $input->getIdUser());
+        $this->repository->delete($field, $input->getId());
         return new OutputBoundary([]);
     }
 }

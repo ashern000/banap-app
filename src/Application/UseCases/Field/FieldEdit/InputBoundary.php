@@ -18,7 +18,6 @@ final class InputBoundary
     private int $analysis;
     private string $lastDayFertilized;
     private string $whenRegistered;
-
     public function __construct(int $idUser, string $description, float $space, float $pointOne, float $pointTwo, float $pointThree, float $pointFour, int $analysis, string $lastDayFertilized, string $culture, string $name, string $whenRegistered)
     {
         $this->idUser = $idUser;
