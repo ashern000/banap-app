@@ -1,15 +1,13 @@
 <?php
 
-use src\Application\UseCases\Field\FieldDelete\FieldDelete;
-use src\Domain\Entities\Analysis;
 
 require __DIR__ . "/../vendor/autoload.php";
 
 
 session_start(['cookie_lifetime' => 1200, 'cookie_secure' => true, 'cookie_httponly' => true]);
 
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\RequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Factory\AppFactory;
 use src\Application\UseCases\Field\FieldCreate\FieldCreate;
@@ -25,6 +23,7 @@ use src\Application\UseCases\User\UserLogin\UserLogin;
 use src\Infraestructure\Adapters\bcryptHashAdapter;
 use src\Infraestructure\Adapters\SessionSaveAdapter;
 use src\Infraestructure\Adapters\ValidatorAdapter;
+use src\Infraestructure\Http\Controllers\UserLoginController;
 use src\Infraestructure\Repositories\MySQL\FieldRepository;
 use src\Infraestructure\repositories\MySQL\MySQLRepo;
 
@@ -37,7 +36,7 @@ require __DIR__."/../src/Infra/Http/Routes/Router.php";
 $app->run();
  */
 
-try {
+/* try {
   $pdo = new PDO("mysql:host=localhost;dbname=test", "root", "");
   $userRepo = new MySQLRepo($pdo);
   $bcrypt = new bcryptHashAdapter();
@@ -59,7 +58,7 @@ try {
   $userCase->handle($input);
 } catch (Exception $e) {
   echo "<h1>DEU ERROR</h1>" . $e->getMessage();
-}
+} */
 
 /* 
 try {
@@ -84,7 +83,7 @@ try {
 } catch(Exception $e){
   echo "<h1>DEU ERROR</h1>" . $e->getMessage();
 } */
-
+/* 
 try {
   $pdo = new PDO("mysql:host=localhost;dbname=test", "root", "");
   $fieldRepo = new FieldRepository($pdo);
@@ -95,3 +94,28 @@ try {
 } catch (Exception $e) {
   echo "<h1>DEU ERROR</h1>" . $e->getMessage();
 }
+ */
+
+
+/*  try {
+  $pdo = new PDO("mysql:host=localhost;dbname=test", "root", "");
+  $userRepo = new MySQLRepo($pdo);
+  $session = new SessionSaveAdapter();
+  $validator = new ValidatorAdapter();
+  $userCase = new UserLogin($userRepo,$session, $validator );
+  $userLoginController = new UserLoginController($userCase);
+ }catch(Exception $e){
+  echo "Deu error: " . $e->getMessage();
+ }; */
+
+
+$app = AppFactory::create();
+
+$app->get('/hello', function (Request $request, Response $response, array $args) {
+  $data = json_decode($request->getBody(),true);
+  
+  $response->getBody()->write("Hello, Asher");
+  return $response;
+});
+
+$app->run();

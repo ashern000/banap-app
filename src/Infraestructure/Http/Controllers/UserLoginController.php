@@ -16,17 +16,18 @@ final class UserLoginController
     private Request $request;
     private Response $response;
 
-    public function __construct(Request $request, Response $response, UserLogin $userLogin)
+    public function __construct(UserLogin $userLogin)
     {
-        $this->request = $request;
-        $this->response= $response;
         $this->userLogin = $userLogin;
     }
 
-    public function handle()
+    public function handle(array $data)
     {
-        $input = new InputBoundary();
-        $this->userLogin->handle($input);
-        $this->request->getBody();
+       /*  $this->userLogin->handle($input); */
+        $requestData = $this->request->getBody();
+        echo $requestData;
+        /* $input = new InputBoundary(); */
+        $this->response->getBody()->write('Hello World');
+        return $this->response;
         }
 }
