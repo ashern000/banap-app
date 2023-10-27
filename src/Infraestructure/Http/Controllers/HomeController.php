@@ -21,6 +21,6 @@ final class HomeController implements Controller
     public function handle(Request $request, Response $response, array $data)
     {
         $data = ["title" => "Home"];
-        return $this->renderer->render($response, "home.php", $data);
+        return $this->renderer->render($response, "Home.php", $data);
     }
 }
