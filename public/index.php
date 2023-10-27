@@ -1,13 +1,15 @@
 <?php
 
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 require __DIR__ . "/../vendor/autoload.php";
 
 
 session_start(['cookie_lifetime' => 1200, 'cookie_secure' => true, 'cookie_httponly' => true]);
 
-ini_set('log_errors', 1);
-error_reporting(0);
+/* ini_set('log_errors', 1);
+error_reporting(0); */
 
 /* $app = AppFactory::create();
 $app->addErrorMiddleware(true,true,true);
@@ -96,8 +98,8 @@ $bootstrap = require __DIR__ . "/bootstrap.php";
 
 $app = $bootstrap['app'];
 $container = $bootstrap['container'];
-
-$app->get("/login", "UserLoginController:handle");
-$app->get("/home", "");
+$app->get("/home", "HomeController:handle");
+$app->post("/login", "UserLoginController:handle");
+$app->any('/{any:.*}', "NotFoundController:handle");
 
 $app->run();

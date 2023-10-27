@@ -3,8 +3,11 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use DI\Container;
+use src\Infraestructure\Http\Controllers\NotFoundController;
+use src\Infraestructure\Http\Controllers\HomeController;
 use Psr\Container\ContainerInterface;
 use Slim\Factory\AppFactory;
+use Slim\Views\PhpRenderer;
 use src\Application\UseCases\User\UserLogin\UserLogin;
 use src\Infraestructure\Adapters\SessionSaveAdapter;
 use src\Infraestructure\Adapters\ValidatorAdapter;
@@ -37,11 +40,26 @@ $container->set("UserLogin", function (ContainerInterface $container) {
 
 $container->set("UserLoginController", function (ContainerInterface $container) {
     $useCase = $container->get("UserLogin");
-    return new UserLoginController($useCase);
+    $renderer = $container->get("renderer");
+    return new UserLoginController($useCase, $renderer);
+});
+
+$container->set('renderer', function ($container) {
+    return new PhpRenderer(__DIR__ . '../../src/Infraestructure/Http/Views'); // Specify the path to your template files
+});
+
+$container->set("HomeController", function (ContainerInterface $container) {
+    $renderer = $container->get("renderer");
+    return new HomeController($renderer);
+});
+
+$container->set("NotFoundController", function (ContainerInterface $container) {
+    $renderer = $container->get("renderer");
+    return new NotFoundController($renderer);
 });
 
 AppFactory::setContainer($container);
 $app = AppFactory::create();
 
-$app->addErrorMiddleware(true,true,true);
+$app->addErrorMiddleware(true, true, true);
 return ['app' => $app, 'container' => $container];
