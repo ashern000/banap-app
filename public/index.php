@@ -6,26 +6,8 @@ require __DIR__ . "/../vendor/autoload.php";
 
 session_start(['cookie_lifetime' => 1200, 'cookie_secure' => true, 'cookie_httponly' => true]);
 
-use Psr\Http\Message\RequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface;
-use Slim\Factory\AppFactory;
-use src\Application\UseCases\Field\FieldCreate\FieldCreate;
-use src\Application\UseCases\Field\FieldCreate\InputBoundary as FieldCreateInputBoundary;
-use src\Application\UseCases\Field\FieldDelete\InputBoundary as FieldDeleteInputBoundary;
-use src\Application\UseCases\Field\FieldEdit\FieldEdit;
-use src\Application\UseCases\Field\FieldEdit\InputBoundary as FieldEditInputBoundary;
-use src\Application\UseCases\User\UserCreate\InputBoundary as UserCreateInputBoundary;
-use src\Application\UseCases\User\UserCreate\UserCreate;
-use src\Application\UseCases\User\UserEdit\UserEdit;
-use src\Application\UseCases\User\UserLogin\InputBoundary;
-use src\Application\UseCases\User\UserLogin\UserLogin;
-use src\Infraestructure\Adapters\bcryptHashAdapter;
-use src\Infraestructure\Adapters\SessionSaveAdapter;
-use src\Infraestructure\Adapters\ValidatorAdapter;
-use src\Infraestructure\Http\Controllers\UserLoginController;
-use src\Infraestructure\Repositories\MySQL\FieldRepository;
-use src\Infraestructure\repositories\MySQL\MySQLRepo;
+ini_set('log_errors', 1);
+error_reporting(0);
 
 /* $app = AppFactory::create();
 $app->addErrorMiddleware(true,true,true);
@@ -109,13 +91,13 @@ try {
  }; */
 
 
-$app = AppFactory::create();
 
-$app->get('/hello', function (Request $request, Response $response, array $args) {
-  $data = json_decode($request->getBody(),true);
-  
-  $response->getBody()->write("Hello, Asher");
-  return $response;
-});
+$bootstrap = require __DIR__ . "/bootstrap.php";
+
+$app = $bootstrap['app'];
+$container = $bootstrap['container'];
+
+$app->get("/login", "UserLoginController:handle");
+$app->get("/home", "");
 
 $app->run();
