@@ -99,7 +99,10 @@ $bootstrap = require __DIR__ . "/bootstrap.php";
 $app = $bootstrap['app'];
 $container = $bootstrap['container'];
 $app->get("/home", "HomeController:handle");
+$app->get("/login", "UserLoginController:show");
+$app->get("/register", "UserRegistrationController:show");
 $app->post("/login", "UserLoginController:handle");
+$app->post("/register", "UserRegistrationController:handle");
 $app->any('/{any:.*}', "NotFoundController:handle");
 
 $app->run();

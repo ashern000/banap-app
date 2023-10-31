@@ -27,15 +27,21 @@ final class UserLoginController implements Controller
     public function handle(Request $request, Response $response, array $data)
     {
         try {
-            $requestDataJson = $request->getBody();
-            $requestDataArray = json_decode((string)$requestDataJson, true);
+            $requestDataArray = $request->getParsedBody();
             $input = new InputBoundary($requestDataArray['email'], $requestDataArray['password'], $requestDataArray['name']);
             $output = $this->userLogin->handle($input);
-            $response->getBody()->write("Bem vindo " . $output->getName());
             $data = ["name" => $output->getName(), "title" => "login"];
-            return $this->renderer->render($response, "home.php", $data);
+            return $this->renderer->render($response, "LoginPage.php", $data);
         } catch (Exception $e) {
             echo $response->getBody()->write("Error: " . $e->getMessage());
+        }
+    }
+
+    public function show(Request $request, Response $response, array $data)
+    {
+        try {
+            return $this->renderer->render($response, "LoginPage.php", $data);
+        } catch (Exception $e) {
         }
     }
 }
