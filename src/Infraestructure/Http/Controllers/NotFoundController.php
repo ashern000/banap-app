@@ -9,7 +9,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\PhpRenderer;
 use src\Infraestructure\Http\Contracts\Controller;
 
-final class NotFoundController implements Controller
+final class NotFoundController
 {
     private PhpRenderer $renderer;
     public function __construct(PhpRenderer $renderer)

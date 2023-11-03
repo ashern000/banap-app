@@ -22,7 +22,6 @@ final class SessionSaveAdapter implements SessionSave, SessionValidator, Session
             throw new Exception("O usuário não está logado");
             return false;
         }
-
         return true;
     }
 

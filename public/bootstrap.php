@@ -3,6 +3,8 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use DI\Container;
+
+use src\Infraestructure\Http\Controllers\FieldCreateController;
 use src\Infraestructure\Http\Controllers\NotFoundController;
 use src\Infraestructure\Http\Controllers\HomeController;
 use Psr\Container\ContainerInterface;
@@ -13,6 +15,7 @@ use src\Application\UseCases\User\UserLogin\UserLogin;
 use src\Infraestructure\Adapters\bcryptHashAdapter;
 use src\Infraestructure\Adapters\SessionSaveAdapter;
 use src\Infraestructure\Adapters\ValidatorAdapter;
+use src\Infraestructure\Http\Controllers\AnalisysController;
 use src\Infraestructure\Http\Controllers\UserLoginController;
 use src\Infraestructure\Http\Controllers\UserRegistrationController;
 use src\Infraestructure\Repositories\MySQL\MySQLRepo;
@@ -77,6 +80,15 @@ $container->set("UserRegistrationController", function (ContainerInterface $cont
     return new UserRegistrationController($useCase, $renderer);
 });
 
+$container->set("FieldCreateController", function (ContainerInterface $container) {
+    $renderer = $container->get("renderer");
+    return new FieldCreateController($renderer);
+});
+
+$container->set("AnalisysController", function (ContainerInterface $container) {
+    $renderer = $container->get("renderer");
+    return new AnalisysController($renderer);
+});
 
 AppFactory::setContainer($container);
 $app = AppFactory::create();
