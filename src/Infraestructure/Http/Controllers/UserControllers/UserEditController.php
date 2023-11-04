@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace src\Infraestructure\Http\Controllers;
+namespace src\Infraestructure\Http\Controllers\UserControllers;
 
-use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\PhpRenderer;
 use src\Application\UseCases\User\UserEdit\InputBoundary;
 use src\Application\UseCases\User\UserEdit\UserEdit;
@@ -25,11 +25,13 @@ final class UserEditController implements Controller
     public function handle(Request $request, Response $response, array $data)
     {
         $request = $request->getParsedBody();
-        $input = new InputBoundary($request[""]);
-        $output = $this->useCase->handle();
+        $input = new InputBoundary($request['id'],$request['name'],$request['password'], $request['email'], $request['profilePic']);
+        $output = $this->useCase->handle($input);
+        return $this->renderer->render($response, "UserEditPage.php", $data);
     }
 
     public function show(Request $request, Response $response, array $data)
     {
+        return $this->renderer->render($response, "UserEditPage.php", $data);
     }
 }

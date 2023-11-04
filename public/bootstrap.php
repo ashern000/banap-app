@@ -11,11 +11,13 @@ use Psr\Container\ContainerInterface;
 use Slim\Factory\AppFactory;
 use Slim\Views\PhpRenderer;
 use src\Application\UseCases\User\UserCreate\UserCreate;
+use src\Application\UseCases\User\UserEdit\UserEdit;
 use src\Application\UseCases\User\UserLogin\UserLogin;
 use src\Infraestructure\Adapters\bcryptHashAdapter;
 use src\Infraestructure\Adapters\SessionSaveAdapter;
 use src\Infraestructure\Adapters\ValidatorAdapter;
 use src\Infraestructure\Http\Controllers\AnalisysController;
+use src\Infraestructure\Http\Controllers\UserControllers\UserEditController;
 use src\Infraestructure\Http\Controllers\UserLoginController;
 use src\Infraestructure\Http\Controllers\UserRegistrationController;
 use src\Infraestructure\Repositories\MySQL\MySQLRepo;
@@ -74,10 +76,23 @@ $container->set("UserCreate", function (ContainerInterface $container) {
     return new UserCreate($repository, $bcrypt);
 });
 
+$container->set("UserEdit", function (ContainerInterface $container){
+    $repository = $container->get("UserRepository");
+    $session = $container->get("Session");
+    $bcrypt = $container->get("Bcrypt");
+    return new UserEdit($repository,$session, $bcrypt);
+});
+
 $container->set("UserRegistrationController", function (ContainerInterface $container) {
     $useCase = $container->get("UserCreate");
     $renderer = $container->get("renderer");
     return new UserRegistrationController($useCase, $renderer);
+});
+
+$container->set("UserEditController", function(ContainerInterface $container){
+    $useCase = $container->get("UserEdit");
+    $renderer = $container->get("renderer");
+    return new UserEditController($useCase, $renderer);
 });
 
 $container->set("FieldCreateController", function (ContainerInterface $container) {
