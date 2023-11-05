@@ -33,7 +33,7 @@ final class UserCreate
         $user = new User();
         $user->setName($input->getName())->setProfilePic($input->getProfilePic())->setPassword(new Password($passwordEncrypted))->setEmail($email);
         $userRepository = $this->repository->create($user);
-        
+
         return new OutputBoundary([
             "email" => (string)$user->getEmail(),
             "name" => $user->getName(),

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace src\Infraestructure\Http\Controllers;
+namespace src\Infraestructure\Http\Controllers\UserControllers;
 
 use Exception;
 use Psr\Http\Message\ServerRequestInterface as Request;

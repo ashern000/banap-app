@@ -18,8 +18,8 @@ use src\Infraestructure\Adapters\SessionSaveAdapter;
 use src\Infraestructure\Adapters\ValidatorAdapter;
 use src\Infraestructure\Http\Controllers\AnalisysController;
 use src\Infraestructure\Http\Controllers\UserControllers\UserEditController;
-use src\Infraestructure\Http\Controllers\UserLoginController;
-use src\Infraestructure\Http\Controllers\UserRegistrationController;
+use src\Infraestructure\Http\Controllers\UserControllers\UserLoginController;
+use src\Infraestructure\Http\Controllers\UserControllers\UserRegistrationController;
 use src\Infraestructure\Repositories\MySQL\MySQLRepo;
 
 
@@ -53,11 +53,12 @@ $container->set("UserLogin", function (ContainerInterface $container) {
 $container->set("UserLoginController", function (ContainerInterface $container) {
     $useCase = $container->get("UserLogin");
     $renderer = $container->get("renderer");
-    return new UserLoginController($useCase, $renderer);
+    $session = $container->get("Session");
+    return new UserLoginController($useCase, $renderer, $session);
 });
 
 $container->set('renderer', function ($container) {
-    return new PhpRenderer(__DIR__ . '../../src/Infraestructure/Http/Views'); // Specify the path to your template files
+    return new PhpRenderer(__DIR__ . '../../src/Infraestructure/Http/Views');
 });
 
 $container->set("HomeController", function (ContainerInterface $container) {
@@ -76,11 +77,11 @@ $container->set("UserCreate", function (ContainerInterface $container) {
     return new UserCreate($repository, $bcrypt);
 });
 
-$container->set("UserEdit", function (ContainerInterface $container){
+$container->set("UserEdit", function (ContainerInterface $container) {
     $repository = $container->get("UserRepository");
     $session = $container->get("Session");
     $bcrypt = $container->get("Bcrypt");
-    return new UserEdit($repository,$session, $bcrypt);
+    return new UserEdit($repository, $session, $bcrypt);
 });
 
 $container->set("UserRegistrationController", function (ContainerInterface $container) {
@@ -89,10 +90,11 @@ $container->set("UserRegistrationController", function (ContainerInterface $cont
     return new UserRegistrationController($useCase, $renderer);
 });
 
-$container->set("UserEditController", function(ContainerInterface $container){
+$container->set("UserEditController", function (ContainerInterface $container) {
     $useCase = $container->get("UserEdit");
+    $session = $container->get("Session");
     $renderer = $container->get("renderer");
-    return new UserEditController($useCase, $renderer);
+    return new UserEditController($useCase, $renderer, $session);
 });
 
 $container->set("FieldCreateController", function (ContainerInterface $container) {

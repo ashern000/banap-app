@@ -2,14 +2,16 @@
 
 declare(strict_types=1);
 
-namespace src\Infraestructure\Http\Controllers;
+namespace src\Infraestructure\Http\Controllers\UserControllers;
 
 use Exception;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\PhpRenderer;
+use src\Application\Contracts\SessionUserLogged;
 use src\Application\UseCases\User\UserLogin\InputBoundary;
 use src\Application\UseCases\User\UserLogin\UserLogin;
+use src\Infraestructure\Adapters\SessionSaveAdapter;
 use src\Infraestructure\Http\Contracts\Controller;
 
 final class UserLoginController implements Controller
@@ -17,11 +19,13 @@ final class UserLoginController implements Controller
 
     private UserLogin $userLogin;
     private PhpRenderer $renderer;
+    private SessionSaveAdapter $session;
 
-    public function __construct(UserLogin $userLogin, PhpRenderer $renderer)
+    public function __construct(UserLogin $userLogin, PhpRenderer $renderer, SessionSaveAdapter $session)
     {
         $this->userLogin = $userLogin;
         $this->renderer = $renderer;
+        $this->session = $session;
     }
 
     public function handle(Request $request, Response $response, array $data)
@@ -33,7 +37,7 @@ final class UserLoginController implements Controller
             $data = ["name" => $output->getName(), "title" => "login"];
             return $this->renderer->render($response, "LoginPage.php", $data);
         } catch (Exception $e) {
-            echo $response->getBody()->write("Error: " . $e->getMessage());
+            return $response->withHeader("Location", "/login")->withStatus(302);
         }
     }
 

@@ -30,7 +30,7 @@ final class UserLogin
     {
         $email = new Email($input->getEmail());
         $emailRepository = $this->userRepository->loadByEmail($email);
-        if($this->validator->validatorPassword($input->getPassword(),$emailRepository->getPassword())){
+        if ($this->validator->validatorPassword($input->getPassword(), $emailRepository->getPassword())) {
             $this->session->saveSession($emailRepository->getId());
         };
 

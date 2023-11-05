@@ -7,9 +7,10 @@ namespace src\Infraestructure\Adapters;
 use Exception;
 use src\Application\Contracts\SessionLogout;
 use src\Application\Contracts\SessionSave;
+use src\Application\Contracts\SessionUserLogged;
 use src\Application\Contracts\SessionValidator;
 
-final class SessionSaveAdapter implements SessionSave, SessionValidator, SessionLogout
+final class SessionSaveAdapter implements SessionSave, SessionValidator, SessionLogout, SessionUserLogged
 {
     public function saveSession(int $id)
     {
@@ -25,8 +26,13 @@ final class SessionSaveAdapter implements SessionSave, SessionValidator, Session
         return true;
     }
 
+    public function userLoggedIn(){
+        return isset($_SESSION['session_user']);
+    }
+
     public function logout(): void
     {
         unset($_SESSION['session_user']);
+        session_destroy();  
     }
 }
