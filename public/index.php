@@ -2,7 +2,6 @@
 
 require __DIR__ . "/../vendor/autoload.php";
 
-
 session_start(['cookie_lifetime' => 1200, 'cookie_secure' => true, 'cookie_httponly' => true]);
 
 ini_set('log_errors', 1);

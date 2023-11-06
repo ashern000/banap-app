@@ -26,6 +26,5 @@ final class HomeController implements Controller
 
     public function show(Request $request, Response $response, array $data)
     {
-        
     }
 }
