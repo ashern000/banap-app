@@ -7,6 +7,7 @@ session_start(['cookie_lifetime' => 1200, 'cookie_secure' => true, 'cookie_httpo
 ini_set('log_errors', 1);
 error_reporting(0);
 
+try{
 $bootstrap = require __DIR__ . "/bootstrap.php";
 
 $app = $bootstrap['app'];
@@ -31,3 +32,7 @@ $app->post("/analisy", "AnalisysController:handle");
 $app->any('/{any:.*}', "NotFoundController:handle");
 
 $app->run();
+
+}catch (\Exception $e){
+    echo $e->getMessage();
+}

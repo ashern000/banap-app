@@ -4,12 +4,13 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use DI\Container;
 
-use src\Infraestructure\Http\Controllers\FieldCreateController;
+use src\Infraestructure\Http\Controllers\FieldControllers\FieldCreateController;
 use src\Infraestructure\Http\Controllers\NotFoundController;
 use src\Infraestructure\Http\Controllers\HomeController;
 use Psr\Container\ContainerInterface;
 use Slim\Factory\AppFactory;
 use Slim\Views\PhpRenderer;
+use src\Application\UseCases\Field\FieldCreate\FieldCreate;
 use src\Application\UseCases\User\UserCreate\UserCreate;
 use src\Application\UseCases\User\UserEdit\UserEdit;
 use src\Application\UseCases\User\UserLogin\UserLogin;
@@ -20,6 +21,7 @@ use src\Infraestructure\Http\Controllers\AnalisysController;
 use src\Infraestructure\Http\Controllers\UserControllers\UserEditController;
 use src\Infraestructure\Http\Controllers\UserControllers\UserLoginController;
 use src\Infraestructure\Http\Controllers\UserControllers\UserRegistrationController;
+use src\Infraestructure\Repositories\MySQL\FieldRepository;
 use src\Infraestructure\Repositories\MySQL\MySQLRepo;
 
 
@@ -97,9 +99,22 @@ $container->set("UserEditController", function (ContainerInterface $container) {
     return new UserEditController($useCase, $renderer, $session);
 });
 
+$container->set("FieldRepository", function (ContainerInterface $container) {
+    $settings = new PDO("mysql:host=localhost;dbname=test", "root", "");
+    return new FieldRepository($settings);
+});
+
+$container->set("FieldCreate", function (ContainerInterface $container) {
+    $repository = $container->get("FieldRepository");
+    $session = $container->get("Session");
+    return new FieldCreate($repository,$session);
+});
+
 $container->set("FieldCreateController", function (ContainerInterface $container) {
     $renderer = $container->get("renderer");
-    return new FieldCreateController($renderer);
+    $useCase = $container->get("FieldCreate");
+    $session = $container->get("Session");
+    return new FieldCreateController($renderer,$useCase, $session);
 });
 
 $container->set("AnalisysController", function (ContainerInterface $container) {
@@ -107,6 +122,11 @@ $container->set("AnalisysController", function (ContainerInterface $container) {
     return new AnalisysController($renderer);
 });
 
+/* $container->set("FieldShowByIdUserController", function(ContainerInterface $container){
+    $renderer = $container->get("renderer");
+    return new 
+});
+ */
 AppFactory::setContainer($container);
 $app = AppFactory::create();
 
