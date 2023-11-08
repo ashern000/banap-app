@@ -1,0 +1,201 @@
+* {
+    font-family: Montserrat;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    letter-spacing: 0px;
+}
+
+ 
+
+.wrap {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #292929; */
+}
+
+ 
+
+.banap-vetor{
+    position: absolute;
+    z-index: 10;
+}
+
+ 
+
+.banap-vetor.baixo {
+    top: 552px;
+    left: 0px;
+}
+
+ 
+
+.banap-vetor.cima {
+    left: 290px;
+}
+
+ 
+
+.frame {
+    position: relative;
+    width: 390px;
+    height: 844px;
+    border-radius: 45px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    overflow: hidden;
+}
+
+ 
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* height: 100%; */
+}
+
+ 
+
+.content.div-1 {
+    margin-top: 156px;
+    display: flex;
+    gap: 72px;
+}
+
+ 
+
+.content.div-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+ 
+
+    margin: 20px 0px 15px 0px;
+}
+
+ 
+
+.content.div-2 .form-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+ 
+
+.content.div-2 span {
+    width: 243px;
+    text-align: right;
+}
+
+ 
+
+.content.div-2 span h3 {
+    color: #1A5D1A;
+}
+
+ 
+
+.form-input.email {
+    margin-bottom: 30px;
+}
+
+ 
+
+.form-input.senha {
+    margin-bottom: 5px;
+}
+
+ 
+
+.content.div-3 {
+    display: flex;
+    gap: 10px;
+}
+
+ 
+
+.banap-title {
+    color: #1A5D1A;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+}
+
+ 
+
+.banap-text {
+    color: #1A5D1A;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+ 
+
+.banap-subtext {
+    color: #000000;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+ 
+
+.banap-subtext b {
+    color: #1A5D1A;
+    font-weight: 600;
+}
+
+ 
+
+.input {
+    width: 243px;
+    outline: none;
+    border: none;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.411);
+    padding: 0px 0px 5px 0px;
+    color: #1A5D1A;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+ 
+
+.form-button {
+    width: 243px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    border: 0px;
+    color: #FFF;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    background: #1EA81E;
+}
+
+ 
+
+.form-button:hover {
+    cursor: pointer;
+}

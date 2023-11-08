@@ -8,7 +8,6 @@ use Exception;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\PhpRenderer;
-use src\Application\Contracts\SessionUserLogged;
 use src\Application\UseCases\User\UserLogin\InputBoundary;
 use src\Application\UseCases\User\UserLogin\UserLogin;
 use src\Infraestructure\Adapters\SessionSaveAdapter;
@@ -32,9 +31,9 @@ final class UserLoginController implements Controller
     {
         try {
             $requestDataArray = $request->getParsedBody();
-            $input = new InputBoundary($requestDataArray['email'], $requestDataArray['password'], $requestDataArray['name']);
+            $input = new InputBoundary($requestDataArray['email'], $requestDataArray['password']);
             $output = $this->userLogin->handle($input);
-            $data = ["name" => $output->getName(), "title" => "login"];
+            $data = ["name" => $output->getName(), "logged" => "true"];
             return $this->renderer->render($response, "LoginPage.php", $data);
         } catch (Exception $e) {
             return $response->withHeader("Location", "/login")->withStatus(302);

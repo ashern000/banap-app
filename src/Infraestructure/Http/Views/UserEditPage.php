@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <form method="post" action="http://localhost:80/login">
+    <form method="post" action="/login">
         <input type="text" name="userName" id="">
         <button>Editar</button>
     </form>

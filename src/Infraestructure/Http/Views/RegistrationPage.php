@@ -9,16 +9,13 @@
 
 <body>
     <p>Hello Asher</p>
-    <form action="http://localhost:80/register" method="POST">
+    <form action="/register" method="POST">
         <input type="text" name="name" id="name" placeholder="coloque o seu nome">
         <input type="text" name="email" id="email">
         <input type="text" name="password" id="password">
         <input type="text" name="profilePic" id="">
         <button>Registro</button>
     </form>
-    <script>
-        alert('Olá <?= $data['script'] ?>')
-    </script>
 </body>
 
 </html>

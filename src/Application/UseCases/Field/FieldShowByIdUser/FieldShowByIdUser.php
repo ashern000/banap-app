@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Application\UseCases\Field\FieldShowByIdUser;
+namespace src\Application\UseCases\Field\FieldShowByIdUser;
 
 use src\Domain\Repositories\FieldRepositories\ShowByIdUserRepository;
 use src\Application\Contracts\SessionValidator;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Application\UseCases\Field\FieldShowByIdUser;
+namespace src\Application\UseCases\Field\FieldShowByIdUser;
 
 final class InputBoundary
 {

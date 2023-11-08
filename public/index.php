@@ -29,6 +29,8 @@ $app->post("/field", "FieldCreateController:handle");
 $app->get("/analisy", "AnalisysController:show");
 $app->post("/analisy", "AnalisysController:handle");
 
+$app->get("/field-show", "FieldShowByIdUserController:show");
+
 $app->any('/{any:.*}', "NotFoundController:handle");
 
 $app->run();

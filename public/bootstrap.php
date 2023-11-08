@@ -11,6 +11,7 @@ use Psr\Container\ContainerInterface;
 use Slim\Factory\AppFactory;
 use Slim\Views\PhpRenderer;
 use src\Application\UseCases\Field\FieldCreate\FieldCreate;
+use src\Application\UseCases\Field\FieldShowByIdUser\FieldShowByIdUser;
 use src\Application\UseCases\User\UserCreate\UserCreate;
 use src\Application\UseCases\User\UserEdit\UserEdit;
 use src\Application\UseCases\User\UserLogin\UserLogin;
@@ -18,6 +19,7 @@ use src\Infraestructure\Adapters\bcryptHashAdapter;
 use src\Infraestructure\Adapters\SessionSaveAdapter;
 use src\Infraestructure\Adapters\ValidatorAdapter;
 use src\Infraestructure\Http\Controllers\AnalisysController;
+use src\Infraestructure\Http\Controllers\FieldControllers\FieldShowByIdUserController;
 use src\Infraestructure\Http\Controllers\UserControllers\UserEditController;
 use src\Infraestructure\Http\Controllers\UserControllers\UserLoginController;
 use src\Infraestructure\Http\Controllers\UserControllers\UserRegistrationController;
@@ -122,11 +124,19 @@ $container->set("AnalisysController", function (ContainerInterface $container) {
     return new AnalisysController($renderer);
 });
 
-/* $container->set("FieldShowByIdUserController", function(ContainerInterface $container){
+$container->set("FieldShowByIdUser", function (ContainerInterface $container) {
+    $repository = $container->get("FieldRepository");
+    $session = $container->get("Session");
+    return new FieldShowByIdUser($repository, $session);
+});   
+
+$container->set("FieldShowByIdUserController", function(ContainerInterface $container){
     $renderer = $container->get("renderer");
-    return new 
+    $useCase = $container->get("FieldShowByIdUser");
+    $session = $container->get("Session");
+    return new FieldShowByIdUserController($useCase, $renderer, $session);
 });
- */
+
 AppFactory::setContainer($container);
 $app = AppFactory::create();
 
