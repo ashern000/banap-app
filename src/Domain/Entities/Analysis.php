@@ -8,7 +8,8 @@ use DateTime;
 
 final class Analysis
 {
-    private float $numberOfAnalysis;
+    private int $id;
+    private int $idField;
     private float $organicMaterial;
     private float $carbonic;
     private float $phosphor;
@@ -29,23 +30,6 @@ final class Analysis
     private float $TotalCationExchangeCapacity;
     private float $RelativeTotalNeutralizingPower;
 
-    /**
-     * Get the value of numberOfAnalysis
-     */
-    public function getNumberOfAnalysis(): float
-    {
-        return $this->numberOfAnalysis;
-    }
-
-    /**
-     * Set the value of numberOfAnalysis
-     */
-    public function setNumberOfAnalysis(float $numberOfAnalysis): Analysis
-    {
-        $this->numberOfAnalysis = $numberOfAnalysis;
-
-        return $this;
-    }
 
     /**
      * Get the value of organicMaterial
@@ -386,6 +370,52 @@ final class Analysis
     {
         $this->RelativeTotalNeutralizingPower = $RelativeTotalNeutralizingPower;
 
+        return $this;
+    }
+
+    /**
+     * Get the value of id
+     *
+     * @return float
+     */
+    public function getId(): float
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @param float $id
+     *
+     * @return self
+     */
+    public function setId(float $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * Get the value of idField
+     *
+     * @return int
+     */
+    public function getIdField(): int
+    {
+        return $this->idField;
+    }
+
+    /**
+     * Set the value of idField
+     *
+     * @param int $idField
+     *
+     * @return self
+     */
+    public function setIdField(int $idField): self
+    {
+        $this->idField = $idField;
         return $this;
     }
 }

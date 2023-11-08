@@ -89,3 +89,16 @@
         activate int not null,
         constraint fk_UserId foreign key (idUser) references users(id)
     );
+
+
+### Analysis query
+
+    create table Analysis_Banap(
+      id int not null auto_increment primary key
+      id_talhao int not null,
+      necessidade_calagem float not null,
+      saturacao_base_desejada float not null,
+      saturacao_base_atual float not null,
+      CTC float not null,
+      PRNT float not null
+    );
