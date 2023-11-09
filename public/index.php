@@ -32,7 +32,7 @@ $app->post("/analisy", "AnalisysController:handle");
 $app->get("/field-show", "FieldShowByIdUserController:show");
 
 $app->any('/{any:.*}', "NotFoundController:handle");
-
+$app->addBodyParsingMiddleware();
 $app->run();
 
 }catch (\Exception $e){

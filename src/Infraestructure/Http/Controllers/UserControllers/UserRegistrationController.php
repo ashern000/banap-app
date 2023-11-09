@@ -27,9 +27,9 @@ final class UserRegistrationController implements Controller
     {
         try {
             $requestDataArray = $request->getParsedBody();
-            $input = new InputBoundary($requestDataArray['email'], $requestDataArray['password'], $requestDataArray['name'], $requestDataArray['profilePic']);
+            $input = new InputBoundary($requestDataArray['email'], $requestDataArray['senha'], $requestDataArray['nome'], "saddasdasdsa");
             $output = $this->useCase->handle($input);
-            $data = ["script" => $output->getName()];
+            $data = ['created' => "true", "name"=>$output->getName()];
             return $this->renderer->render($response, "RegistrationPage.php", $data);
         } catch (Exception $e) {
             echo $e->getMessage();
