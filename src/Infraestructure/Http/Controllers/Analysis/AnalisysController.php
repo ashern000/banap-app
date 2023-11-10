@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace src\Infraestructure\Http\Controllers;
+namespace src\Infraestructure\Http\Controllers\Analysis;
 
 use Slim\Views\PhpRenderer;
 use src\Infraestructure\Http\Contracts\Controller;
@@ -24,6 +24,6 @@ final class AnalisysController implements Controller
 
     public function show(Request $request, Response $response, array $data)
     {
-        return $this->renderer->render($response, "AnalisysPage.php", $data);
+        return $this->renderer->render($response, "AnalysisCreate.php", $data);
     }
 }

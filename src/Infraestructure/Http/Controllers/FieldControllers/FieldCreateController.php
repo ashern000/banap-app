@@ -26,24 +26,37 @@ final class FieldCreateController implements Controller
 
     public function handle(Request $request, Response $response, array $data)
     {
-        $requestData = $request->getParsedBody();
         $idUser = $_SESSION['session_user'];
         $plantsPerField = 1;
         $centralPoint = 0;
+        $lastDay = '2022-02-20';
+        $when = '2023-11-09';
+        $analysis = 1;
+        $space = 1;
 
-        $input = new InputBoundary($idUser, $requestData['name'], $requestData['description'], $requestData['space'],$requestData['whenRegistered'],$requestData['culture'],$plantsPerField, $centralPoint, $requestData['lastDay'], $requestData['pointOne'], $requestData['pointTwo'], $requestData['pointThree'], $requestData['pointFour'],$requestData['analysis']);
+        $requestData = $request->getParsedBody();
+        if (!empty($_SESSION["form-save-data"])) {
+            $requestDataPrevious = $_SESSION["form-save-data"];
+            $input = new InputBoundary($idUser, $requestDataPrevious['identificacao'], $requestDataPrevious['descricao'], $space, $when, $requestDataPrevious['cultura'], $plantsPerField, $centralPoint, $lastDay, (float)$requestData['ponto1'], (float)$requestData['ponto2'], (float)$requestData['ponto3'], (float)$requestData['ponto4'], $analysis);
+            $output = $this->useCase->handle($input);
+            $_SESSION['form-save-data'] = null;
+        } else {
+            $_SESSION['form-save-data'] = $requestData;
+            return $this->renderer->render($response, "FieldCreateSecond.php", $data);
+        }
 
-        $output = $this->useCase->handle($input);
-        return $this->renderer->render($response, "FieldPage.php", $data);
+        /*         $input = new InputBoundary($idUser, $requestData['identificacao'], $requestData['descricao'], $requestData['cultura'],$requestData['whenRegistered'],$requestData['culture'],$plantsPerField, $centralPoint, $requestData['lastDay'], $requestData['pointOne'], $requestData['pointTwo'], $requestData['pointThree'], $requestData['pointFour'],$requestData['analysis']);
 
+        $output = $this->useCase->handle($input); */
+        return $this->renderer->render($response, "FieldCreate.php", $data);
     }
 
     public function show(Request $request, Response $response, array $data)
     {
-        if($this->session->userLoggedIn()){
-        return $this->renderer->render($response, "FieldPage.php", $data);
-    }else{
-        return $response->withHeader("Location", "/")->withStatus(302);
-    }
+        if ($this->session->userLoggedIn()) {
+            return $this->renderer->render($response, "FieldCreate.php", $data);
+        } else {
+            return $response->withHeader("Location", "/")->withStatus(302);
+        }
     }
 }

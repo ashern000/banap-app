@@ -29,7 +29,7 @@ final class UserRegistrationController implements Controller
             $requestDataArray = $request->getParsedBody();
             $input = new InputBoundary($requestDataArray['email'], $requestDataArray['senha'], $requestDataArray['nome'], "saddasdasdsa");
             $output = $this->useCase->handle($input);
-            $data = ['created' => "true", "name"=>$output->getName()];
+            $data = ['created' => "true", "name" => $output->getName()];
             return $this->renderer->render($response, "RegistrationPage.php", $data);
         } catch (Exception $e) {
             echo $e->getMessage();

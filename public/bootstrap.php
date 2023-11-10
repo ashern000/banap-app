@@ -18,7 +18,7 @@ use src\Application\UseCases\User\UserLogin\UserLogin;
 use src\Infraestructure\Adapters\bcryptHashAdapter;
 use src\Infraestructure\Adapters\SessionSaveAdapter;
 use src\Infraestructure\Adapters\ValidatorAdapter;
-use src\Infraestructure\Http\Controllers\AnalisysController;
+use src\Infraestructure\Http\Controllers\Analysis\AnalisysController;
 use src\Infraestructure\Http\Controllers\FieldControllers\FieldShowByIdUserController;
 use src\Infraestructure\Http\Controllers\UserControllers\UserEditController;
 use src\Infraestructure\Http\Controllers\UserControllers\UserLoginController;
