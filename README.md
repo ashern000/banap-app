@@ -121,6 +121,10 @@ CREATE TABLE IF NOT EXISTS `Analysis_Banap` (
 
 ```
 
+# Para rodar a aplicação
+    
+    php -S localhost:80 -t public
+
 # Estrutura da Aplicação
 
     banap-app/
