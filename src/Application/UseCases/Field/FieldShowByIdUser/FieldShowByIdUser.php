@@ -19,42 +19,58 @@ final class FieldShowByIdUser
     }
 
 
-    function merge($left, $right, $key)
-    {
-        $result = array();
-        while (count($left) > 0 && count($right) > 0) {
-            if ($left[0][$key] < $right[0][$key]) {
-                $result[] = array_shift($left);
-            } else {
-                $result[] = array_shift($right);
-            }
-        }
-
-        return array_merge($result, $left, $right);
-    }
-
-    function mergeSort($array, $key)
+    private function mergeSortById($array)
     {
         if (count($array) <= 1) {
             return $array;
         }
 
-        $middle = count($array) / 2;
-        $left = array_slice($array, 0, $middle);
-        $right = array_slice($array, $middle);
+        $middle = floor(count($array) / 2);
+        $left = array_slice($array, 0, (int)$middle);
+        $right = array_slice($array, (int)$middle);
 
-        $left = $this->mergeSort($left, $key);
-        $right = $this->mergeSort($right, $key);
+        $left = $this->mergeSortById($left);
+        $right = $this->mergeSortById($right);
 
-        return $this->merge($left, $right, $key);
+        return $this->merge($left, $right);
     }
+
+    private function merge($left, $right)
+    {
+        $result = [];
+        $leftIndex = 0;
+        $rightIndex = 0;
+
+        while ($leftIndex < count($left) && $rightIndex < count($right)) {
+            if ((int)$left[$leftIndex]["id"] < (int)$right[$rightIndex]["id"]) {
+                $result[] = $left[$leftIndex];
+                $leftIndex++;
+            } else {
+                $result[] = $right[$rightIndex];
+                $rightIndex++;
+            }
+        }
+        
+        while ($leftIndex < count($left)) {
+            $result[] = $left[$leftIndex];
+            $leftIndex++;
+        }
+
+        while ($rightIndex < count($right)) {
+            $result[] = $right[$rightIndex];
+            $rightIndex++;
+        }
+
+        return $result;
+    }
+
 
     public function handle(InputBoundary $input): OutputBoundary
     {
         $this->session->sessionValidate($input->getIdUser());
         $field = $this->repository->showById($input->getIdUser());
-        $fieldOrganized = $this->mergeSort($field, "id");
-        echo $fieldOrganized;
-        return new OutputBoundary([]);
+        $field = $this->mergeSortById($field);
+
+        return new OutputBoundary([$field]);
     }
 }

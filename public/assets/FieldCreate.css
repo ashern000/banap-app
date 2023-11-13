@@ -24,9 +24,9 @@
     background: #ffffff;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    overflow: hidden;
     overflow: hidden;
     opacity: 0;
     transform: translateY(20px);
@@ -38,7 +38,6 @@ body.loaded .frame {
     transform: translateY(0);
 }
 
-/* Display the body and trigger the animation when the page is fully loaded */
 body.loaded {
     display: block;
 }

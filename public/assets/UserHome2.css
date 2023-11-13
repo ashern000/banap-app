@@ -1,0 +1,198 @@
+* {
+    font-family: Montserrat;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    letter-spacing: 0px;
+    z-index: 1;
+}
+
+.wrap {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #292929;
+}
+
+.frame {
+    position: relative;
+    width: 390px;
+    height: 844px;
+    border-radius: 45px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    overflow: hidden;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s, transform 0.95s;
+}
+
+body.loaded .frame {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.loaded {
+    display: block;
+}
+
+.banap-vetor {
+    position: absolute;
+    z-index: 0;
+}
+
+.banap-vetor.cima {
+    top: 105.66px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.content.div-1 {
+    width: 330px;
+    margin-top: 50px;
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.user-name {
+    color: #1EA81E;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.user-profilepic {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 40px;
+    background: url(), rgb(211, 211, 211) 50% / cover no-repeat;
+    box-shadow: 2px 0px 1px 0px rgba(0, 0, 0, 0.05), 1px 1px 2px 0px rgba(0, 0, 0, 0.05), 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-right: 6px;
+}
+
+.content.div-2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    gap: 40px;
+}
+
+.container-1 {
+    width: 330px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 40px;
+
+}
+
+.banap-title {
+    width: 330px;
+    color: #1A5D1A;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    text-align: left;
+}
+
+.container-2 {
+    width: 330px;
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    overflow-x: scroll;
+}
+
+.container-2::-webkit-scrollbar {
+    background: transparent;
+}
+
+.banap-field {
+    width: 124px;
+    height: 178px;
+}
+
+.field-image {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 148px;
+    background-color: #d9d9d9;
+    border-radius: 15px 15px 0px 0px;
+    overflow: hidden;
+}
+
+.field-image img {
+    width: 100%;
+    height: 100%;
+}
+
+.field-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+    background-color: #1EA81E;
+    border-radius: 0px 0px 15px 15px;
+}
+
+.field-name-text {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.banap-field-create {
+    width: 124px;
+    height: 178px;
+}
+
+.field-image-create {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    width: 100%;
+    height: 148px;
+    background-color: #d9d9d9;
+    border-radius: 15px 15px 0px 0px;
+}
+
+.field-image-create img {
+    width: 50px;
+    height: 50px;
+    margin-top: 64px;
+}
+
+.field-name-create {
+    width: 100%;
+    height: 30px;
+    background-color: #f2f2f2;
+    border-radius: 0px 0px 15px 15px;
+}

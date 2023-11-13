@@ -8,5 +8,5 @@ use src\Domain\Entities\Field;
 
 interface ShowByIdUserRepository
 {
-    public function showById(int $idUser): Field;
+    public function showById(int $idUser);
 }

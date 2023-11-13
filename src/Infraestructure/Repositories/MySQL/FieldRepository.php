@@ -89,13 +89,13 @@ final class FieldRepository implements CreateFieldRepository, EditFieldRepositor
         return $field;
     }
 
-    public function showById(int $idUser): Field
+    public function showById(int $idUser)
     {
-        $query = "SELECT * FROM Fields_Banap WHERE id = :idField";
+        $query = "SELECT * FROM Fields_Banap WHERE idUser = :idUser ORDER BY nameField";
         $prepered = $this->pdo->prepare($query);
-        $prepered->bindValue(":idField", $idUser);
+        $prepered->bindValue(":idUser", $idUser);
         $prepered->execute();
-        $field = $prepered->fetch();
-        return new Field();
+        $field = $prepered->fetchAll();
+        return $field;
     }
 }

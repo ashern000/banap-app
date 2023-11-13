@@ -6,10 +6,15 @@ namespace src\Application\UseCases\Field\FieldShowByIdUser;
 
 final class OutputBoundary
 {
-    private array $name;
+    private array $data;
 
     public function __construct(array $data)
     {
-        $this->name = $data['name'];
+        $this->data = $data;
+    }
+
+    public function getData(): array
+    {
+        return $this->data;
     }
 }

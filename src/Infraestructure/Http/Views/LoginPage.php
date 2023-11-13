@@ -49,6 +49,7 @@
     <script>
         if (<?= $data['logged'] ?>) {
             alert(`Seja bem vindo <?= $data["name"] ?>`)
+            document.location = "/user-home"
         }
     </script>
 </body>

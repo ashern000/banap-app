@@ -34,6 +34,7 @@ final class UserLoginController implements Controller
             $input = new InputBoundary($requestDataArray['email'], $requestDataArray['password']);
             $output = $this->userLogin->handle($input);
             $data = ["name" => $output->getName(), "logged" => "true"];
+            $_SESSION['name'] = $output->getName();
             return $this->renderer->render($response, "LoginPage.php", $data);
         } catch (Exception $e) {
             return $response->withHeader("Location", "/login")->withStatus(302);

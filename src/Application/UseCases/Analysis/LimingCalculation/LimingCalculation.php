@@ -29,11 +29,11 @@ final class LimingCalculation
             * $TotalCationExchangeCapacity / $RelativeTotalNeutralizingPower;
 
         $analysis = new Analysis();
-        
-        $analysis->setCurrentBaseSaturation($CurrentBaseSaturation)->setDesiredBaseSaturation($DesiredBaseSaturation)->setTotalCationExchangeCapacity($TotalCationExchangeCapacity)->setRelativeTotalNeutralizingPower($RelativeTotalNeutralizingPower)->setNeedForLiming($needForLiming);
+
+        $analysis->setCurrentBaseSaturation($CurrentBaseSaturation)->setDesiredBaseSaturation($DesiredBaseSaturation)->setTotalCationExchangeCapacity($TotalCationExchangeCapacity)->setRelativeTotalNeutralizingPower($RelativeTotalNeutralizingPower)->setNeedForLiming($needForLiming)->setIdField(1);
 
         $this->repository->registerLimingCalculation($analysis);
-        
-        return new OutputBoundary([]);
+
+        return new OutputBoundary(["desired_base_saturation" => $analysis->getDesiredBaseSaturation(), "current_base_saturation" => $analysis->getCurrentBaseSaturation(), "total_cation_exchange_capacity" => $analysis->getTotalcationExchangeCapacity(), "relative_total_neutralizing" => $analysis->getRelativeTotalNeutralizingPower(), "need_for_liming" => $analysis->getNeedForLiming()]);
     }
 }

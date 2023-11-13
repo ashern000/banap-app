@@ -44,11 +44,7 @@ final class FieldCreateController implements Controller
             $_SESSION['form-save-data'] = $requestData;
             return $this->renderer->render($response, "FieldCreateSecond.php", $data);
         }
-
-        /*         $input = new InputBoundary($idUser, $requestData['identificacao'], $requestData['descricao'], $requestData['cultura'],$requestData['whenRegistered'],$requestData['culture'],$plantsPerField, $centralPoint, $requestData['lastDay'], $requestData['pointOne'], $requestData['pointTwo'], $requestData['pointThree'], $requestData['pointFour'],$requestData['analysis']);
-
-        $output = $this->useCase->handle($input); */
-        return $this->renderer->render($response, "FieldCreate.php", $data);
+        return $response->withHeader("Location", "/user-home")->withStatus(308);
     }
 
     public function show(Request $request, Response $response, array $data)
@@ -56,7 +52,7 @@ final class FieldCreateController implements Controller
         if ($this->session->userLoggedIn()) {
             return $this->renderer->render($response, "FieldCreate.php", $data);
         } else {
-            return $response->withHeader("Location", "/")->withStatus(302);
+            return $response->withHeader("Location", "/")->withStatus(307);
         }
     }
 }
