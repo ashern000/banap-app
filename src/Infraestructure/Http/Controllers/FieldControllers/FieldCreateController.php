@@ -44,7 +44,7 @@ final class FieldCreateController implements Controller
             $_SESSION['form-save-data'] = $requestData;
             return $this->renderer->render($response, "FieldCreateSecond.php", $data);
         }
-        return $response->withHeader("Location", "/user-home")->withStatus(308);
+        return $response->withHeader("Location", "/user-home")->withStatus(302);
     }
 
     public function show(Request $request, Response $response, array $data)

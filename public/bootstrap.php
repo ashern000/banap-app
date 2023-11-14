@@ -12,6 +12,8 @@ use Slim\Factory\AppFactory;
 use Slim\Views\PhpRenderer;
 use src\Application\UseCases\Analysis\LimingCalculation\LimingCalculation;
 use src\Application\UseCases\Field\FieldCreate\FieldCreate;
+use src\Application\UseCases\Field\FieldEdit\FieldEdit;
+use src\Application\UseCases\Field\FieldFindById\FieldFindById;
 use src\Application\UseCases\Field\FieldShowByIdUser\FieldShowByIdUser;
 use src\Application\UseCases\User\UserCreate\UserCreate;
 use src\Application\UseCases\User\UserEdit\UserEdit;
@@ -21,6 +23,7 @@ use src\Infraestructure\Adapters\SessionSaveAdapter;
 use src\Infraestructure\Adapters\ValidatorAdapter;
 use src\Infraestructure\Http\Controllers\Analysis\AnalisysController;
 use src\Infraestructure\Http\Controllers\Analysis\RegisterLimingController;
+use src\Infraestructure\Http\Controllers\FieldControllers\FieldEditController;
 use src\Infraestructure\Http\Controllers\FieldControllers\FieldShowByIdUserController;
 use src\Infraestructure\Http\Controllers\UserControllers\UserEditController;
 use src\Infraestructure\Http\Controllers\UserControllers\UserHomeController;
@@ -157,8 +160,6 @@ $container->set("RegisterLimingController", function (ContainerInterface $contai
     return new RegisterLimingController($useCase, $renderer);
 });
 
-
-
 $container->set("FieldShowByIdUser", function(ContainerInterface $container){
     $repository = $container->get("FieldRepository");
     $session = $container->get("Session");
@@ -170,6 +171,18 @@ $container->set("UserHomeController", function(ContainerInterface $container){
     $renderer = $container->get("renderer");
     $session = $container->get("Session");
     return new UserHomeController($renderer, $useCase, $session);
+});
+
+$container->set("FieldFindById", function(ContainerInterface $container){
+    $repository = $container->get("FieldRepository");
+    $session = $container->get("Session");
+    return new FieldFindById($repository,$session);
+});
+
+$container->set("FieldEditController", function(ContainerInterface $container){
+    $useCase = $container->get("FieldFindById");
+    $renderer = $container->get("renderer");
+    return new FieldEditController($useCase,$renderer);
 });
 
 AppFactory::setContainer($container);

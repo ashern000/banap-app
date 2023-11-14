@@ -11,8 +11,9 @@ use PDO;
 use src\Domain\Entities\Field;
 use src\Domain\Repositories\FieldRepositories\DeleteFieldRepository;
 use src\Domain\Repositories\FieldRepositories\EditFieldRepository;
+use src\Domain\Repositories\FieldRepositories\FindFieldById;
 
-final class FieldRepository implements CreateFieldRepository, EditFieldRepository, DeleteFieldRepository, ShowByIdUserRepository
+final class FieldRepository implements CreateFieldRepository, EditFieldRepository, DeleteFieldRepository, ShowByIdUserRepository, FindFieldById
 {
     private PDO $pdo;
 
@@ -96,6 +97,18 @@ final class FieldRepository implements CreateFieldRepository, EditFieldRepositor
         $prepered->bindValue(":idUser", $idUser);
         $prepered->execute();
         $field = $prepered->fetchAll();
+        return $field;
+    }
+
+    public function findById($id): Field
+    {
+        $query = "SELECT * FROM Fields_Banap WHERE id = :id";
+        $prepered = $this->pdo->prepare($query);
+        $prepered->bindValue(":id", $id);
+        $prepered->execute();
+        $fieldData = $prepered->fetch();
+        $field = new Field();
+        $field->setName($fieldData['nameField'])->setCulture($fieldData['culture'])->setDescription($fieldData['descriptionField'])->setPointOne((float)$fieldData['pointOne'])->setPointTwo((float)$fieldData['pointTwo'])->setPointThree((float)$fieldData['pointThree'])->setPointFour((float)$fieldData['pointFour'])->setPlantsPerField((int)$fieldData['plantsForField'])->setSpace((float)$fieldData['spaceField'])->setWhenRegistered($fieldData['whenRegistered'])->setIdUser((int)$fieldData['idUser'])->setLastDayFertilized($fieldData['lastDayFertilized'])->setAnalysis((int)$fieldData['analisys'])->setCentralPointField((float)$fieldData['centerPointField']);
         return $field;
     }
 }

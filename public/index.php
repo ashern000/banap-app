@@ -39,6 +39,8 @@ try {
 
     $app->get("/user-home", "UserHomeController:handle");
 
+    $app->get("/field-edit/{id}", "FieldEditController:show");
+
     $app->addBodyParsingMiddleware();
     $app->any('/{any:.*}', "NotFoundController:handle");
     $app->run();
