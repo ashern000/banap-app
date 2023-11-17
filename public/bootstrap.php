@@ -36,6 +36,22 @@ use src\Infraestructure\Repositories\MySQL\MySQLRepo;
 
 $container = new Container();
 
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Log\LoggerInterface;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+
+
+// Add Routing Middleware
+
+
+// Define Custom Error Handler
+
+// Add Error Middleware
+
+
+
 
 $container->set('UserRepository', function () {
     $settings = new PDO("mysql:host=localhost;dbname=BanapDB", "root", "");
@@ -149,7 +165,7 @@ $container->set("LimingRepository", function (ContainerInterface $container) {
     return new AnalysisRepository($settings);
 });
 
-$container->set("LimingCalculation", function (ContainerInterface $container){
+$container->set("LimingCalculation", function (ContainerInterface $container) {
     $repository = $container->get("LimingRepository");
     return new LimingCalculation($repository);
 });
@@ -160,33 +176,62 @@ $container->set("RegisterLimingController", function (ContainerInterface $contai
     return new RegisterLimingController($useCase, $renderer);
 });
 
-$container->set("FieldShowByIdUser", function(ContainerInterface $container){
+$container->set("FieldShowByIdUser", function (ContainerInterface $container) {
     $repository = $container->get("FieldRepository");
     $session = $container->get("Session");
-    return new FieldShowByIdUser($repository,$session);
+    return new FieldShowByIdUser($repository, $session);
 });
 
-$container->set("UserHomeController", function(ContainerInterface $container){
+$container->set("UserHomeController", function (ContainerInterface $container) {
     $useCase = $container->get("FieldShowByIdUser");
     $renderer = $container->get("renderer");
     $session = $container->get("Session");
     return new UserHomeController($renderer, $useCase, $session);
 });
 
-$container->set("FieldFindById", function(ContainerInterface $container){
+$container->set("FieldFindById", function (ContainerInterface $container) {
     $repository = $container->get("FieldRepository");
     $session = $container->get("Session");
-    return new FieldFindById($repository,$session);
+    return new FieldFindById($repository, $session);
 });
 
-$container->set("FieldEditController", function(ContainerInterface $container){
+$container->set("FieldEdit", function (ContainerInterface $container) {
+    $repository = $container->get("FieldRepository");
+    $session = $container->get("Session");
+    return new FieldEdit($repository, $session);
+});
+
+$container->set("FieldEditController", function (ContainerInterface $container) {
     $useCase = $container->get("FieldFindById");
+    $useCaseTwo = $container->get("FieldEdit");
     $renderer = $container->get("renderer");
-    return new FieldEditController($useCase,$renderer);
+    return new FieldEditController($useCase, $renderer, $useCaseTwo);
 });
 
 AppFactory::setContainer($container);
 $app = AppFactory::create();
 
-$app->addErrorMiddleware(true, true, true);
+$customErrorHandler = function (
+    ServerRequestInterface $request,
+    Throwable $exception,
+    bool $displayErrorDetails,
+    bool $logErrors,
+    bool $logErrorDetails,
+    ?LoggerInterface $logger = null
+) use ($app) {
+    if ($logger) {
+        $logger->error($exception->getMessage());
+    }
+
+    $payload = ['error' => $exception->getMessage()];
+
+    $response = $app->getResponseFactory()->createResponse();
+
+    return $response;
+    
+};
+
+
+$errorMiddleware = $app->addErrorMiddleware(true, true, true);
+$errorMiddleware->setDefaultErrorHandler($customErrorHandler);
 return ['app' => $app, 'container' => $container];

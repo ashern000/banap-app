@@ -29,15 +29,15 @@
                 <div class="content div-2">
                     <div class="form-input">
                         <label for="nome" class="banap-label">Nome</label>
-                        <input type="text" name="nome" id="nome" class="input" placeholder="Exemplo" required>
+                        <input type="text" name="nome" id="nome" class="input" placeholder="Exemplo" >
                     </div>
                     <div class="form-input">
                         <label for="email" class="banap-label">Email</label>
-                        <input type="text" name="email" id="email" class="input" placeholder="exemplo@gmail.com" required>
+                        <input type="text" name="email" id="email" class="input" placeholder="exemplo@gmail.com" >
                     </div>
                     <div class="form-input">
                         <label for="senha" class="banap-label">Senha</label>
-                        <input type="password" name="senha" id="senha" class="input" placeholder="ab12345@" required>
+                        <input type="password" name="senha" id="senha" class="input" placeholder="ab12345@" >
                     </div>
                 </div>
                 <div class="content div-3">

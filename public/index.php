@@ -1,5 +1,7 @@
 <?php
 
+use src\Domain\valueObjects\Password;
+
 require __DIR__ . "/../vendor/autoload.php";
 
 session_start(['cookie_lifetime' => 3600, 'cookie_secure' => true, 'cookie_httponly' => true]);
@@ -8,9 +10,9 @@ ini_set('log_errors', 1);
 error_reporting(0);
 
 
+$bootstrap = require __DIR__ . "/bootstrap.php";
 
 try {
-    $bootstrap = require __DIR__ . "/bootstrap.php";
 
 
     $app = $bootstrap['app'];
@@ -40,10 +42,32 @@ try {
     $app->get("/user-home", "UserHomeController:handle");
 
     $app->get("/field-edit/{id}", "FieldEditController:show");
+    $app->post("/field-edit/{id}", "FieldEditController:handle");
 
     $app->addBodyParsingMiddleware();
     $app->any('/{any:.*}', "NotFoundController:handle");
     $app->run();
 } catch (\Exception $e) {
-    echo $e->getMessage();
+
 }
+
+?>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+</head>
+
+<body>
+    <script>
+     
+            alert("<?php echo $error ?>")
+    
+    </script>
+</body>
+
+</html> -->

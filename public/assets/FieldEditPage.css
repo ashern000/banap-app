@@ -25,10 +25,22 @@
     background: #ffffff;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     overflow: hidden;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s, transform 0.95s;
+}
+
+body.loaded .frame {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.loaded {
+    display: block;
 }
 
 .banap-vetor{

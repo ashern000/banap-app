@@ -37,10 +37,10 @@ final class User
     public function setName(string $name): User
     {
         if (strlen($name) === 0) {
-            return new Exception("O nome não pode ser vazio!");
+            throw new Exception("O nome não pode ser vazio!");
         }
         if (strlen($name) < 3) {
-            return new Exception("O nome tem que ter mais que três letras!");
+            throw new Exception("O nome tem que ter mais que três letras!");
         }
         $this->name = $name;
         return $this;

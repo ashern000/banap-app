@@ -27,11 +27,12 @@ final class UserCreate
 
     public function handle(InputBoundary $input): OutputBoundary
     {
+        $user = new User();
+        $user->setPassword(new Password($input->getPassword()));
         $email = new Email($input->getEmail());
         $passwordEncrypted = $this->bcrypt->encrypt($input->getPassword());
         $password = new Password($passwordEncrypted);
-        $user = new User();
-        $user->setName($input->getName())->setProfilePic($input->getProfilePic())->setPassword(new Password($passwordEncrypted))->setEmail($email);
+        $user->setName($input->getName())->setProfilePic($input->getProfilePic())->setPassword($password)->setEmail($email);
         $userRepository = $this->repository->create($user);
 
         return new OutputBoundary([

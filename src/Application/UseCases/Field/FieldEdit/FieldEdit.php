@@ -36,6 +36,9 @@ final class FieldEdit
 
         return new OutputBoundary([
             "idUser" => $input->getIdUser(),
+            "name" => $input->getName(),
+            "lastDayFertilized" => $input->getLastDayFertilized(),
+            "analysis" => $input->getAnalysis(),
             "whenRegistered" => $input->getWhenRegistered(),
             "description" => $input->getDescription(),
             "space" => $input->getSpace(),

@@ -2,9 +2,9 @@
 
 namespace src\Domain\valueObjects;
 
-use Exception;
+use DomainException;
 
-final class Password
+class Password
 {
     private string $password;
 
@@ -12,7 +12,7 @@ final class Password
     {
 
         if (strlen($password) < 8) {
-            return new Exception("A senha tem que ser maior que oito caracteres");
+            throw new DomainException("A senha tem que ser maior que oito caracteres");
         }
         $this->password = $password;
     }
