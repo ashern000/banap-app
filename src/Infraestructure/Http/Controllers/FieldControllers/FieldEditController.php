@@ -51,14 +51,19 @@ final class FieldEditController implements Controller
         }
     }
 
-    public function show(Request $request, Response $response, array $data)
+    public function show(Request $request, Response $response, array $args)
     {
-        $id = (int)$data['id'][1];
+        $id = (int)$args['id'][1];
         $input = new InputBoundary($id);
-        $this->useCase->handle($input);
-        $data = ["id" => $id];
+
+        $output = $this->useCase->handle($input);
+
+        $nameField = $output->getName();
+        $description =  $output->getDescription();
+        
+        $data = ["id" => $id, "nameField"=>$nameField, "descriptionField"=>$description];
         $requestData = $request->getParsedBody();
-        return $this->renderer->render($response, "FieldEdit.php", $data);
+        return $this->renderer->render($response, "FieldShowById.php", $data);
         /*     return $response->withHeader("Location", "/user-home")->withStatus(302); */
     }
 }

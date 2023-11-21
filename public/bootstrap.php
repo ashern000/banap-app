@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use DI\Container;
 
@@ -32,29 +32,17 @@ use src\Infraestructure\Http\Controllers\UserControllers\UserRegistrationControl
 use src\Infraestructure\Repositories\MySQL\AnalysisRepository;
 use src\Infraestructure\Repositories\MySQL\FieldRepository;
 use src\Infraestructure\Repositories\MySQL\MySQLRepo;
-
-
-$container = new Container();
-
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
 
-require __DIR__ . '/../vendor/autoload.php';
+const config = "mysql:host=localhost;dbname=BanapDB";
+const user = "root";
+const password = "";
 
-
-
-// Add Routing Middleware
-
-
-// Define Custom Error Handler
-
-// Add Error Middleware
-
-
-
+$container = new Container();
 
 $container->set('UserRepository', function () {
-    $settings = new PDO("mysql:host=localhost;dbname=BanapDB", "root", "");
+    $settings = new PDO(config, user, password);
     return new MySQLRepo($settings);
 });
 
@@ -125,7 +113,7 @@ $container->set("UserEditController", function (ContainerInterface $container) {
 });
 
 $container->set("FieldRepository", function (ContainerInterface $container) {
-    $settings = new PDO("mysql:host=localhost;dbname=BanapDB", "root", "");
+    $settings = new PDO(config, user, password);
     return new FieldRepository($settings);
 });
 
@@ -161,7 +149,7 @@ $container->set("FieldShowByIdUserController", function (ContainerInterface $con
 });
 
 $container->set("LimingRepository", function (ContainerInterface $container) {
-    $settings = new PDO("mysql:host=localhost;dbname=BanapDB", "root", "");
+    $settings = new PDO(config, user, password);
     return new AnalysisRepository($settings);
 });
 
@@ -228,7 +216,6 @@ $customErrorHandler = function (
     $response = $app->getResponseFactory()->createResponse();
 
     return $response;
-    
 };
 
 

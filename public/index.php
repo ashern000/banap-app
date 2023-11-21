@@ -2,7 +2,7 @@
 
 use src\Domain\valueObjects\Password;
 
-require __DIR__ . "/../vendor/autoload.php";
+require_once __DIR__ . "/../vendor/autoload.php";
 
 session_start(['cookie_lifetime' => 3600, 'cookie_secure' => true, 'cookie_httponly' => true]);
 
@@ -10,7 +10,7 @@ ini_set('log_errors', 1);
 error_reporting(0);
 
 
-$bootstrap = require __DIR__ . "/bootstrap.php";
+$bootstrap = require_once __DIR__ . "/bootstrap.php";
 
 try {
 
