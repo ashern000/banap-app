@@ -22,8 +22,8 @@ final class FieldDelete {
 
     public function handle(InputBoundary $input):OutputBoundary{
         $field = new Field();
-        $field->setIdUser($input->getIdUser());
-        $this->repository->delete($field, $input->getId());
-        return new OutputBoundary([]);
+        $field->setId($input->getId());
+        $output = $this->repository->delete($input->getId());
+        return new OutputBoundary(["id"=>$output->getId()]);
     }
 }

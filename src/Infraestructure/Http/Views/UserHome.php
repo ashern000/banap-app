@@ -32,7 +32,7 @@
                 <div class="container-2">
                     <?php for ($i = 0; $i < count($data['order'][0]); $i++) : ?>
                        <?php $item = $data['order'][0][$i]; ?>
-                        <a href='http://localhost:80/field-edit/{<?=$item["id"]?>}'>
+                        <a href='/field-show/{<?=$item["id"]?>}'>
                             <div class="banap-field">
                                 <div class="field-image">
                                     <img src="assets/img/tela6-talhao-img.png" alt="">
@@ -46,7 +46,7 @@
                         
                         
                         
-                        <a href="http://localhost:80/field-create">
+                        <a href="/field-create">
                             <div class="banap-field-create">
                                 <div class="field-image-create">
                                     <img src="assets/img/vetor-tela6-cruz.svg" alt="">

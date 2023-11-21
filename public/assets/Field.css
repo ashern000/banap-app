@@ -68,6 +68,11 @@
     align-items: center;
 }
 
+button{
+    background-color: transparent;
+    border: none;
+}
+
 .banap-title {
     width: 330px;
     color: #1A5D1A;

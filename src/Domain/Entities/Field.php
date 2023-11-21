@@ -20,6 +20,7 @@ final class Field
     private string $lastDayFertilized;
     private float $pointOne, $pointTwo, $pointThree, $pointFour;
     private int $analysis;
+    private int $id;
 
     /**
      * Get the value of name
@@ -285,6 +286,24 @@ final class Field
         }
 
         $this->pointFour = $pointFour;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     */
+    public function setId(int $id): self
+    {
+        $this->id = $id;
 
         return $this;
     }

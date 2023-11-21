@@ -4,7 +4,9 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use DI\Container;
 
+use src\Application\UseCases\Field\FieldDelete\FieldDelete;
 use src\Infraestructure\Http\Controllers\FieldControllers\FieldCreateController;
+use src\Infraestructure\Http\Controllers\FieldControllers\FieldShowByIdFieldController;
 use src\Infraestructure\Http\Controllers\NotFoundController;
 use src\Infraestructure\Http\Controllers\HomeController;
 use Psr\Container\ContainerInterface;
@@ -34,6 +36,7 @@ use src\Infraestructure\Repositories\MySQL\FieldRepository;
 use src\Infraestructure\Repositories\MySQL\MySQLRepo;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
+use src\Infraestructure\Http\Controllers\FieldControllers\FieldDeleteController;
 
 const config = "mysql:host=localhost;dbname=BanapDB";
 const user = "root";
@@ -58,6 +61,10 @@ $container->set("Bcrypt", function () {
     return new bcryptHashAdapter();
 });
 
+$container->set('renderer', function ($container) {
+    return new PhpRenderer(__DIR__ . '../../src/Infraestructure/Http/Views');
+});
+
 $container->set("UserLogin", function (ContainerInterface $container) {
     $session = $container->get("Session");
     $repository = $container->get("UserRepository");
@@ -66,15 +73,12 @@ $container->set("UserLogin", function (ContainerInterface $container) {
 });
 
 $container->set("UserLoginController", function (ContainerInterface $container) {
-    $useCase = $container->get("UserLogin");
     $renderer = $container->get("renderer");
+    $useCase = $container->get("UserLogin");
     $session = $container->get("Session");
     return new UserLoginController($useCase, $renderer, $session);
 });
 
-$container->set('renderer', function ($container) {
-    return new PhpRenderer(__DIR__ . '../../src/Infraestructure/Http/Views');
-});
 
 $container->set("HomeController", function (ContainerInterface $container) {
     $renderer = $container->get("renderer");
@@ -194,6 +198,24 @@ $container->set("FieldEditController", function (ContainerInterface $container) 
     $useCaseTwo = $container->get("FieldEdit");
     $renderer = $container->get("renderer");
     return new FieldEditController($useCase, $renderer, $useCaseTwo);
+});
+
+$container->set("FieldDelete", function (ContainerInterface $container) {
+    $repository = $container->get("FieldRepository");
+    $session = $container->get("Session");
+    return new FieldDelete($repository, $session);
+});
+
+$container->set("FieldDeleteController", function (ContainerInterface $container) {
+    $useCase = $container->get("FieldDelete");
+    $renderer = $container->get("renderer");
+    return new FieldDeleteController($useCase, $renderer);
+});
+
+$container->set("FieldShowByIdFieldController", function (ContainerInterface $container) {
+    $renderer = $container->get("renderer");
+    $useCase = $container->get("FieldFindById");
+    return new FieldShowByIdFieldController($renderer, $useCase);
 });
 
 AppFactory::setContainer($container);

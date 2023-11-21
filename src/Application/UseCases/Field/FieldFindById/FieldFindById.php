@@ -38,7 +38,8 @@ final class FieldFindById
                 "pointOne" => $output->getPointOne(),
                 "pointTwo" => $output->getPointTwo(),
                 "pointThree" => $output->getPointThree(),
-                "pointFour" => $output->getPointFour()
+                "pointFour" => $output->getPointFour(),
+                "culture" => $output->getCulture(),
             ]);
         } else {
             throw new Exception("Usuário não logado");

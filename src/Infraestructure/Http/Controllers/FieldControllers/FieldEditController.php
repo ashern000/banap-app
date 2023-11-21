@@ -27,13 +27,14 @@ final class FieldEditController implements Controller
 
     public function handle(Request $request, Response $response, array $data)
     {
-        $space = 0.2;
 
         $requestData = $request->getParsedBody();
         $id = (int)$data['id'][1];
         if (!empty($_SESSION["form-save-data-edit"])) {
 
             $requestDataPrevious = $_SESSION["form-save-data-edit"];
+
+            $space = 0.2;
 
             $id = $_SESSION["session_user"];
 
@@ -44,7 +45,6 @@ final class FieldEditController implements Controller
             $_SESSION['form-save-data-edit'] = null;
 
             return $response->withHeader("Location", "/user-home")->withStatus(302);
-            
         } else {
             $_SESSION['form-save-data-edit'] = $requestData;
             return $this->renderer->render($response, "FieldEditTwo.php", $data);
@@ -53,17 +53,17 @@ final class FieldEditController implements Controller
 
     public function show(Request $request, Response $response, array $args)
     {
-        $id = (int)$args['id'][1];
-        $input = new InputBoundary($id);
 
-        $output = $this->useCase->handle($input);
+        return $this->renderer->render($response, "FieldEdit.php", $args);
+        /* $output = $this->useCase->handle($input);
 
         $nameField = $output->getName();
         $description =  $output->getDescription();
-        
-        $data = ["id" => $id, "nameField"=>$nameField, "descriptionField"=>$description];
+        $culture = $output->getCulture();
+
+        $data = ["id" => $id, "nameField" => $nameField, "descriptionField" => $description, "cultureField" => $culture];
+
         $requestData = $request->getParsedBody();
-        return $this->renderer->render($response, "FieldShowById.php", $data);
-        /*     return $response->withHeader("Location", "/user-home")->withStatus(302); */
+ */
     }
 }

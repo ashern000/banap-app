@@ -1,8 +1,6 @@
 <?php
 
-use src\Domain\valueObjects\Password;
-
-require_once __DIR__ . "/../vendor/autoload.php";
+require __DIR__ . "/../vendor/autoload.php";
 
 session_start(['cookie_lifetime' => 3600, 'cookie_secure' => true, 'cookie_httponly' => true]);
 
@@ -37,18 +35,19 @@ try {
     $app->get("/field-create", "FieldCreateController:show");
     $app->post("/field-create", "FieldCreateController:handle");
 
-    $app->get("/field-show", "FieldShowByIdUserController:show");
+    $app->get("/field-show/{id}", "FieldShowByIdFieldController:show");
 
     $app->get("/user-home", "UserHomeController:handle");
 
     $app->get("/field-edit/{id}", "FieldEditController:show");
     $app->post("/field-edit/{id}", "FieldEditController:handle");
 
+    $app->post("/field-delete/{id}", "FieldDeleteController:handle");
+
     $app->addBodyParsingMiddleware();
     $app->any('/{any:.*}', "NotFoundController:handle");
     $app->run();
 } catch (\Exception $e) {
-
 }
 
 ?>

@@ -82,12 +82,14 @@ final class FieldRepository implements CreateFieldRepository, EditFieldRepositor
         return $field;
     }
 
-    public function delete(Field $field, int $id): Field
+    public function delete(int $id): Field
     {
-        $query = "DELETE  FROM Fields_Banap WHERE id=:idField";
+        $query = "DELETE FROM Fields_Banap WHERE id=:idField";
         $prepered = $this->pdo->prepare($query);
         $prepered->bindValue(":idField", $id);
         $prepered->execute();
+        $field = new Field();
+        $field->setId($id);
         return $field;
     }
 

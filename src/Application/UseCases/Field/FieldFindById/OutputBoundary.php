@@ -20,6 +20,7 @@ final class OutputBoundary
     private float $pointThree;
     private float $pointFour;
     private int $analysis;
+    private string $culture;
 
     public function __construct(array $data)
     {
@@ -36,6 +37,7 @@ final class OutputBoundary
         $this->pointThree = $data["pointThree"];
         $this->pointFour = $data["pointFour"];
         $this->analysis = $data["analysis"];
+        $this->culture = $data["culture"];
     }
 
     /**
@@ -140,5 +142,13 @@ final class OutputBoundary
     public function getAnalysis(): int
     {
         return $this->analysis;
+    }
+
+    /**
+     * Get the value of culture
+     */
+    public function getCulture(): string
+    {
+        return $this->culture;
     }
 }
