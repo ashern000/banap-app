@@ -58,8 +58,7 @@ final class FieldRepository implements CreateFieldRepository, EditFieldRepositor
 
         $preperedId->execute();
         $id = $preperedId->fetch();
-
-        echo $id;
+        var_dump($queryForId);
         $prepered = $this->pdo->prepare($query);
 
         $prepered->bindValue(":idField", $id['id']);

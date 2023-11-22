@@ -29,6 +29,7 @@ final class FieldEditController implements Controller
     {
 
         $requestData = $request->getParsedBody();
+
         $id = (int)$data['id'][1];
         if (!empty($_SESSION["form-save-data-edit"])) {
 
@@ -53,9 +54,9 @@ final class FieldEditController implements Controller
 
     public function show(Request $request, Response $response, array $args)
     {
-
-        return $this->renderer->render($response, "FieldEdit.php", $args);
-        /* $output = $this->useCase->handle($input);
+        $id = (int)$args['id'];
+        $input = new InputBoundary($id);
+        $output = $this->useCase->handle($input);
 
         $nameField = $output->getName();
         $description =  $output->getDescription();
@@ -64,6 +65,7 @@ final class FieldEditController implements Controller
         $data = ["id" => $id, "nameField" => $nameField, "descriptionField" => $description, "cultureField" => $culture];
 
         $requestData = $request->getParsedBody();
- */
+        $_SESSION['form-save-data-edit'] = $requestData;
+        return $this->renderer->render($response, "FieldEdit.php", $data);
     }
 }

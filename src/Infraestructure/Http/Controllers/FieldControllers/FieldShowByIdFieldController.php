@@ -27,10 +27,11 @@ final class FieldShowByIdFieldController implements Controller
     public function show(Request $request, Response $response, array $args)
     {
         $id = (int)$args['id'][1];
+        var_dump($id);
         $input = new InputBoundary($id);
 
         $output = $this->useCase->handle($input);
-
+        
         $nameField = $output->getName();
         $description =  $output->getDescription();
         $culture = $output->getCulture();

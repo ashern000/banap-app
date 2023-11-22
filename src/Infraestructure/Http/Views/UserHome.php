@@ -19,7 +19,7 @@
                 <img src="assets/img/vetor-tela6-cima.svg">
             </div>
             <div class="content div-1">
-               
+
                 <h2 class="user-name">Olá, <b><?= $data['name'] ?></b></h2>
                 <div class="user-profilepic"></div>
             </div>
@@ -31,8 +31,8 @@
                 </div>
                 <div class="container-2">
                     <?php for ($i = 0; $i < count($data['order'][0]); $i++) : ?>
-                       <?php $item = $data['order'][0][$i]; ?>
-                        <a href='/field-show/{<?=$item["id"]?>}'>
+                        <?php $item = $data['order'][0][$i]; ?>
+                        <a href='/field-show/{<?php echo $item["id"] ?>}'>
                             <div class="banap-field">
                                 <div class="field-image">
                                     <img src="assets/img/tela6-talhao-img.png" alt="">
@@ -42,16 +42,16 @@
                                 </div>
                             </div>
                         </a>
-                        <?php endfor; ?>
-                        
-                        
-                        
-                        <a href="/field-create">
-                            <div class="banap-field-create">
-                                <div class="field-image-create">
-                                    <img src="assets/img/vetor-tela6-cruz.svg" alt="">
-                                </div>
-                                <div class="field-name-create"></div>
+                    <?php endfor; ?>
+
+
+
+                    <a href="/field-create">
+                        <div class="banap-field-create">
+                            <div class="field-image-create">
+                                <img src="assets/img/vetor-tela6-cruz.svg" alt="">
+                            </div>
+                            <div class="field-name-create"></div>
                         </div>
                     </a>
                 </div>
