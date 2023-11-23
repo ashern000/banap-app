@@ -52,13 +52,13 @@ final class FieldRepository implements CreateFieldRepository, EditFieldRepositor
     public function edit(Field $field): Field
     {
         $query = "UPDATE Fields_Banap set nameField=:nameField, idUser=:idUser, descriptionField=:descriptionField, spaceField=:spaceField, whenRegistered=:whenRegistered, culture=:culture, plantsForField=:plantsForField, centerPointField=:centerPointField, lastDayFertilized=:lastDayFertilized, pointOne=:pointOne, pointTwo=:pointTwo, pointThree=:pointThree, pointFour=:pointFour, analisys=:analisys WHERE id = :idField";
-        $queryForId = "SELECT F.id FROM Fields_Banap F INNER JOIN users U ON F.id = U.id WHERE F.`nameField`= :nameField";
+        $queryForId = "SELECT F.id FROM Fields_Banap F INNER JOIN users U ON F.idUser = U.id WHERE F.idUser = :idUser";
         $preperedId = $this->pdo->prepare($queryForId);
-        $preperedId->bindValue(":nameField", $field->getName(), PDO::PARAM_STR);
+        $preperedId->bindValue(":idUser", $field->getIdUser(), PDO::PARAM_STR);
 
         $preperedId->execute();
         $id = $preperedId->fetch();
-        var_dump($queryForId);
+        var_dump($id);
         $prepered = $this->pdo->prepare($query);
 
         $prepered->bindValue(":idField", $id['id']);
