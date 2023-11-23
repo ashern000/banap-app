@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace src\Application\Contracts;
 
-use src\Domain\valueObjects\Email;
+use src\Domain\Entities\User;
 
 interface EmailSender {
-    public function sendEmailWelcome(Email $email);
+    public function sendEmailWelcome(User $user);
 }

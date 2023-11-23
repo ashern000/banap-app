@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace src\Infraestructure\Adapters;
 
 use src\Application\Contracts\EmailSender;
-use src\Domain\valueObjects\Email;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+use src\Domain\Entities\User;
 
 final class EmailSenderAdapter implements EmailSender
 {
-    public function sendEmailWelcome(Email $email)
+    public function sendEmailWelcome(User $user)
     {
         $mail = new PHPMailer(true);                     //Enable verbose debug output
         $mail->isSMTP();                                            //Send using SMTP
@@ -23,7 +23,7 @@ final class EmailSenderAdapter implements EmailSender
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $mail->Port       = 465;
         $mail->setFrom('asherndebortoli@gmail.com', 'Mailer');
-        $mail->addAddress('asherndebortoli@gmail.com', 'Asher Novelli'); 
+        $mail->addAddress($user->getEmail(), $user->getName()); 
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Banap te deseja as boas vindas';
         $mail->Body    = 'Ficamos muito felizes que você tenha se cadastrado em nossa plataforma!<br> Garantimos que iremos proporcionar a melhor experiencia para você e sua produção!<br> Abertos a Feedback ;)';

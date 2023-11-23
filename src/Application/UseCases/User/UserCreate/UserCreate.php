@@ -37,7 +37,7 @@ final class UserCreate
         $password = new Password($passwordEncrypted);
         $user->setName($input->getName())->setProfilePic($input->getProfilePic())->setPassword($password)->setEmail($email);
         $userRepository = $this->repository->create($user);
-        $this->email->sendEmailWelcome($userRepository->getEmail());
+        $this->email->sendEmailWelcome($userRepository);
 
         return new OutputBoundary([
             "email" => (string)$user->getEmail(),
