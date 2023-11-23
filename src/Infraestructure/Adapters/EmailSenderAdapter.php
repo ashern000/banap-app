@@ -1,0 +1,32 @@
+<?php
+
+declare(strict_types=1);
+
+namespace src\Infraestructure\Adapters;
+
+use src\Application\Contracts\EmailSender;
+use src\Domain\valueObjects\Email;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+final class EmailSenderAdapter implements EmailSender
+{
+    public function sendEmailWelcome(Email $email)
+    {
+        $mail = new PHPMailer(true);                     //Enable verbose debug output
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        $mail->Username   = 'asherndebortoli@gmail.com';                     //SMTP username
+        $mail->Password   = 'rbzuhlealxlorloa';                               //SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+        $mail->Port       = 465;
+        $mail->setFrom('asherndebortoli@gmail.com', 'Mailer');
+        $mail->addAddress('asherndebortoli@gmail.com', 'Asher Novelli'); 
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = 'Banap te deseja as boas vindas';
+        $mail->Body    = 'Ficamos muito felizes que você tenha se cadastrado em nossa plataforma!<br> Garantimos que iremos proporcionar a melhor experiencia para você e sua produção!<br> Abertos a Feedback ;)';
+        $mail->send();
+    }
+}

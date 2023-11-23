@@ -6,6 +6,7 @@ namespace src\Application\UseCases\User\UserCreate;
 
 
 use src\Application\Contracts\Bcrypt;
+use src\Application\Contracts\EmailSender;
 use src\Application\UseCases\User\UserCreate\InputBoundary;
 use src\Application\UseCases\User\UserCreate\OutputBoundary;
 use src\Domain\Entities\User;
@@ -18,11 +19,13 @@ final class UserCreate
 
     private CreateUserRepository $repository;
     private Bcrypt $bcrypt;
+    private EmailSender $email;
 
-    public function __construct(CreateUserRepository $repository, Bcrypt $bcrypt)
+    public function __construct(CreateUserRepository $repository, Bcrypt $bcrypt, EmailSender $email)
     {
         $this->repository = $repository;
         $this->bcrypt = $bcrypt;
+        $this->email = $email;
     }
 
     public function handle(InputBoundary $input): OutputBoundary
@@ -34,6 +37,7 @@ final class UserCreate
         $password = new Password($passwordEncrypted);
         $user->setName($input->getName())->setProfilePic($input->getProfilePic())->setPassword($password)->setEmail($email);
         $userRepository = $this->repository->create($user);
+        $this->email->sendEmailWelcome($userRepository->getEmail());
 
         return new OutputBoundary([
             "email" => (string)$user->getEmail(),

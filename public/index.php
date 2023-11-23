@@ -1,5 +1,8 @@
 <?php
 
+use src\Domain\valueObjects\Email;
+use src\Infraestructure\Adapters\EmailSenderAdapter;
+
 require __DIR__ . "/../vendor/autoload.php";
 
 session_start(['cookie_lifetime' => 3600, 'cookie_secure' => true, 'cookie_httponly' => true]);
@@ -11,6 +14,7 @@ error_reporting(0);
 $bootstrap = require_once __DIR__ . "/bootstrap.php";
 
 try {
+
 
 
     $app = $bootstrap['app'];

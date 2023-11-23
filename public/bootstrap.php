@@ -36,6 +36,7 @@ use src\Infraestructure\Repositories\MySQL\FieldRepository;
 use src\Infraestructure\Repositories\MySQL\MySQLRepo;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
+use src\Infraestructure\Adapters\EmailSenderAdapter;
 use src\Infraestructure\Http\Controllers\FieldControllers\FieldDeleteController;
 
 const config = "mysql:host=localhost;dbname=BanapDB";
@@ -59,6 +60,10 @@ $container->set('Validator', function () {
 
 $container->set("Bcrypt", function () {
     return new bcryptHashAdapter();
+});
+
+$container->set("PHPMailer", function (ContainerInterface $container) {
+    return new EmailSenderAdapter();
 });
 
 $container->set('renderer', function ($container) {
@@ -93,7 +98,8 @@ $container->set("NotFoundController", function (ContainerInterface $container) {
 $container->set("UserCreate", function (ContainerInterface $container) {
     $repository = $container->get("UserRepository");
     $bcrypt = $container->get("Bcrypt");
-    return new UserCreate($repository, $bcrypt);
+    $mail = $container->get("PHPMailer");
+    return new UserCreate($repository, $bcrypt, $mail);
 });
 
 $container->set("UserEdit", function (ContainerInterface $container) {
