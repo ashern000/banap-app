@@ -156,3 +156,38 @@ button{
     background-color: #C4302B;
     box-shadow: 0px 2px 48px 0px rgba(0, 0, 0, 0.08);
 }
+
+.content.div-3 {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 330px;
+}
+ 
+.listar-analise {
+    font-size: 16px;
+    font-weight: 800;
+    color: #1EA81E;
+}
+ 
+.analysis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 174px;
+    height: 56px;
+    border-radius: 10px;
+    background-color: #1EA81E;
+    box-shadow: 0px 2px 48px 0px rgba(0, 0, 0, 0.08);
+}
+ 
+.analysis h2 {
+    color: #FFFFFF;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
