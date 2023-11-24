@@ -6,9 +6,10 @@ namespace src\Infraestructure\Repositories\MySQL;
 
 use PDO;
 use src\Domain\Entities\Analysis;
+use src\Domain\Repositories\AnalysisRepositories\ListAnalysis;
 use src\Domain\Repositories\AnalysisRepositories\RegisterLimingCalculation;
 
-final class AnalysisRepository implements RegisterLimingCalculation
+final class AnalysisRepository implements RegisterLimingCalculation, ListAnalysis
 {
     private PDO $pdo;
     public function __construct(PDO $pdo)
@@ -32,4 +33,14 @@ final class AnalysisRepository implements RegisterLimingCalculation
 
         return $analysis;
     }
+
+
+    public function listAnalysis(Analysis $analysis): Analysis
+    {
+        $query = "SELECT * FROM analysis_banap A left join fields_banap F on A.id_talhao = :id_talhao where A.id_talhao = :id_talhao";
+        $prepared = $this->pdo->prepare($query);
+        $prepared->bindValue(":id_talhao", $analysis->getIdField());
+        return $analysis;
+    }
+
 }
