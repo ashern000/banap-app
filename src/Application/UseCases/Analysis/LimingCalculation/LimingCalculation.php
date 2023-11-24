@@ -10,6 +10,8 @@ use src\Application\UseCases\Analysis\LimingCalculation\InputBoundary;
 use src\Application\UseCases\Analysis\LimingCalculation\OutputBoundary;
 use src\Domain\Entities\Analysis;
 
+use function DI\value;
+
 final class LimingCalculation
 {
     private RegisterLimingCalculation $repository;
@@ -27,10 +29,11 @@ final class LimingCalculation
         $RelativeTotalNeutralizingPower = $input->getRelativeTotalNeutralizingPower();
         $needForLiming = ($DesiredBaseSaturation - $CurrentBaseSaturation)
             * $TotalCationExchangeCapacity / $RelativeTotalNeutralizingPower;
+        $id = $input->getId();
 
         $analysis = new Analysis();
-
-        $analysis->setCurrentBaseSaturation($CurrentBaseSaturation)->setDesiredBaseSaturation($DesiredBaseSaturation)->setTotalCationExchangeCapacity($TotalCationExchangeCapacity)->setRelativeTotalNeutralizingPower($RelativeTotalNeutralizingPower)->setNeedForLiming($needForLiming)->setIdField(1);
+        
+        $analysis->setCurrentBaseSaturation($CurrentBaseSaturation)->setDesiredBaseSaturation($DesiredBaseSaturation)->setTotalCationExchangeCapacity($TotalCationExchangeCapacity)->setRelativeTotalNeutralizingPower($RelativeTotalNeutralizingPower)->setNeedForLiming($needForLiming)->setIdField($id);
 
         $this->repository->registerLimingCalculation($analysis);
 

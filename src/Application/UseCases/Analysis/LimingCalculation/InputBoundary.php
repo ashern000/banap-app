@@ -10,10 +10,12 @@ final class InputBoundary
     private float $CurrentBaseSaturation;
     private float $TotalCationExchangeCapacity;
     private float $RelativeTotalNeutralizingPower;
+    private int $id;
 
-    public function __construct(float $DesiredBaseSaturation, float $CurrentBaseSaturation, float $TotalCationExchangeCapacity, float $RelativeTotalNeutralizingPower)
+    public function __construct(float $DesiredBaseSaturation, float $CurrentBaseSaturation, float $TotalCationExchangeCapacity, float $RelativeTotalNeutralizingPower, int $id)
     {
         $this->DesiredBaseSaturation = $DesiredBaseSaturation;
+        $this->id = $id;
         $this->CurrentBaseSaturation = $CurrentBaseSaturation;
         $this->TotalCationExchangeCapacity = $TotalCationExchangeCapacity;
         $this->RelativeTotalNeutralizingPower = $RelativeTotalNeutralizingPower;
@@ -49,5 +51,14 @@ final class InputBoundary
     public function getRelativeTotalNeutralizingPower(): float
     {
         return $this->RelativeTotalNeutralizingPower;
+    }
+
+    /**
+     * Get the value of id
+     *
+     * @return int
+     */
+    public function getId(): int {
+        return $this->id;
     }
 };

@@ -22,19 +22,22 @@ final class RegisterLimingController implements Controller
         $this->renderer = $renderer;
     }
 
-    public function handle(Request $request, Response $response, array $data)
+    public function handle(Request $request, Response $response, array $args)
     {
+        $id = (int)$args['id'][1];
         $requestData = $request->getParsedBody();
         $desired = 60;
-        $input = new InputBoundary($desired, (float)$requestData['sb'], (float)$requestData['ctc'], (float)$requestData['prnt']);
+        $input = new InputBoundary($desired, (float)$requestData['sb'], (float)$requestData['ctc'], (float)$requestData['prnt'], $id);
         $output = $this->useCase->handle($input);
         $needForLiming = number_format($output->getNeedForLiming(), 2);
-        $data = ["result" => $needForLiming, 'sb' => $output->getCurrentBaseSaturation(), "ctc" => $output->getTotalCationExchangeCapacity(), "prnt" => $output->getRelativeTotalNeutralizingPower()];
+        $data = ["result" => $needForLiming, 'sb' => $output->getCurrentBaseSaturation(), "ctc" => $output->getTotalCationExchangeCapacity(), "prnt" => $output->getRelativeTotalNeutralizingPower(), "id" => $id];
         return $this->renderer->render($response, "AnalysisResult.php", $data);
     }
 
-    public function show(Request $request, Response $response, array $data)
+    public function show(Request $request, Response $response, array $args)
     {
+        $id = $args['id'];
+        $data = ["id"=>$id];
         return $this->renderer->render($response, "AnalysisCreate.php", $data);
     }
 }

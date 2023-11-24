@@ -46,10 +46,12 @@
             </div>
             <div class="content div-3">
             <a href=""><h2 class="listar-analise">Listar análises</h2></a>
-                <a href="/analysis/{<?=$data['id']?>}"><div class="analysis">
+                <form method="GET" action="/analysis/{<?=$data['id']?>}"><div class="analysis">
+                    <button>
                     <img src="/assets/img/plus.svg" alt="">
                     <h2>Nova análise</h2>
-                </div></a>
+                    </button>
+                </div></form>
             </div>
         </div>
     </div>

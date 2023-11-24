@@ -388,9 +388,9 @@ final class Analysis
      *
      * @param float $id
      *
-     * @return self
+     * @return Analysis
      */
-    public function setId(float $id): self
+    public function setId(float $id): Analysis
     {
         $this->id = $id;
         return $this;
@@ -411,9 +411,9 @@ final class Analysis
      *
      * @param int $idField
      *
-     * @return self
+     * @return Analysis
      */
-    public function setIdField(int $idField): self
+    public function setIdField(int $idField): Analysis
     {
         $this->idField = $idField;
         return $this;

@@ -33,8 +33,8 @@ try {
     $app->get("/field", "FieldCreateController:show");
     $app->post("/field", "FieldCreateController:handle");
 
-    $app->get("/analysis", "RegisterLimingController:show");
-    $app->post("/analysis", "RegisterLimingController:handle");
+    $app->get("/analysis/{id}", "RegisterLimingController:show");
+    $app->post("/analysis/{id}", "RegisterLimingController:handle");
 
     $app->get("/field-create", "FieldCreateController:show");
     $app->post("/field-create", "FieldCreateController:handle");
