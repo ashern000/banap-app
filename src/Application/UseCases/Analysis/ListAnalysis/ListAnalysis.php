@@ -12,18 +12,21 @@ use src\Application\UseCases\Analysis\ListAnalysis\InputBoundary;
 
 
 
-final class ListAnalysis {
+final class ListAnalysis
+{
     private AnalysisRepository $repository;
     private SessionUserLogged $session;
 
-    public function __construct(AnalysisRepository $repository, SessionUserLogged $session){
+    public function __construct(AnalysisRepository $repository, SessionUserLogged $session)
+    {
         $this->repository = $repository;
         $this->session = $session;
     }
 
-    public function handle(InputBoundary $input):OutputBoundary {
-        
-        if(!$this->session->userLoggedIn()){
+    public function handle(InputBoundary $input): OutputBoundary
+    {
+
+        if (!$this->session->userLoggedIn()) {
             throw new Exception("O usuário não está logado");
         }
         $analysis = new Analysis();

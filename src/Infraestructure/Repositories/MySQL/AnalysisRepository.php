@@ -42,5 +42,4 @@ final class AnalysisRepository implements RegisterLimingCalculation, ListAnalysi
         $prepared->bindValue(":id_talhao", $analysis->getIdField());
         return $analysis;
     }
-
 }

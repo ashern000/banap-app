@@ -14,6 +14,7 @@ final class EmailSenderAdapter implements EmailSender
 {
     public function sendEmailWelcome(User $user)
     {
+        try{
         $mail = new PHPMailer(true);                     //Enable verbose debug output
         $mail->isSMTP();                                            //Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
@@ -28,5 +29,8 @@ final class EmailSenderAdapter implements EmailSender
         $mail->Subject = 'Banap te deseja as boas vindas';
         $mail->Body    = 'Ficamos muito felizes que você tenha se cadastrado em nossa plataforma!<br> Garantimos que iremos proporcionar a melhor experiencia para você e sua produção!<br> Abertos a Feedback ;)';
         $mail->send();
+    }catch(Exception $e){
+        
+    }
     }
 }

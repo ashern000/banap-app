@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace src\Application\UseCases\Analysis\LimingCalculation;
 
-final class OutputBoundary {
+final class OutputBoundary
+{
     private float $DesiredBaseSaturation;
     private float $CurrentBaseSaturation;
     private float $TotalCationExchangeCapacity;
     private float $RelativeTotalNeutralizingPower;
     private float $needForLiming;
 
-    public function __construct(array $values){
+    public function __construct(array $values)
+    {
         $this->DesiredBaseSaturation = $values["desired_base_saturation"];
         $this->CurrentBaseSaturation = $values["current_base_saturation"];
         $this->TotalCationExchangeCapacity = $values["total_cation_exchange_capacity"];

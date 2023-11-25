@@ -1,125 +1,577 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+<head lang="en">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equipe Incrível</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-color: #f4f4f4;
-            color: #333;
-        }
 
-        header {
-            background-color: #2ecc71;
-            color: #fff;
-            text-align: center;
-            padding: 2em 0;
-        }
+    <!--Page Title-->
+    <title>Namari - Free Landing Page Template</title>
 
-        section {
-            max-width: 800px;
-            margin: 2em auto;
-            padding: 2em;
-            background-color: #fff;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            text-align: center;
-        }
+    <!--Meta Keywords and Description-->
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 
-        h1, h2 {
-            color: #2ecc71;
-        }
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" title="Favicon"/>
 
-        p {
-            color: #555;
-            font-size: 1.2em;
-        }
+    <!-- Main CSS Files -->
+    <link rel="stylesheet" href="/assets/style-lading-page.css">
 
-        .cta-button {
-            display: inline-block;
-            padding: 15px 30px;
-            margin-top: 30px;
-            background-color: #e8491d;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: background-color 0.3s ease;
-        }
+    <!-- Namari Color CSS -->
+    <link rel="stylesheet" href="/assets/banap-color.css">
 
-        .cta-button:hover {
-            background-color: #333;
-        }
+    <!--Icon Fonts - Font Awesome Icons-->
+    <link rel="stylesheet" href="/assets/font-awesome.min.css">
 
-        .green-section {
-            background-color: #2ecc71;
-            color: #fff;
-            padding: 2em;
-            border-radius: 10px;
-            margin-top: 2em;
-        }
+    <!-- Animate CSS-->
+    <link href="/assets/animate.css" rel="stylesheet" type="text/css">
 
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1em 0;
-        }
-
-        .banana-image {
-            width: 100%;
-            max-width: 400px;
-            margin-top: 2em;
-            border-radius: 10px;
-        }
-    </style>
+    <!--Google Webfonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    <header>
-        <h1>Equipe Incrível</h1>
-        <p>Transformando ideias em realidade!</p>
+
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status" class="la-ball-triangle-path">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<!--End of Preloader-->
+
+<div class="page-border" data-wow-duration="0.7s" data-wow-delay="0.2s">
+    <div class="top-border wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;"></div>
+    <div class="right-border wow fadeInRight animated" style="visibility: visible; animation-name: fadeInRight;"></div>
+    <div class="bottom-border wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;"></div>
+    <div class="left-border wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;"></div>
+</div>
+
+<div id="wrapper">
+
+    <header id="banner" class="scrollto clearfix" data-enllax-ratio=".5">
+        <div id="header" class="nav-collapse">
+            <div class="row clearfix">
+                <div class="col-1">
+
+                    <!--Logo-->
+                    <div id="logo">
+
+                        <!--Logo that is shown on the banner-->
+                        <img src="/assets/img/logo.png" id="banner-logo" alt="Landing Page"/>
+                        <!--End of Banner Logo-->
+
+                        <!--The Logo that is shown on the sticky Navigation Bar-->
+                        <img src="/assets/img/logo-2.png" id="navigation-logo" alt="Landing Page"/>
+                        <!--End of Navigation Logo-->
+
+                    </div>
+                    <!--End of Logo-->
+
+                    <aside>
+
+                        <!--Social Icons in Header-->
+                        <ul class="social-icons">
+                            <li>
+                                <a target="_blank" title="Facebook" href="https://www.facebook.com/username">
+                                    <i class="fa fa-facebook fa-1x"></i><span>Facebook</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="Google+" href="http://google.com/+username">
+                                    <i class="fa fa-google-plus fa-1x"></i><span>Google+</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="Twitter" href="http://www.twitter.com/username">
+                                    <i class="fa fa-twitter fa-1x"></i><span>Twitter</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="Instagram" href="http://www.instagram.com/username">
+                                    <i class="fa fa-instagram fa-1x"></i><span>Instagram</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="behance" href="http://www.behance.net">
+                                    <i class="fa fa-behance fa-1x"></i><span>Behance</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <!--End of Social Icons in Header-->
+
+                    </aside>
+
+                    <!--Main Navigation-->
+                    <nav id="nav-main">
+                        <ul>
+                            <li>
+                                <a href="#banner">Home</a>
+                            </li>
+                            <li>
+                                <a href="#about">About</a>
+                            </li>
+                            <li>
+                                <a href="#gallery">Gallery</a>
+                            </li>
+                            <li>
+                                <a href="#services">Services</a>
+                            </li>
+                            <li>
+                                <a href="#testimonials">Testimonials</a>
+                            </li>
+                            <li>
+                                <a href="#clients">Clients</a>
+                            </li>
+                            <li>
+                                <a href="#pricing">Pricing</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!--End of Main Navigation-->
+
+                    <div id="nav-trigger"><span></span></div>
+                    <nav id="nav-mobile"></nav>
+
+                </div>
+            </div>
+        </div><!--End of Header-->
+
+        <!--Banner Content-->
+        <div id="banner-content" class="row clearfix">
+
+            <div class="col-38">
+
+                <div class="section-heading">
+                    <h1>A FREE AND SIMPLE LANDING PAGE</h1>
+                    <h2>Namari is a free landing page template you can use for your projects. It is free to use for your
+                        personal and commercial projects, enjoy!</h2>
+                </div>
+
+                <!--Call to Action-->
+                <a href="#" class="button">START CREATING TODAY</a>
+                <!--End Call to Action-->
+
+            </div>
+
+        </div><!--End of Row-->
     </header>
 
-    <section>
-        <h2>Bem-vindo à nossa equipe</h2>
-        <p>Somos uma equipe apaixonada que se esforça para alcançar a excelência em tudo o que fazemos. Junte-se a nós para criar algo incrível!</p>
-        <a href="#cadastro" class="cta-button">Cadastre-se agora</a>
-    </section>
+    <!--Main Content Area-->
+    <main id="content">
 
-    <section class="green-section">
-        <h2>Missão</h2>
-        <p>Nossa missão é revolucionar a indústria com soluções criativas. Trabalhamos incansavelmente para alcançar nossos objetivos.</p>
-    </section>
+        <!--Introduction-->
+        <section id="about" class="introduction scrollto">
 
-    <section>
-        <h2>Valores</h2>
-        <p>Nossos valores fundamentais incluem inovação, colaboração e integridade. Estamos comprometidos em construir um ambiente onde todos possam prosperar.</p>
-    </section>
+            <div class="row clearfix">
 
-    <section class="green-section">
-        <h2>Por que escolher a Equipe Incrível?</h2>
-        <p>Temos uma abordagem única para resolver problemas e uma cultura que valoriza cada membro da equipe. Junte-se a nós e faça a diferença!</p>
-    </section>
+                <div class="col-3">
+                    <div class="section-heading">
+                        <h3>SUCCESS</h3>
+                        <h2 class="section-title">How We Help You To Sell Your Product</h2>
+                        <p class="section-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam!</p>
+                    </div>
 
-    <section>
-        <h2>Equipe</h2>
-        <p>Nossa equipe é formada por profissionais talentosos e dedicados. Trabalhamos juntos para superar desafios e alcançar o sucesso.</p>
-    </section>
+                </div>
 
-    <section class="green-section">
-        <h2>Contate-nos</h2>
-        <p>Estamos ansiosos para ouvir de você. Entre em contato conosco para colaborações, perguntas ou apenas para dizer oi!</p>
-        <a href="#contato" class="cta-button">Entre em contato</a>
-    </section>
+                <div class="col-2-3">
 
-    <footer>
-        <p>&copy; 2023 Equipe Incrível. Todos os direitos reservados.</p>
+                    <!--Icon Block-->
+                    <div class="col-2 icon-block icon-top wow fadeInUp" data-wow-delay="0.1s">
+                        <!--Icon-->
+                        <div class="icon">
+                            <i class="fa fa-html5 fa-2x"></i>
+                        </div>
+                        <!--Icon Block Description-->
+                        <div class="icon-block-description">
+                            <h4>HTML5 &amp; CSS3</h4>
+                            <p>Has ne tritani atomorum conclusionemque, in dolorum volumus cotidieque eum. At vis choro
+                                neglegentur iudico</p>
+                        </div>
+                    </div>
+                    <!--End of Icon Block-->
+
+                    <!--Icon Block-->
+                    <div class="col-2 icon-block icon-top wow fadeInUp" data-wow-delay="0.3s">
+                        <!--Icon-->
+                        <div class="icon">
+                            <i class="fa fa-bolt fa-2x"></i>
+                        </div>
+                        <!--Icon Block Description-->
+                        <div class="icon-block-description">
+                            <h4>Easy to Use</h4>
+                            <p>Cu vero ipsum vim, doctus facilisi sea in. Eam ex falli honestatis repudiandae, sit
+                                detracto mediocrem disputationi</p>
+                        </div>
+                    </div>
+                    <!--End of Icon Block-->
+
+                    <!--Icon Block-->
+                    <div class="col-2 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
+                        <!--Icon-->
+                        <div class="icon">
+                            <i class="fa fa-tablet fa-2x"></i>
+                        </div>
+                        <!--Icon Block Description-->
+                        <div class="icon-block-description">
+                            <h4>Fully Responsive</h4>
+                            <p>Id porro tritani recusabo usu, eum intellegam consequuntur et. Fugit debet ea sit, an pro
+                                nemore vivendum</p>
+                        </div>
+                    </div>
+                    <!--End of Icon Block-->
+
+                    <!--Icon Block-->
+                    <div class="col-2 icon-block icon-top wow fadeInUp" data-wow-delay="0.5s">
+                        <!--Icon-->
+                        <div class="icon">
+                            <i class="fa fa-rocket fa-2x"></i>
+                        </div>
+                        <!--Icon Block Description-->
+                        <div class="icon-block-description">
+                            <h4>Parallax Effect</h4>
+                            <p>Id porro tritani recusabo usu, eum intellegam consequuntur et. Fugit debet ea sit, an pro
+                                nemore vivendum</p>
+                        </div>
+                    </div>
+                    <!--End of Icon Block-->
+
+                </div>
+
+            </div>
+
+
+        </section>
+        <!--End of Introduction-->
+
+
+        <!--Gallery-->
+        <aside id="gallery" class="row text-center scrollto clearfix" data-featherlight-gallery
+                 data-featherlight-filter="a">
+
+                <a href="/assets/img/gallery-images/gallery-image-1.jpg" data-featherlight="image" class="col-3 wow fadeIn"
+                   data-wow-delay="0.1s"><img src="/assets/img/gallery-images/gallery-image-1.jpg" alt="Landing Page"/></a>
+                <a href="/assets/img/gallery-images/gallery-image-2.jpg" data-featherlight="image" class="col-3 wow fadeIn"
+                   data-wow-delay="0.3s"><img src="/assets/img/gallery-images/gallery-image-2.jpg" alt="Landing Page"/></a>
+                <a href="/assets/img/gallery-images/gallery-image-3.jpg" data-featherlight="image" class="col-3 wow fadeIn"
+                   data-wow-delay="0.5s"><img src="/assets/img/gallery-images/gallery-image-3.jpg" alt="Landing Page"/></a>
+                <a href="/assets/img/gallery-images/gallery-image-4.jpg" data-featherlight="image" class="col-3 wow fadeIn"
+                   data-wow-delay="1.1s"><img src="/assets/img/gallery-images/gallery-image-4.jpg" alt="Landing Page"/></a>
+                <a href="/assets/img/gallery-images/gallery-image-5.jpg" data-featherlight="image" class="col-3 wow fadeIn"
+                   data-wow-delay="0.9s"><img src="images/gallery-images/gallery-image-5.jpg" alt="Landing Page"/></a>
+                <a href="/assets/img/gallery-images/gallery-image-6.jpg" data-featherlight="image" class="col-3 wow fadeIn"
+                   data-wow-delay="0.7s"><img src="/assets/img/gallery-images/gallery-image-6.jpg" alt="Landing Page"/></a>
+
+        </aside>
+        <!--End of Gallery-->
+
+
+        <!--Content Section-->
+        <div id="services" class="scrollto clearfix">
+
+            <div class="row no-padding-bottom clearfix">
+
+
+                <!--Content Left Side-->
+                <div class="col-3">
+                    <!--User Testimonial-->
+                    <blockquote class="testimonial text-right bigtest">
+                        <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore
+                            et dolore magna aliqua</q>
+                        <footer>— John Doe, Happy Customer</footer>
+                    </blockquote>
+                    <!-- End of Testimonial-->
+
+                </div>
+                <!--End Content Left Side-->
+
+                <!--Content of the Right Side-->
+                <div class="col-3">
+                    <div class="section-heading">
+                        <h3>BELIEVING</h3>
+                        <h2 class="section-title">Focusing On What Matters Most</h2>
+                        <p class="section-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam!</p>
+                    </div>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+                        dicta sunt explicabo.
+                    </p>
+                    <p>
+                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+                        consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet!
+                    </p>
+                    <!-- Just replace the Video ID "UYJ5IjBRlW8" with the ID of your video on YouTube (Found within the URL) -->
+                    <a href="#" data-videoid="UYJ5IjBRlW8" data-videosite="youtube" class="button video link-lightbox">
+                        WATCH VIDEO <i class="fa fa-play" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <!--End Content Right Side-->
+
+                <div class="col-3">
+                    <img src="/assets/img/dancer.jpg" alt="Dancer"/>
+                </div>
+
+            </div>
+
+
+        </div>
+        <!--End of Content Section-->
+
+        <!--Testimonials-->
+        <aside id="testimonials" class="scrollto text-center" data-enllax-ratio=".2">
+
+            <div class="row clearfix">
+
+                <div class="section-heading">
+                    <h3>FEEDBACK</h3>
+                    <h2 class="section-title">What our customers are saying</h2>
+                </div>
+
+                <!--User Testimonial-->
+                <blockquote class="col-4 testimonial classic">
+                    <img src="/assets/img/user-images/user-1.jpg" alt="User"/>
+                    <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua</q>
+                    <footer>John Doe - Happy Customer</footer>
+                </blockquote>
+                <!-- End of Testimonial-->
+
+                <!--User Testimonial-->
+                <blockquote class="col-4 testimonial classic">
+                    <img src="/assets/img/user-images/user-2.jpg" alt="User"/>
+                    <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua</q>
+                    <footer>Roslyn Doe - Happy Customer</footer>
+                </blockquote>
+                <!-- End of Testimonial-->
+
+                <!--User Testimonial-->
+                <blockquote class="col-4 testimonial classic">
+                    <img src="/assets/img/user-images/user-3.jpg" alt="User"/>
+                    <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua</q>
+                    <footer>Thomas Doe - Happy Customer</footer>
+                </blockquote>
+
+                <blockquote class="col-4 testimonial classic">
+                    <img src="/assets/img/user-images/user-3.jpg" alt="User"/>
+                    <q>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua</q>
+                    <footer>Thomas Doe - Happy Customer</footer>
+                </blockquote>
+                <!-- End of Testimonial-->
+
+            </div>
+
+        </aside>
+        <!--End of Testimonials-->
+
+        <!--Clients-->
+        <section id="clients" class="scrollto clearfix">
+            <div class="row clearfix">
+
+                <div class="col-3">
+
+                    <div class="section-heading">
+                        <h3>TRUST</h3>
+                        <h2 class="section-title">Companies who use our services</h2>
+                        <p class="section-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                            eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam!</p>
+                    </div>
+
+                </div>
+
+                <div class="col-2-3">
+
+                    <a href="#" class="col-3">
+                        <img src="images/company-images/company-logo1.png" alt="Company"/>
+                        <div class="client-overlay"><span>Tree</span></div>
+                    </a>
+                    <a href="#" class="col-3">
+                        <img src="images/company-images/company-logo2.png" alt="Company"/>
+                        <div class="client-overlay"><span>Fingerprint</span></div>
+                    </a>
+                    <a href="#" class="col-3">
+                        <img src="images/company-images/company-logo3.png" alt="Company"/>
+                        <div class="client-overlay"><span>The Man</span></div>
+                    </a>
+                    <a href="#" class="col-3">
+                        <img src="/assets/img/company-images/company-logo4.png" alt="Company"/>
+                        <div class="client-overlay"><span>Mustache</span></div>
+                    </a>
+                    <a href="#" class="col-3">
+                        <img src="/assets/img/company-images/company-logo5.png" alt="Company"/>
+                        <div class="client-overlay"><span>Goat</span></div>
+                    </a>
+                    <a href="#" class="col-3">
+                        <img src="/assets/img/company-images/company-logo6.png" alt="Company"/>
+                        <div class="client-overlay"><span>Justice</span></div>
+                    </a>
+                    <a href="#" class="col-3">
+                        <img src="/assets/img/company-images/company-logo7.png" alt="Company"/>
+                        <div class="client-overlay"><span>Ball</span></div>
+                    </a>
+                    <a href="#" class="col-3">
+                        <img src="/assets/img/company-images/company-logo8.png" alt="Company"/>
+                        <div class="client-overlay"><span>Cold</span></div>
+                    </a>
+
+                    <a href="#" class="col-3">
+                        <img src="/assets/img/company-images/company-logo9.png" alt="Company"/>
+                        <div class="client-overlay"><span>Cold</span></div>
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+        <!--End of Clients-->
+
+        <!--Pricing Tables-->
+        <section id="pricing" class="secondary-color text-center scrollto clearfix ">
+            <div class="row clearfix">
+
+                <div class="section-heading">
+                    <h3>YOUR CHOICE</h3>
+                    <h2 class="section-title">We have the right package for you</h2>
+                </div>
+
+                <!--Pricing Block-->
+                <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="pricing-block-content">
+                        <h3>Personal</h3>
+                        <p class="pricing-sub">The standard version</p>
+                        <div class="pricing">
+                            <div class="price"><span>$</span>19</div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                        </div>
+                        <ul>
+                            <li>5 Downloads</li>
+                            <li>2 Extensions</li>
+                            <li>Tutorials</li>
+                            <li>Forum Support</li>
+                            <li>1 year free updates</li>
+                        </ul>
+                        <a href="#" class="button">BUY TODAY</a>
+                    </div>
+                </div>
+                <!--End Pricing Block-->
+
+                <!--Pricing Block-->
+                <div class="pricing-block featured col-3 wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="pricing-block-content">
+                        <h3>Student</h3>
+                        <p class="pricing-sub">Most popular choice</p>
+                        <div class="pricing">
+                            <div class="price"><span>$</span>29</div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                        </div>
+                        <ul>
+                            <li>15 Downloads</li>
+                            <li>5 Extensions</li>
+                            <li>Tutorials with Files</li>
+                            <li>Forum Support</li>
+                            <li>2 years free updates</li>
+                        </ul>
+                        <a href="#" class="button">BUY TODAY</a>
+                    </div>
+                </div>
+                <!--End Pricing Block-->
+
+                <!--Pricing Block-->
+                <div class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.8s">
+                    <div class="pricing-block-content">
+                        <h3>Business</h3>
+                        <p class="pricing-sub">For the whole team</p>
+                        <div class="pricing">
+                            <div class="price"><span>$</span>49</div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                        </div>
+                        <ul>
+                            <li>Unlimited Downloads</li>
+                            <li>Unlimited Extensions</li>
+                            <li>HD Video Tutorials</li>
+                            <li>Chat Support</li>
+                            <li>Lifetime free updates</li>
+                        </ul>
+                        <a href="#" class="button">BUY TODAY</a>
+                    </div>
+                </div>
+                <!--End Pricing Block-->
+
+            </div>
+        </section>
+        <!--End of Pricing Tables-->
+
+    </main>
+    <!--End Main Content Area-->
+
+
+    <!--Footer-->
+    <footer id="landing-footer" class="clearfix">
+        <div class="row clearfix">
+
+            <p id="copyright" class="col-2">Made with love by <a href="https://www.shapingrain.com">ShapingRain</a></p>
+
+            <!--Social Icons in Footer-->
+            <ul class="col-2 social-icons">
+                <li>
+                    <a target="_blank" title="Facebook" href="https://www.facebook.com/username">
+                        <i class="fa fa-facebook fa-1x"></i><span>Facebook</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" title="Google+" href="http://google.com/+username">
+                        <i class="fa fa-google-plus fa-1x"></i><span>Google+</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" title="Twitter" href="http://www.twitter.com/username">
+                        <i class="fa fa-twitter fa-1x"></i><span>Twitter</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" title="Instagram" href="http://www.instagram.com/username">
+                        <i class="fa fa-instagram fa-1x"></i><span>Instagram</span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" title="behance" href="http://www.behance.net">
+                        <i class="fa fa-behance fa-1x"></i><span>Behance</span>
+                    </a>
+                </li>
+            </ul>
+            <!--End of Social Icons in Footer-->
+        </div>
     </footer>
+    <!--End of Footer-->
 
-    <img src="banana.jpg" alt="Banana Image" class="banana-image">
+</div>
+
+<!-- Include JavaScript resources -->
+<script src="/assets/js/jquery.1.8.3.min.js"></script>
+<script src="/assets/js/wow.min.js"></script>
+<script src="/assets/js/featherlight.min.js"></script>
+<script src="/assets/js/featherlight.gallery.min.js"></script>
+<script src="/assets/js/jquery.enllax.min.js"></script>
+<script src="/assets/js/jquery.scrollUp.min.js"></script>
+<script src="/assets/js/jquery.easing.min.js"></script>
+<script src="/assets/js/jquery.stickyNavbar.min.js"></script>
+<script src="/assets/js/jquery.waypoints.min.js"></script>
+<script src="/assets/js/images-loaded.min.js"></script>
+<script src="/assets/js/lightbox.min.js"></script>
+<script src="/assets/js/site.js"></script>
+
+
 </body>
 </html>
