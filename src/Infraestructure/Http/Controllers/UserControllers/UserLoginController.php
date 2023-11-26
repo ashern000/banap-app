@@ -27,7 +27,7 @@ final class UserLoginController implements Controller
         $this->session = $session;
     }
 
-    public function handle(Request $request, Response $response, array $data)
+    public function handle(Request $request, Response $response, array $args)
     {
         try {
             $requestDataArray = $request->getParsedBody();

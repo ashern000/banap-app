@@ -16,7 +16,7 @@
     <div class="wrap">
         <div class="frame">
             <div class="banap-vetor cima">
-                <img src="assets/img/vetor-tela6-cima.svg">
+                <img src="assets/img/vetor-tela6-cima.svg" alt="">
             </div>
             <div class="content div-1">
 

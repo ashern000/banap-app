@@ -18,13 +18,13 @@ final class HomeController implements Controller
         $this->renderer = $renderer;
     }
 
-    public function handle(Request $request, Response $response, array $data)
+    public function handle(Request $request, Response $response, array $args)
     {
         $data = ["title" => "Home"];
         return $this->renderer->render($response, "home.php", $data);
     }
 
-    public function show(Request $request, Response $response, array $data)
+    public function show(Request $request, Response $response, array $args)
     {
     }
 }

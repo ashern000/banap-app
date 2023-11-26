@@ -21,7 +21,6 @@ final class SessionSaveAdapter implements SessionSave, SessionValidator, Session
     {
         if($_SESSION['session_user']!=$id){
             throw new Exception("O usuário não está logado");
-            return false;
         }
         return true;
     }

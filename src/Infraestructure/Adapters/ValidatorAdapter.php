@@ -14,7 +14,6 @@ final class ValidatorAdapter implements Validator
     {
         if (!password_verify($password, (string)$passwordDatabase)) {
             throw new Exception("As senhas não são iguais");
-            return false;
         }
         return true;
     }

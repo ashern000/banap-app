@@ -16,10 +16,10 @@
     <div class="wrap">
         <div class="frame">
             <div class="banap-vetor cima">
-                <img src="assets/img/vetor-tela2-cima.svg">
+                <img src="assets/img/vetor-tela2-cima.svg" alt="">
             </div>
             <div class="banap-vetor baixo">
-                <img src="assets/img/vetor-tela-2-baixo.svg">
+                <img src="assets/img/vetor-tela-2-baixo.svg" alt="">
             </div>
             <div class="content div-1">
                 <h1 class="banap-title">Antes de começar <br>a utilizar o <b>Banap...</b></h1>
@@ -29,15 +29,15 @@
                 <div class="content div-2">
                     <div class="form-input">
                         <label for="nome" class="banap-label">Nome</label>
-                        <input type="text" name="nome" id="nome" class="input" placeholder="Exemplo" >
+                        <input type="text" name="nome" id="nome" class="input" placeholder="Exemplo">
                     </div>
                     <div class="form-input">
                         <label for="email" class="banap-label">Email</label>
-                        <input type="text" name="email" id="email" class="input" placeholder="exemplo@gmail.com" >
+                        <input type="text" name="email" id="email" class="input" placeholder="exemplo@gmail.com">
                     </div>
                     <div class="form-input">
                         <label for="senha" class="banap-label">Senha</label>
-                        <input type="password" name="senha" id="senha" class="input" placeholder="ab12345@" >
+                        <input type="password" name="senha" id="senha" class="input" placeholder="ab12345@">
                     </div>
                 </div>
                 <div class="content div-3">

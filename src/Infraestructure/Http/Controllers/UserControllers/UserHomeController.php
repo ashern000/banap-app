@@ -26,7 +26,7 @@ final class UserHomeController implements Controller
         $this->session = $session;
     }
 
-    public function handle(Request $request, Response $response, array $data)
+    public function handle(Request $request, Response $response, array $args)
     {
         if ($this->session->userLoggedIn()) {
             $input = new InputBoundary($_SESSION['session_user']);
@@ -38,10 +38,11 @@ final class UserHomeController implements Controller
         }
     }
 
-    public function show(Request $request, Response $response, array $data)
+    public function show(Request $request, Response $response, array $args)
     {
         $input = new InputBoundary($_SESSION['session_user']);
         $this->useCase->handle($input);
+        $data = [];
         return $this->renderer->render($response, 'UserHome.php', $data);
     }
 }

@@ -12,7 +12,6 @@ final class OutputBoundary
     private float $saturacaoBaseAtual;
     private float $CTC;
     private float $PRNT;
-    private string $nameField;
 
     public function __construct(array $values)
     {
@@ -22,7 +21,6 @@ final class OutputBoundary
         $this->saturacaoBaseAtual = $values['saturacaoBaseAtual'];
         $this->CTC = $values['CTC'];
         $this->PRNT = $values['PRNT'];
-        $this->nameField = $values['nameField'];
     }
 
     /**
@@ -85,13 +83,4 @@ final class OutputBoundary
         return $this->PRNT;
     }
 
-    /**
-     * Get the value of nameField
-     *
-     * @return string
-     */
-    public function getNameField(): string
-    {
-        return $this->nameField;
-    }
 }

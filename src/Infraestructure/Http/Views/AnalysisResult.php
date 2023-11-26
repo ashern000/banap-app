@@ -16,7 +16,7 @@
     <div class="wrap">
         <div class="frame">
             <div class="banap-vetor">
-                <img src="/assets/img/vetor-tela5-cima.svg">
+                <img src="/assets/img/vetor-tela5-cima.svg" alt="">
             </div>
             <div class="content div-1">
                 <h1 class="banap-title">Cálculo de Calagem do <b>Solo...</b></h1>

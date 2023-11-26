@@ -23,7 +23,7 @@ final class UserRegistrationController implements Controller
         $this->renderer = $renderer;
     }
 
-    public function handle(Request $request, Response $response, array $data)
+    public function handle(Request $request, Response $response, array $args)
     {
         try {
             $requestDataArray = $request->getParsedBody();
