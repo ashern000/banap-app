@@ -36,6 +36,8 @@ try {
     $app->get("/analysis/{id}", "RegisterLimingController:show");
     $app->post("/analysis/{id}", "RegisterLimingController:handle");
 
+    $app->get("/analysis-show/{id}", "AnalysisListAllController:show");
+
     $app->get("/field-create", "FieldCreateController:show");
     $app->post("/field-create", "FieldCreateController:handle");
 

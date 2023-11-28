@@ -31,13 +31,7 @@ final class ListAnalysis
         $analysis = new Analysis();
         $analysis->setIdField($input->getIdField());
         $output = $this->repository->listAnalysis($analysis);
-        $idField = $output->getIdField();
-        $id = $output->getId();
-        $necessidadeCalagem = $output->getNeedForLiming();
-        $saturacaoBaseAtual = $output->getCurrentBaseSaturation();
-        $ctc = $output->getTotalCationExchangeCapacity();
-        $prnt = $output->getRelativeTotalNeutralizingPower();
 
-        return new OutputBoundary(["idField" => $idField, "ctc" => $ctc, "prnt" => $prnt, "necessidadeCalagem" => $necessidadeCalagem, "saturacaoBaseAtual" => $saturacaoBaseAtual]);
+        return new OutputBoundary([$output]);
     }
 }

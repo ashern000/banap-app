@@ -35,11 +35,13 @@ final class AnalysisRepository implements RegisterLimingCalculation, ListAnalysi
     }
 
 
-    public function listAnalysis(Analysis $analysis): Analysis
+    public function listAnalysis(Analysis $analysis)
     {
-        $query = "SELECT * FROM analysis_banap A left join fields_banap F on A.id_talhao = :id_talhao where A.id_talhao = :id_talhao";
+        $query = "SELECT * FROM analysis_banap A left join fields_banap F on A.id_talhao = F.id where A.id_talhao = :id_talhao";
         $prepared = $this->pdo->prepare($query);
         $prepared->bindValue(":id_talhao", $analysis->getIdField());
-        return $analysis;
+        $prepared->execute();
+        $analysisData = $prepared->fetchAll();
+        return $analysisData;
     }
 }

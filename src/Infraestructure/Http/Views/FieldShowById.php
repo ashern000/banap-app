@@ -8,6 +8,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     </style>
     <link rel="stylesheet" href="/assets/Field.css">
+    <script src="/assets/js/animation.js"></script>
     <title>Talhão</title>
 </head>
 
@@ -45,13 +46,17 @@
                 </div>
             </div>
             <div class="content div-3">
-            <a href=""><h2 class="listar-analise">Listar análises</h2></a>
-                <form method="GET" action="/analysis/{<?=$data['id']?>}"><div class="analysis">
-                    <button>
-                    <img src="/assets/img/plus.svg" alt="">
-                    <h2>Nova análise</h2>
-                    </button>
-                </div></form>
+                <a href="/analysis-show/{<?= $data['id'] ?>}">
+                    <h2 class="listar-analise">Listar análises</h2>
+                </a>
+                <form method="GET" action="/analysis/{<?= $data['id'] ?>}">
+                    <div class="analysis">
+                        <button>
+                            <img src="/assets/img/plus.svg" alt="">
+                            <h2>Nova análise</h2>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

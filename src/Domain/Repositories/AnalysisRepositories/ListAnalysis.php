@@ -7,5 +7,5 @@ namespace src\Domain\Repositories\AnalysisRepositories;
 use src\Domain\Entities\Analysis;
 
 interface ListAnalysis {
-    public function listAnalysis(Analysis $analysis):Analysis;
+    public function listAnalysis(Analysis $analysis);
 }

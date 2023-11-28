@@ -36,7 +36,10 @@ use src\Infraestructure\Repositories\MySQL\FieldRepository;
 use src\Infraestructure\Repositories\MySQL\MySQLRepo;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
+use src\Application\UseCases\Analysis\ListAnalysis\ListAnalysis;
 use src\Infraestructure\Adapters\EmailSenderAdapter;
+use src\Infraestructure\Http\Controllers\Analysis\AnalysisListAll;
+use src\Infraestructure\Http\Controllers\Analysis\AnalysisListAllController;
 use src\Infraestructure\Http\Controllers\FieldControllers\FieldDeleteController;
 
 const config = "mysql:host=localhost;dbname=BanapDB";
@@ -222,6 +225,18 @@ $container->set("FieldShowByIdFieldController", function (ContainerInterface $co
     $renderer = $container->get("renderer");
     $useCase = $container->get("FieldFindById");
     return new FieldShowByIdFieldController($renderer, $useCase);
+});
+
+$container->set("AnalysisListAll", function (ContainerInterface $container) {
+    $repository = $container->get("LimingRepository");
+    $session = $container->get("Session");
+    return new ListAnalysis($repository,$session);
+});
+
+$container->set("AnalysisListAllController", function (ContainerInterface $container) {
+    $useCase = $container->get("AnalysisListAll");
+    $renderer = $container->get("renderer");
+    return new AnalysisListAllController($renderer,$useCase);
 });
 
 AppFactory::setContainer($container);

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Page Not Found</title>
+    <script src="assets/js/animation.js"></script>
     <style>
         body {
             margin: 0;
@@ -54,7 +55,7 @@
     <div class="container">
         <div class="error-404">404</div>
         <div class="message">Oops! Page Not Found</div>
-        <p class="back-home">Back to <a href="/home">Home</a></p>
+        <p class="back-home">Back to <a href="/login">Home</a></p>
     </div>
 </body>
 </html>
