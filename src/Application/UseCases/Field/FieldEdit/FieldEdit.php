@@ -25,7 +25,6 @@ final class FieldEdit
     public function handle(InputBoundary $input): OutputBoundary
     {
         $this->session->sessionValidate($input->getIdUser());
-        var_dump($input);
         $field = new Field();
 
         $centralPoint = ($input->getPointOne() + $input->getPointTwo() + $input->getPointThree() + $input->getPointFour()) / 4;
