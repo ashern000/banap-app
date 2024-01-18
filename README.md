@@ -27,10 +27,12 @@ Projeções de Colheita:
 
 Utilize dados históricos e análises de solo para criar projeções de colheita e planejar futuras safras.
 Receba alertas sobre condições ideais de plantio e colheita.
-Tecnologias Utilizadas
-Linguagens: PHP, JavaScript, HTML, CSS
-Banco de Dados: MySQL
-Arquitetura: Clean Architecture
+
+- Tecnologias Utilizadas
+- Linguagens: PHP, JavaScript, HTML, CSS
+- Banco de Dados: MySQL
+- Arquitetura: Clean Architecture
+- Princípios: SOLID, Clean Code
 
 Instalação
 Para instalar o Banap em seu ambiente local, siga as instruções para a instalação.
@@ -179,3 +181,23 @@ CREATE TABLE IF NOT EXISTS `Analysis_Banap` (
     |   |-- index.php
     |-- composer.json
     |-- README.md
+
+
+##### Domain
+
+Em `./Domain/Entities` se localizam as entidades do projeto, as quais carregam os atributos e verificações de regras de negócio.
+Já `./Domain/valueObjects` possuem alguns objetos de valores das entidades, permitindo uma clareza maior dos tipos usados na entidade.
+`./Domain/Repositories` carregam as interfaces de repositórios, permitindo a abstração para a camada de aplicação conseguir realizar a persistência sem conhecer a infraestrutura.
+
+##### Application
+
+Na camada de aplicação, possui os use-cases em `./Application/UseCases`, os casos de uso, ficam responsáveis pelas ações das entidades, como cadastrar usuário, listar talhões e demais.
+Cada caso de uso, possui os seus próprios DTO´s, sendo possível acho-los sempre na mesma pasta que o caso de uso e nomeados `InputBoundary` e `OutputBoundary`.
+Portanto, os use-cases precisam de abstrações de serviços externos, podendo ser encontrados em `./Application/Contracts`, permitindo a implementação sem dependência de biblioteca.
+
+##### Infrastruture
+
+Por fim, a camada de infraestrutura, esta camada é responsável pela implementação dos frameworks, drivers e bibliotecas, onde fica a "sujeira" da aplicação segundo Clean Architecture.
+Por ser uma aplicação Web, temos a camada de Http `./infrastruture/Http`, que fica responsável por implementar a parte de requisições e respostas, possuindo controllers para realizarem a implementação dos casos de usos.
+Para implementar os Adapters `./infrastruture/Adapters`, que implementão as interfaces dos Contracts para oferecer os serviços necessários demandados pelos use-cases.
+
