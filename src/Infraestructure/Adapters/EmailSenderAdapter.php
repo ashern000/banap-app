@@ -19,11 +19,11 @@ final class EmailSenderAdapter implements EmailSender
         $mail->isSMTP();                                            //Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'asherndebortoli@gmail.com';                     //SMTP username
-        $mail->Password   = 'rbzuhlealxlorloa';                               //SMTP password
+        $mail->Username   = 'your_email@gmail.com';                     //SMTP username
+        $mail->Password   = '';                               //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $mail->Port       = 465;
-        $mail->setFrom('asherndebortoli@gmail.com', 'Mailer');
+        $mail->setFrom('your_email@gmail.com', 'Mailer');
         $mail->addAddress($user->getEmail(), $user->getName()); 
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Banap te deseja as boas vindas';
